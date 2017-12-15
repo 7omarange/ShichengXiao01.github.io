@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NOIP,DP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="DP是NOIP考察中较为重要的考点，出现频率也相对较高。不过NOIP中的DP一般不会作为最难的题目的存在，但是其难度也不会很低。近五年主要考察了状压DP，期望DP，树形DP，背包问题变形，序列问题等。其中期望DP是在NOIP2016中首次出现，值得关注。">
+<meta name="keywords" content="NOIP,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP考点总结之——DP">
+<meta property="og:url" content="http://shichengxiao01.github.io/2017/11/04/NOIP考点总结之——DP/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="DP是NOIP考察中较为重要的考点，出现频率也相对较高。不过NOIP中的DP一般不会作为最难的题目的存在，但是其难度也不会很低。近五年主要考察了状压DP，期望DP，树形DP，背包问题变形，序列问题等。其中期望DP是在NOIP2016中首次出现，值得关注。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-03T17:56:48.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP考点总结之——DP">
+<meta name="twitter:description" content="DP是NOIP考察中较为重要的考点，出现频率也相对较高。不过NOIP中的DP一般不会作为最难的题目的存在，但是其难度也不会很低。近五年主要考察了状压DP，期望DP，树形DP，背包问题变形，序列问题等。其中期望DP是在NOIP2016中首次出现，值得关注。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2017/11/04/NOIP考点总结之——DP/"/>
+
+
+
+
+
+  <title>NOIP考点总结之——DP | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/11/04/NOIP考点总结之——DP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOIP考点总结之——DP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T01:45:16+08:00">
+                2017-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>DP是NOIP考察中较为重要的考点，出现频率也相对较高。不过NOIP中的DP一般不会作为最难的题目的存在，但是其难度也不会很低。近五年主要考察了状压DP，期望DP，树形DP，背包问题变形，序列问题等。其中期望DP是在NOIP2016中首次出现，值得关注。<br><a id="more"></a></p>
+<h1 id="总概"><a href="#总概" class="headerlink" title="总概"></a>总概</h1><p>近五年的NOIP中，DP出现次数也比较高，但大多数的题都是以第二题难度的存在。本文选择了一些近年来的题目来解析。期望，状压，背包，序列问题各选了一道。</p>
+<h1 id="NOIP2016-Day1T3-换教室"><a href="#NOIP2016-Day1T3-换教室" class="headerlink" title="NOIP2016 Day1T3 换教室"></a>NOIP2016 Day1T3 换教室</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>对于刚上大学的牛牛来说，他面临的第一个问题是如何根据实际情况申请合适的课程。<br>在可以选择的课程中，有$2n$节课程安排在$n$个时间段上。在第 $i$（$1 \leqslant i \leqslant n$）个时间段上，两节内容相同的课程同时在不同的地点进行，其中，牛牛预先被安排在教室$c_i$上课，而另一节课程在教室$d_i$进行。<br>在不提交任何申请的情况下，学生们需要按时间段的顺序依次完成所有的$n$节安排好的课程。如果学生想更换第$i$节课程的教室，则需要提出申请。若申请通过，学生就可以在第$i$个时间段去教室$d_i$上课，否则仍然在教室$c_i$上课。<br>由于更换教室的需求太多，申请不一定能获得通过。通过计算，牛牛发现申请更换第$i$节课程的教室时，申请被通过的概率是一个已知的实数$k_i$，并且对于不同课程的申请，被通过的概率是互相独立的。<br>学校规定，所有的申请只能在学期开始前一次性提交，并且每个人只能选择至多$m$节课程进行申请。这意味着牛牛必须一次性决定是否申请更换每节课的教室，而不能根据某些课程的申请结果来决定其他课程是否申请；牛牛可以申请自己最希望更换教室的$m$门课程，也可以不用完这$m$个申请的机会，甚至可以一门课程都不申请。<br>因为不同的课程可能会被安排在不同的教室进行，所以牛牛需要利用课间时间从一间教室赶到另一间教室。<br>牛牛所在的大学有$v$个教室，有$e$条道路。每条道路连接两间教室，并且是可以双向通行的。由于道路的长度和拥堵程度不同，通过不同的道路耗费的体力可能会有所不同。 当第$i$（$1 \leqslant i \leqslant n-1$）节课结束后，牛牛就会从这节课的教室出发，选择一条耗费体力最少的路径前往下一节课的教室。<br>现在牛牛想知道，申请哪几门课程可以使他因在教室间移动耗费的体力值的总和的期望值最小，请你帮他求出这个最小值。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行四个整数$n,m,v,e$。$n$表示这个学期内的时间段的数量；$m$表示牛牛最多可以申请更换多少节课程的教室；$v$表示牛牛学校里教室的数量；$e$表示牛牛的学校里道路的数量。<br>第二行$n$个正整数，第$i$（$1 \leqslant i \leqslant n$）个正整数表示$c_i$，即第$i$个时间段牛牛被安排上课的教室；保证$1 \leqslant c_i \leqslant v$。<br>第三行$n$个正整数，第$i$（$1 \leqslant i \leqslant n$）个正整数表示$d_i$，即第$i$个时间段另一间上同样课程的教室；保证$1 \leqslant d_i \leqslant v$。<br>第四行$n$个实数，第$i$（$1 \leqslant i \leqslant n$）个实数表示$k_i$，即牛牛申请在第$i$个时间段更换教室获得通过的概率。保证$0 \leqslant k_i \leqslant 1$。<br>接下来$e$行，每行三个正整数$a_j, b_j, w_j$，表示有一条双向道路连接教室$a_j, b_j$，通过这条道路需要耗费的体力值是$w_j$；保证$1 \leqslant a_j, b_j \leqslant v$，$1 \leqslant w_j \leqslant 100$。<br>保证$1 \leqslant n \leqslant 2000$，$0 \leqslant m \leqslant 2000$，$1 \leqslant v \leqslant 300$，$0 \leqslant e \leqslant 90000$。<br>保证通过学校里的道路，从任何一间教室出发，都能到达其他所有的教室。<br>保证输入的实数最多包含$3$位小数。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出一行，包含一个实数，四舍五入精确到小数点后恰好$2$位，表示答案。你的输出必须和标准输出完全一样才算正确。<br>测试数据保证四舍五入后的答案和准确答案的差的绝对值不大于$4 \times 10^{-3}$。（如果你不知道什么是浮点误差，这段话可以理解为：对于大多数的算法，你可以正常地使用浮点数类型而不用对它进行特殊的处理）</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>算是概率DP中较为简单的题目。不难想到floyd预处理出任意两点之间的最短路，然后就可以开始考虑DP了。记$dp[i][j][0/1]$表示前$i$个课程中已经申请换了$j$次教室，并且这一次申请/不申请的期望体力值。<br>对于第三维为$0$的情况，不难得出：<br>$$dp[i][j][0]=min(dp[i-1][j][1]+p[i-1]·dis[d[i-1]][c[i]]+(1-p[i-1])·dis[c[i-1]][c[i]],dp[i-1][j][0]+dis[c[i-1]][c[i]]);$$<br>其中前面一个式子表示上一次换了教室，后面表示上一次没换教室。不过对于换了教室的情况，仍然要分为申请成功与失败两种可能。<br>对于第三维为$1$，形式上相似，不过式子写起来会比较长：<br>$$dp[i][j][1]=min(p[i]·(dp[i-1][j-1][0]+dis[c[i-1]][d[i]])+(1-p[i])·(dp[i-1][j-1][0]+dis[c[i-1]][c[i]]),p[i]·(dp[i-1][j-1][1]+p[i-1]·dis[d[i-1]][d[i]]+(1-p[i-1])·dis[c[i-1]][d[i]])+(1-p[i])·(dp[i-1][j-1][1]+p[i-1]·dis[d[i-1]][c[i]]+(1-p[i-1])·dis[c[i-1]][c[i]]));$$<br>于是就解决了。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">2e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxv=<span class="number">3e2</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">int</span> c[maxn],d[maxn],dis[maxv][maxv];</div><div class="line"><span class="keyword">double</span> p[maxn],dp[maxn][maxm][<span class="number">2</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n,v,e;</div><div class="line">	n=read();m=read();v=read();e=read();</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)c[i]=read();</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)d[i]=read();</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;p[i]);</div><div class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="keyword">sizeof</span>(dis));</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=e;i++)&#123;</div><div class="line">		<span class="keyword">int</span> x,y,z;</div><div class="line">		x=read();y=read();z=read();</div><div class="line">		dis[x][y]=dis[y][x]=min(dis[x][y],z);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=v;i++)dis[i][i]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=v;k++)</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=v;i++)</div><div class="line">			<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=v;j++)</div><div class="line">				dis[i][j]=dis[j][i]=min(dis[i][j],dis[i][k]+dis[k][j]);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=m;j++)</div><div class="line">			dp[i][j][<span class="number">0</span>]=dp[i][j][<span class="number">1</span>]=INF;</div><div class="line">	dp[<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>]=dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=min(i,m);j++)&#123;</div><div class="line">			dp[i][j][<span class="number">0</span>]=min(dp[i<span class="number">-1</span>][j][<span class="number">1</span>]+p[i<span class="number">-1</span>]*dis[d[i<span class="number">-1</span>]][c[i]]+</div><div class="line">						(<span class="number">1</span>-p[i<span class="number">-1</span>])*dis[c[i<span class="number">-1</span>]][c[i]],dp[i<span class="number">-1</span>][j][<span class="number">0</span>]+dis[c[i<span class="number">-1</span>]][c[i]]);</div><div class="line">			<span class="keyword">if</span>(j&gt;=<span class="number">1</span>)</div><div class="line">				dp[i][j][<span class="number">1</span>]=</div><div class="line">				min(p[i]*(dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>]+dis[c[i<span class="number">-1</span>]][d[i]])+</div><div class="line">				(<span class="number">1</span>-p[i])*(dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>]+dis[c[i<span class="number">-1</span>]][c[i]]),</div><div class="line">				p[i]*(dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">1</span>]+p[i<span class="number">-1</span>]*dis[d[i<span class="number">-1</span>]][d[i]]+(<span class="number">1</span>-p[i<span class="number">-1</span>])*dis[c[i<span class="number">-1</span>]][d[i]])+</div><div class="line">				(<span class="number">1</span>-p[i])*(dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">1</span>]+p[i<span class="number">-1</span>]*dis[d[i<span class="number">-1</span>]][c[i]]+(<span class="number">1</span>-p[i<span class="number">-1</span>])*dis[c[i<span class="number">-1</span>]][c[i]]));</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">double</span> ans=INF;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)</div><div class="line">		ans=min(min(dp[n][i][<span class="number">0</span>],dp[n][i][<span class="number">1</span>]),ans);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="NOIP2016-Day2T3-愤怒的小鸟"><a href="#NOIP2016-Day2T3-愤怒的小鸟" class="headerlink" title="NOIP2016 Day2T3 愤怒的小鸟"></a>NOIP2016 Day2T3 愤怒的小鸟</h1><h2 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h2><p>Kiana最近沉迷于一款神奇的游戏无法自拔。<br>简单来说，这款游戏是在一个平面上进行的。<br>有一架弹弓位于$(0,0)$处，每次Kiana可以用它向第一象限发射一只红色的小鸟，小鸟们的飞行轨迹均为形如$y=ax^2+bx$的曲线，其中$a,b$是Kiana指定的参数，且必须满足$a&lt;0$，$a,b$都是实数。<br>当小鸟落回地面（即$x$轴）时，它就会瞬间消失。<br>在游戏的某个关卡里，平面的第一象限中有$n$只绿色的小猪，其中第$i$只小猪所在的坐标为$(x_i,y_i)$。<br>如果某只小鸟的飞行轨迹经过了$(x_i,y_i)$，那么第$i$只小猪就会被消灭掉，同时小鸟将会沿着原先的轨迹继续飞行；<br>如果一只小鸟的飞行轨迹没有经过$(x_i,y_i)$，那么这只小鸟飞行的全过程就不会对第$i$只小猪产生任何影响。<br>例如，若两只小猪分别位于$(1,3)$和$(3,3)$，Kiana可以选择发射一只飞行轨迹为$y=?x^2+4x$的小鸟，这样两只小猪就会被这只小鸟一起消灭。<br>而这个游戏的目的，就是通过发射小鸟消灭所有的小猪。<br>这款神奇游戏的每个关卡对Kiana来说都很难，所以Kiana还输入了一些神秘的指令，使得自己能更轻松地完成这个游戏。这些指令将在【输入格式】中详述。<br>假设这款游戏一共有$T$个关卡，现在Kiana想知道，对于每一个关卡，至少需要发射多少只小鸟才能消灭所有的小猪。由于她不会算，所以希望由你告诉她。</p>
+<h2 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个正整数$T$，表示游戏的关卡总数。<br>下面依次输入这$T$个关卡的信息。每个关卡第一行包含两个非负整数$n,m$，分别表示该关卡中的小猪数量和Kiana输入的神秘指令类型。接下来的$n$行中，第$i$行包含两个正实数$x_i,y_i$，表示第$i$只小猪坐标为$(x_i,y_i)$。数据保证同一个关卡中不存在两只坐标完全相同的小猪。<br>如果$m=0$，表示 Kiana 输入了一个没有任何作用的指令。<br>如果$m=1$，则这个关卡将会满足：至多用$\lceil n/3+1 \rceil$只小鸟即可消灭所有小猪。<br>如果$m=2$，则这个关卡将会满足：一定存在一种最优解，其中有一只小鸟消灭了至少$\lfloor n/3 \rfloor$只小猪。<br>保证$1 \leqslant n \leqslant 18$，$0 \leqslant m \leqslant 2$，$0&lt;x_i,y_i&lt;10$，输入中的实数均保留到小数点后两位。<br>上文中，符号$\lceil c \rceil$和$\lfloor c \rfloor$分别表示对$c$向上取整和向下取整，例如：$\lceil2.1\rceil=\lceil2.9\rceil=\lceil3.0\rceil=\lfloor3.0\rfloor=\lfloor3.1\rfloor=\lfloor3.9\rfloor=3$。</p>
+<h2 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h2><p>对每个关卡依次输出一行答案。<br>输出的每一行包含一个正整数，表示相应的关卡中，消灭所有小猪最少需要的小鸟数量。</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>这道题同样算是状压DP中较为简单的题了。提前预处理出经过某两点的抛物线能打掉的鸟，并将其状压成一个数。然后就是普通的状压了。不过可以注意，第一只鸟总是要打掉的，因此可以只枚举另一只鸟，这样复杂度可以做到$O(2^n·n)$。</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">18</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-12</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">double</span> x[maxn+<span class="number">5</span>],y[maxn+<span class="number">5</span>];</div><div class="line"><span class="keyword">int</span> dp[(<span class="number">1</span>&lt;&lt;maxn)+<span class="number">10</span>],a[maxn+<span class="number">5</span>][maxn+<span class="number">5</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> x&amp;(-x);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k)</span></span>&#123;</div><div class="line">	<span class="keyword">double</span> x1,x2,y1,y2,z1,z2;</div><div class="line">	x1=x[i]*x[i];x2=x[j]*x[j];</div><div class="line">	y1=x[i];y2=x[j];z1=y[i];z2=y[j];</div><div class="line">	<span class="keyword">double</span> a=(y2*z1-y1*z2)*<span class="number">1.0</span>/(x1*y2-x2*y1);</div><div class="line">	<span class="keyword">double</span> b=(x1*z2-x2*z1)*<span class="number">1.0</span>/(x1*y2-x2*y1);</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">fabs</span>(y2*z1-y1*z2)&lt;eps)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>((y2*z1-y1*z2)*(x1*y2-x2*y1)&gt;-eps)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">fabs</span>(y[k]-a*x[k]*x[k]-b*x[k])&lt;eps)<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"angrybirds.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"angrybirds.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	T=read();</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		n=read();m=read();</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;x[i],&amp;y[i]);</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">				a[i][j]=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i][i]=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>-(<span class="number">1</span>&lt;&lt;(i<span class="number">-1</span>));</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">			<span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">				<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;n;k++)</div><div class="line">					<span class="keyword">if</span>(check(i,j,k+<span class="number">1</span>))&#123;</div><div class="line">						a[i][j]-=(<span class="number">1</span>&lt;&lt;k);</div><div class="line">						a[j][i]-=(<span class="number">1</span>&lt;&lt;k);</div><div class="line">					&#125;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i++)dp[i]=INF;</div><div class="line">		dp[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>]=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(i=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)&#123;</div><div class="line">			<span class="keyword">int</span> pos1,pos2=<span class="number">20</span>;</div><div class="line">			<span class="keyword">if</span>(dp[i]==INF)<span class="keyword">continue</span>;</div><div class="line">			<span class="keyword">int</span> tmp=lowbit(i);</div><div class="line">			pos1=log2(tmp);</div><div class="line">			<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)&#123;</div><div class="line">				<span class="keyword">if</span>((i &amp; (<span class="number">1</span>&lt;&lt;j)))&#123;</div><div class="line">					pos2=j;</div><div class="line">					dp[i &amp; a[pos1+<span class="number">1</span>][pos2+<span class="number">1</span>]]=min(dp[i &amp; a[pos1+<span class="number">1</span>][pos2+<span class="number">1</span>]],dp[i]+<span class="number">1</span>);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(pos2==<span class="number">20</span>)dp[<span class="number">0</span>]=min(dp[<span class="number">0</span>],dp[i]+<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[<span class="number">0</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="NOIP2015-Day2T2-子串"><a href="#NOIP2015-Day2T2-子串" class="headerlink" title="NOIP2015 Day2T2 子串"></a>NOIP2015 Day2T2 子串</h1><h2 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h2><p>有两个仅包含小写英文字母的字符串$A$和$B$。<br>现在要从字符串$A$中取出$k$个互不重叠的非空子串，然后把这$k$个子串按照其在字符串$A$中出现的顺序依次连接起来得到一个新的字符串。请问有多少种方案可以使得这个新串与字符串$B$相等？<br>注意：子串取出的位置不同也认为是不同的方案。</p>
+<h2 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行是三个正整数$n,m,k$，分别表示字符串$A$的长度，字符串$B$的长度，以及问题描述中所提到的$k$，每两个整数之间用一个空格隔开。<br>第二行包含一个长度为$n$的字符串，表示字符串$A$。<br>第三行包含一个长度为$m$的字符串，表示字符串$B$。</p>
+<h2 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出共一行，包含一个整数，表示所求方案数。<br>由于答案可能很大，所以这里要求输出答案对$1000000007$取模的结果。</p>
+<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于100%的数据，$n \leqslant 10^3,k \leqslant m \leqslant 200$。</p>
+<h2 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h2><p>看完数据范围之后，就不难想到一个DP：设$dp[i][j][k]$表示当前$A$串已选到第$i$位，$B$串已匹配到第$j$位，$A$串已经选择了$k$个子串的方案数。不过这么转移是有问题的，因为这没有考虑两个在$A$串中选择的子串相连的情况。于是我们增加一位$0/1$表示这个子串是否在这个位置结束。转移时要注意思考一下。不过这样写会MLE，我们可以把第一位滚动掉就可以了。</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">2e2</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</div><div class="line"><span class="keyword">int</span> dp[<span class="number">2</span>][maxm][maxm][<span class="number">2</span>];</div><div class="line"><span class="keyword">char</span> a[maxn],b[maxm];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n,t;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"substring.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"substring.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();m=read();k=read();</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a+<span class="number">1</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,b+<span class="number">1</span>);</div><div class="line">	<span class="keyword">int</span> pos=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		<span class="built_in">memset</span>(dp[pos],<span class="number">0</span>,<span class="keyword">sizeof</span>(dp[pos]));</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=min(i,m);j++)</div><div class="line">			<span class="keyword">for</span>(t=<span class="number">1</span>;t&lt;=k;t++)&#123;</div><div class="line">				<span class="keyword">if</span>(a[i]==b[j])&#123;</div><div class="line">					<span class="keyword">if</span>(j==<span class="number">1</span> &amp;&amp; t==<span class="number">1</span>)dp[pos][j][t][<span class="number">1</span>]=dp[pos][j][t][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">					(dp[pos][j][t][<span class="number">1</span>]+=(dp[pos^<span class="number">1</span>][j<span class="number">-1</span>][t][<span class="number">1</span>]+dp[pos^<span class="number">1</span>][j<span class="number">-1</span>][t<span class="number">-1</span>][<span class="number">0</span>])%mod)%=mod;</div><div class="line">					(dp[pos][j][t][<span class="number">0</span>]+=(dp[pos^<span class="number">1</span>][j<span class="number">-1</span>][t][<span class="number">1</span>]+dp[pos^<span class="number">1</span>][j<span class="number">-1</span>][t<span class="number">-1</span>][<span class="number">0</span>])%mod)%=mod;</div><div class="line">				&#125;</div><div class="line">				(dp[pos][j][t][<span class="number">0</span>]+=dp[pos^<span class="number">1</span>][j][t][<span class="number">0</span>])%=mod;</div><div class="line">			&#125;</div><div class="line">		pos^=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[pos^<span class="number">1</span>][m][k][<span class="number">0</span>]);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="NOIP2014-Day1T3-飞扬的小鸟"><a href="#NOIP2014-Day1T3-飞扬的小鸟" class="headerlink" title="NOIP2014 Day1T3 飞扬的小鸟"></a>NOIP2014 Day1T3 飞扬的小鸟</h1><h2 id="问题描述-3"><a href="#问题描述-3" class="headerlink" title="问题描述"></a>问题描述</h2><p>Flappy Bird是一款风靡一时的休闲手机游戏。玩家需要不断控制点击手机屏幕的频率来调节小鸟的飞行高度，让小鸟顺利通过画面右方的管道缝隙。如果小鸟一不小心撞到了水管或者掉在地上的话，便宣告失败。<br>为了简化问题，我们对游戏规则进行了简化和改编:<br>游戏界面是一个长为$n$，高为$m$的二维平面，其中有$k$个管道（忽略管道的宽度）。<br>小鸟始终在游戏界面内移动。小鸟从游戏界面最左边任意整数高度位置出发，到达游戏界面最右边时，游戏完成。<br>小鸟每个单位时间沿横坐标方向右移的距离为$1$，竖直移动的距离由玩家控制。如果点击屏幕，小鸟就会上升一定高度$X$，每个单位时间可以点击多次，效果叠加；如果不点击屏幕，小鸟就会下降一定高度$Y$。小鸟位于横坐标方向不同位置时，上升的高度$X$和下降的高度$Y$可能互不相同。<br>小鸟高度等于$0$或者小鸟碰到管道时，游戏失败。小鸟高度为$m$时，无法再上升。<br>现在，请你判断是否可以完成游戏。如果可以，输出最少点击屏幕数；否则，输出小鸟最多可以通过多少个管道缝隙。</p>
+<h2 id="输入格式-3"><a href="#输入格式-3" class="headerlink" title="输入格式"></a>输入格式</h2><p>第$1$行有$3$个整数$n,m,k$，分别表示游戏界面的长度，高度和水管的数量，每两个整数之间用一个空格隔开；<br>接下来的$n$行，每行$2$个用一个空格隔开的整数$X$和$Y$，依次表示在横坐标位置$0?n?1$上玩家点击屏幕后，小鸟在下一位置上升的高度$X$，以及在这个位置上玩家不点击屏幕时，小鸟在下一位置下降的高度$Y$。<br>接下来$k$行，每行$3$个整数$P,L,H$，每两个整数之间用一个空格隔开。每行表示一个管道，其中$P$表示管道的横坐标，$L$表示此管道缝隙的下边沿高度，$H$表示管道缝隙上边沿的高度（输入数据保证$P$各不相同，但不保证按照大小顺序给出）。</p>
+<h2 id="输出格式-3"><a href="#输出格式-3" class="headerlink" title="输出格式"></a>输出格式</h2><p>共两行。<br>第一行，包含一个整数，如果可以成功完成游戏，则输出$1$，否则输出$0$。<br>第二行，包含一个整数，如果第一行为$1$，则输出成功完成游戏需要最少点击屏幕数，否则，输出小鸟最多可以通过多少个管道缝隙。</p>
+<h2 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于100%的数据，$5 \leqslant n \leqslant 10000,5 \leqslant m \leqslant 1000$。</p>
+<h2 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h2><p>这道题是我没有想出正解的题。首先很容易想到一个DP：设$dp[i][j]$表示走到$(i,j)$这个位置的最小点击屏幕的次数。但直接这样转移的话，向上转移就多出来一个$O(m)$的复杂度，无法通过。不过，完全背包给了我们提示，巧妙的转移可以解决这个问题，对于第一次上升，直接转移就好了，否则则利用这一层获得的答案，从$dp[i-1][j-x]$与$dp[i][j-x]$中取较小值进行转移，复杂度即降为$O(nm)$。</p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e4</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">1e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">int</span> x[maxn],y[maxn],dp[maxn][maxm],flag[maxn];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> p,l,h;</div><div class="line">&#125;;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> <span class="title">a</span>[<span class="title">maxn</span>];</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node t1,node t2)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> t1.p&lt;t2.p;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"bird.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"bird.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();m=read();k=read();</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		x[i]=read();</div><div class="line">		y[i]=read();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=k;i++)&#123;</div><div class="line">		a[i].p=read();a[i].l=read();a[i].h=read();</div><div class="line">	&#125;</div><div class="line">	sort(a+<span class="number">1</span>,a+k+<span class="number">1</span>,cmp);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=k;i++)</div><div class="line">		flag[a[i].p]=i;</div><div class="line">	<span class="keyword">int</span> check=<span class="number">0</span>;</div><div class="line">	<span class="built_in">memset</span>(dp,<span class="number">127</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)dp[<span class="number">0</span>][i]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		<span class="keyword">for</span>(j=x[i]+<span class="number">1</span>;j&lt;=min(m,<span class="number">2</span>*x[i]);j++)dp[i][j]=min(dp[i][j],dp[i<span class="number">-1</span>][j-x[i]]+<span class="number">1</span>);</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">2</span>*x[i]+<span class="number">1</span>;j&lt;=m;j++)</div><div class="line">			dp[i][j]=min(dp[i][j],min(dp[i][j-x[i]]+<span class="number">1</span>,dp[i<span class="number">-1</span>][j-x[i]]+<span class="number">1</span>));</div><div class="line">		<span class="keyword">for</span>(j=m-x[i]+<span class="number">1</span>;j&lt;=m;j++)&#123;</div><div class="line">			dp[i][m]=min(dp[i][m],min(dp[i][j]+<span class="number">1</span>,dp[i<span class="number">-1</span>][j]+<span class="number">1</span>));</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m-y[i];j++)</div><div class="line">			dp[i][j]=min(dp[i][j],dp[i<span class="number">-1</span>][j+y[i]]);</div><div class="line">		<span class="keyword">if</span>(flag[i])&#123;</div><div class="line">			<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=a[flag[i]].l;j++)dp[i][j]=INF;</div><div class="line">			<span class="keyword">for</span>(j=a[flag[i]].h;j&lt;=m;j++)dp[i][j]=INF;</div><div class="line">		&#125;</div><div class="line">		dp[i][<span class="number">0</span>]=INF;</div><div class="line">		check=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m;j++)</div><div class="line">			<span class="keyword">if</span>(dp[i][j]&lt;INF)</div><div class="line">				check=<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(!check)<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(!check)</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"0\n%d\n"</span>,flag[i]<span class="number">-1</span>);</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">int</span> minans=INF;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">			minans=min(minans,dp[n][i]);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"1\n%d\n"</span>,minans);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>NOIP中若是出现DP题，一般的难度不会特别大，因此要尽量争取考场上解决。即使没有解决，也应尽量拿下最高的部分分。考场上一定要注意，若是在写DP题时，一定要先把状态转移方程认真推一下，写下来，再来实现。<br>常见的需要想到DP的题目类型：</p>
+<ul>
+<li>求方案数并明确说了取模；</li>
+<li>求最优的方案的最小步数/最大得分等；</li>
+<li>求期望的肯定是DP；</li>
+<li>树上的一些统计可以考虑树形DP；</li>
+<li>其中某个数范围在$20$以内要想到状压；</li>
+<li>各个数位上的要求之类的想到数位DP；</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/NOIP考点总结之——树上操作/" rel="next" title="NOIP考点总结之——树上操作">
+                <i class="fa fa-chevron-left"></i> NOIP考点总结之——树上操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/04/NOIP2017游记/" rel="prev" title="NOIP2017游记">
+                NOIP2017游记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhou888.coding.me/" title="zhou888大佬" target="_blank">zhou888大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnyali-lk.com/" title="LK大佬" target="_blank">LK大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://redbag.pw/" title="redbag大佬" target="_blank">redbag大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Hany01.coding.me/" title="韩一大佬" target="_blank">韩一大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/dengyixuan/" title="dyx大佬" target="_blank">dyx大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/zjp-shadow/" title="zjp_shadow大佬" target="_blank">zjp_shadow大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/ylsoi/" title="yls大佬" target="_blank">yls大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.cnblogs.com/chinhhh/" title="zqy大佬" target="_blank">zqy大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/cjyyb/" title="yyb巨佬" target="_blank">yyb巨佬</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总概"><span class="nav-number">1.</span> <span class="nav-text">总概</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP2016-Day1T3-换教室"><span class="nav-number">2.</span> <span class="nav-text">NOIP2016 Day1T3 换教室</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.4.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP2016-Day2T3-愤怒的小鸟"><span class="nav-number">3.</span> <span class="nav-text">NOIP2016 Day2T3 愤怒的小鸟</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述-1"><span class="nav-number">3.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式-1"><span class="nav-number">3.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-1"><span class="nav-number">3.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">3.4.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP2015-Day2T2-子串"><span class="nav-number">4.</span> <span class="nav-text">NOIP2015 Day2T2 子串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述-2"><span class="nav-number">4.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式-2"><span class="nav-number">4.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-2"><span class="nav-number">4.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围"><span class="nav-number">4.4.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-2"><span class="nav-number">4.5.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">4.6.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP2014-Day1T3-飞扬的小鸟"><span class="nav-number">5.</span> <span class="nav-text">NOIP2014 Day1T3 飞扬的小鸟</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述-3"><span class="nav-number">5.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式-3"><span class="nav-number">5.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-3"><span class="nav-number">5.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围-1"><span class="nav-number">5.4.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-3"><span class="nav-number">5.5.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-3"><span class="nav-number">5.6.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

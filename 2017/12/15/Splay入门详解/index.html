@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Splay," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。">
+<meta name="keywords" content="Splay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Splay入门详解">
+<meta property="og:url" content="http://shichengxiao01.github.io/2017/12/15/Splay入门详解/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/Zig&Zag_1.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/Zig&Zag_2.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZig&ZagZag_1.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZig&ZagZag_2.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZag&ZagZig_1.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZag&ZagZig_2.png">
+<meta property="og:updated_time" content="2017-12-15T14:42:13.413Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Splay入门详解">
+<meta name="twitter:description" content="最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。">
+<meta name="twitter:image" content="http://shichengxiao01.github.io/images/Zig&Zag_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2017/12/15/Splay入门详解/"/>
+
+
+
+
+
+  <title>Splay入门详解 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/12/15/Splay入门详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Splay入门详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T22:39:48+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。<br><a id="more"></a></p>
+<h1 id="Splay操作详解"><a href="#Splay操作详解" class="headerlink" title="Splay操作详解"></a>Splay操作详解</h1><h2 id="从二叉查找树到Splay"><a href="#从二叉查找树到Splay" class="headerlink" title="从二叉查找树到Splay"></a>从二叉查找树到Splay</h2><p>二叉查找树（BST）相信都会吧……其性质就是保证了这棵树的中序遍历是有序的。这样我们就能进行插入，删除，单点修改点权，查找第k大或第k小等基本操作。所有的操作在随机数据下，都能做到$O(logn)$的时间复杂度。<br>但是BST是有缺陷的。比如说，丧心病狂的出题人把数据从小到大输进来，那么，BST建出的这棵树就退化为了一条链，于是所有的操作就变成$O(n)$的了……这当然是我们不愿意看到的，于是就要用Splay进行平衡。</p>
+<h2 id="Splay"><a href="#Splay" class="headerlink" title="Splay"></a>Splay</h2><p>Splay的平衡主要基于一个操作，即Splay（伸展操作）。这个操作就是把需要进行操作的点旋转到根节点，便于进行一些维护。但是……旋转操作该怎么搞呢？</p>
+<h2 id="Rotate"><a href="#Rotate" class="headerlink" title="Rotate"></a>Rotate</h2><p>旋转操作是对Splay进行平衡的主要操作，通过这个操作，可以使Splay的深度变浅，使得复杂度达到一个比较理想的状态。<br>但是，旋转是不能破坏BST的性质的，即中序遍历的有序性。所以不能随便旋转……<br>Rotate操作，如果要细分的话，分为以下三大类：（注：Zig为右旋，Zag为左旋）</p>
+<h3 id="Zig-Zag"><a href="#Zig-Zag" class="headerlink" title="Zig/Zag"></a>Zig/Zag</h3><p>如果我要旋转的节点是根节点的儿子了，那么只需做一次旋转就好了。比如对于这样一张图：<br><img src="/images/Zig&amp;Zag_1.png" alt=""><br>比如我要将$x$旋转到根节点，只需做一下旋转，变成下图的样子，就可以了。<br><img src="/images/Zig&amp;Zag_2.png" alt=""></p>
+<h3 id="ZigZig-ZagZag"><a href="#ZigZig-ZagZag" class="headerlink" title="ZigZig/ZagZag"></a>ZigZig/ZagZag</h3><p>如果这个点的父亲与父亲的父亲三点共线，如果只使用上图的两次单旋，你会发现，如果这棵树是一条链的话，做了两次旋转后，仍然是一条链，对复杂度并没有优化作用，于是我们要进行双旋。<br>具体来说，就是先将父节点向上旋转一次，再将要旋转的节点向上旋转一次：<br>比如对于这样一张图：<br><img src="/images/ZigZig&amp;ZagZag_1.png" alt=""><br>旋转后就变成了：<br><img src="/images/ZigZig&amp;ZagZag_2.png" alt=""></p>
+<h3 id="ZigZag-ZagZig"><a href="#ZigZag-ZagZig" class="headerlink" title="ZigZag/ZagZig"></a>ZigZag/ZagZig</h3><p>如果以上两种情况都不属于的话，我们只需对要旋转的节点向上做两次旋转，就可以了。<br>比如说对于这样一张图：<br><img src="/images/ZigZag&amp;ZagZig_1.png" alt=""><br>旋转后变为：<br><img src="/images/ZigZag&amp;ZagZig_2.png" alt=""></p>
+<h2 id="Rotate-amp-Splay操作总结"><a href="#Rotate-amp-Splay操作总结" class="headerlink" title="Rotate&amp;Splay操作总结"></a>Rotate&amp;Splay操作总结</h2><p>不难发现，以上的所有旋转，其实都是基于第一个操作，即Zig/Zag的。所以我们在Splay函数中，不断的进行以上三种旋转之一，直到该节点旋转到根节点即可。当然所有的旋转也并没有破坏它的中序遍历。代码实现上并不难做。先上Rotate函数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">bool</span> f)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> y=fa[x],u=ch[x][f^<span class="number">1</span>];</div><div class="line">	<span class="keyword">if</span>(fa[y])ch[fa[y]][ch[fa[y]][<span class="number">1</span>] == y]=x;</div><div class="line">	fa[x]=fa[y];</div><div class="line">	ch[fa[y]=x][f^<span class="number">1</span>]=y;</div><div class="line">	ch[fa[u]=y][f]=u;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>解释一下这个代码。f表示其是左旋还是右旋，<code>ch[x][0/1]</code>分别记录$x$节点的左右儿子。Rotate函数实现的仅仅是一次旋转。<br>再来Splay函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> y,z;</div><div class="line">	<span class="keyword">for</span>(y=fa[x],z=fa[y];y!=pos;z=fa[y=fa[x]])&#123;</div><div class="line">		<span class="keyword">bool</span> f1=(ch[y][<span class="number">1</span>]==x),f2=(ch[z][<span class="number">1</span>]==y);</div><div class="line">		<span class="keyword">if</span>(z==pos)Rotate(x,f1);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(f1^f2)Rotate(x,f1),Rotate(x,f2);</div><div class="line">		<span class="keyword">else</span> Rotate(y,f2),Rotate(x,f1);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(pos==<span class="number">0</span>)rt=x;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再来解释一下，<code>pos</code>指的是$x$号节点要旋转到$pos$节点的子节点。如果要旋到根，<code>pos=0</code>。最后还要根新一下根节点的编号。<br>关于Splay与Rotate为何能使得树变得平衡……这个我也不知道……</p>
+<h2 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h2><p>Insert函数实现的是插入一个节点。方法并不难。对于第一个节点，把它设为根就好。否则，则从根出发，根据节点的权值往左或往右走，最后接到一个节点之后。接好之后，再将这个节点Splay到根。<br>实现起来如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> Val)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(++cnt != <span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">int</span> pos=rt,posfa,f;</div><div class="line">		<span class="keyword">while</span>(size[pos])&#123;</div><div class="line">			posfa=pos;</div><div class="line">			<span class="keyword">if</span>(val[pos]&gt;=Val)pos=ch[pos][<span class="number">0</span>],f=<span class="number">0</span>;</div><div class="line">			<span class="keyword">else</span> pos=ch[pos][<span class="number">1</span>],f=<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		fa[cnt]=posfa;val[cnt]=Val;ch[posfa][f]=cnt;</div><div class="line">		size[cnt]=<span class="number">1</span>;Splay(cnt,<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> rt=cnt,size[rt]=<span class="number">1</span>,val[cnt]=Val;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><p>Delete函数与BST的删除非常类似。不过还要将要删除的节点先旋转到根以保证随时平衡。</p>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><p>Update函数一般用来更新子树的大小。在不停的旋转操作中，子树大小当然是在不断变化的，于是要不停的维护子树大小。那维护子树大小，有何作用呢？它可以帮助实现一下的一些操作。<br>实现起来就这样：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	size[x]=size[ch[x][<span class="number">0</span>]]+size[ch[x][<span class="number">1</span>]]+<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么……为何这样就是对的呢？因为Splay在旋转的过程中，是从下到上旋转的，因此更新子树大小时，也是从下到上更新的。于是这么写就没有问题了。<br>注意在每次旋转操作后和整个Splay操作完成后，都要Update一次。</p>
+<h2 id="Find"><a href="#Find" class="headerlink" title="Find"></a>Find</h2><p>Find函数实现的是查找整个序列的第$k$大或第$k$小。实现起来并不复杂。只需维护一下子树的大小，然后从根节点往下走。<br>实现起来长这样：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pos=rt;</div><div class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">		<span class="keyword">if</span>(x&lt;=size[ch[pos][<span class="number">0</span>]])pos=ch[pos][<span class="number">0</span>];</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(x==size[ch[pos][<span class="number">0</span>]]+<span class="number">1</span>)<span class="keyword">return</span> val[pos];</div><div class="line">		<span class="keyword">else</span> x-=size[ch[pos][<span class="number">0</span>]]+<span class="number">1</span>,pos=ch[pos][<span class="number">1</span>];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对于查询一个数的排名，实现十分类似，在此不再赘述。</p>
+<h2 id="Query-Pre-Nxt"><a href="#Query-Pre-Nxt" class="headerlink" title="Query_Pre/Nxt"></a>Query_Pre/Nxt</h2><p>查询前驱后继。并不复杂。找到该点后，前驱即为其左子树的最右的节点，后继即为其右子树最左的节点。</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="BZOJ1588-郁闷的出纳员"><a href="#BZOJ1588-郁闷的出纳员" class="headerlink" title="BZOJ1588 郁闷的出纳员"></a>BZOJ1588 郁闷的出纳员</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>OIER公司是一家大型专业化软件公司，有着数以万计的员工。作为一名出纳员，我的任务之一便是统计每位员工的工资。这本来是一份不错的工作，但是令人郁闷的是，我们的老板反复无常，经常调整员工的工资。如果他心情好，就可能把每位员工的工资加上一个相同的量。反之，如果心情不好，就可能把他们的工资扣除一个相同的量。我真不知道除了调工资他还做什么其它事情。工资的频繁调整很让员工反感，尤其是集体扣除工资的时候，一旦某位员工发现自己的工资已经低于了合同规定的工资下界，他就会立刻气愤地离开公司，并且再也不会回来了。每位员工的工资下界都是统一规定的。每当一个人离开公司，我就要从电脑中把他的工资档案删去，同样，每当公司招聘了一位新员工，我就得为他新建一个工资档案。老板经常到我这边来询问工资情况，他并不问具体某位员工的工资情况，而是问现在工资第k多的员工拿多少工资。每当这时，我就不得不对数万个员工进行一次漫长的排序，然后告诉他答案。好了，现在你已经对我的工作了解不少了。正如你猜的那样，我想请你编一个工资统计程序。怎么样，不是很困难吧？<br>第一行有两个非负整数$n$和$min$。$n$表示下面有多少条命令，$min$表示工资下界。<br>接下来的$n$行，每行表示一条命令。命令可以是以下四种之一：<br>| 名称 | 格式 | 作用 |<br>| :—-: | :—-: | :—–: |<br>| I命令 | I_k | 新建一个工资档案，初始工资为k。如果某员工的初始工资低于工资下界，他将立刻离开公司。|<br>| A命令 | A_k | 把每位员工的工资加上k |<br>| S命令 | S_k | 把每位员工的工资扣除k |<br>| F命令 | F_k | 查询第k多的工资 |<br>I命令的条数不超过$100000$<br>A命令和S命令的总条数不超过$100$<br>F命令的条数不超过$100000$<br>每次工资调整的调整量不超过$1000$<br>新员工的工资不超过$100000$</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>对于删除，先查询工资下界的前驱，再把它旋转到根的左子树并一起删掉就可以了。<br>对于加工资，每个点暴力加就可以。<br>查询第k大，直接照搬上文代码即可。<br>嗯还挺裸的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">int</span> Min;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Splay_Tree</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> ch[maxn][<span class="number">2</span>],val[maxn],size[maxn],fa[maxn];</div><div class="line">	<span class="keyword">int</span> rt,top,cnt;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		size[x]=size[ch[x][<span class="number">0</span>]]+size[ch[x][<span class="number">1</span>]]+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">bool</span> f)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> y=fa[x],u=ch[x][f^<span class="number">1</span>];</div><div class="line">		<span class="keyword">if</span>(fa[y])ch[fa[y]][ch[fa[y]][<span class="number">1</span>] == y]=x;</div><div class="line">		fa[x]=fa[y];</div><div class="line">		ch[fa[y]=x][f^<span class="number">1</span>]=y;</div><div class="line">		ch[fa[u]=y][f]=u;</div><div class="line">		Update(y);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> y,z;</div><div class="line">		<span class="keyword">for</span>(y=fa[x],z=fa[y];y!=pos;z=fa[y=fa[x]])&#123;</div><div class="line">			<span class="keyword">bool</span> f1=(ch[y][<span class="number">1</span>]==x),f2=(ch[z][<span class="number">1</span>]==y);</div><div class="line">			<span class="keyword">if</span>(z==pos)Rotate(x,f1);</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(f1^f2)Rotate(x,f1),Rotate(x,f2);</div><div class="line">			<span class="keyword">else</span> Rotate(y,f2),Rotate(x,f1);</div><div class="line">		&#125;</div><div class="line">		Update(x);</div><div class="line">		<span class="keyword">if</span>(pos==<span class="number">0</span>)rt=x;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> Val)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(++cnt != <span class="number">1</span>)&#123;</div><div class="line">			<span class="keyword">int</span> pos=rt,posfa,f;</div><div class="line">			<span class="keyword">while</span>(size[pos])&#123;</div><div class="line">				posfa=pos;</div><div class="line">				<span class="keyword">if</span>(val[pos]&gt;=Val)pos=ch[pos][<span class="number">0</span>],f=<span class="number">0</span>;</div><div class="line">				<span class="keyword">else</span> pos=ch[pos][<span class="number">1</span>],f=<span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			fa[cnt]=posfa;val[cnt]=Val;ch[posfa][f]=cnt;</div><div class="line">			size[cnt]=<span class="number">1</span>;Splay(cnt,<span class="number">0</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> rt=cnt,size[rt]=<span class="number">1</span>,val[cnt]=Val;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> Val)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> pos=rt,Pre,Nex;</div><div class="line">		<span class="keyword">while</span>(size[pos])&#123;</div><div class="line">			<span class="keyword">if</span>(val[pos]&gt;Val)Nex=val[pos],pos=ch[pos][<span class="number">0</span>];</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(val[pos]==Val)&#123;</div><div class="line">				Nex=Pre=Val;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> Pre=val[pos],pos=ch[pos][<span class="number">1</span>];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> min(<span class="built_in">abs</span>(Pre-Val),<span class="built_in">abs</span>(Nex-Val));</div><div class="line">	&#125;</div><div class="line">&#125;Tree;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,k,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"BZOJ1588.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"BZOJ1588.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();</div><div class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">	Tree.Insert(INF);</div><div class="line">	Tree.Insert(-INF);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		<span class="keyword">int</span> val=read();</div><div class="line">		<span class="keyword">if</span>(i==<span class="number">1</span>)sum+=val;</div><div class="line">		<span class="keyword">else</span> sum+=Tree.Query(val);</div><div class="line">		Tree.Insert(val);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sum);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="BZOJ1503-文艺平衡树"><a href="#BZOJ1503-文艺平衡树" class="headerlink" title="BZOJ1503 文艺平衡树"></a>BZOJ1503 文艺平衡树</h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>您需要写一种数据结构（可参考题目标题），来维护一个有序数列，其中需要提供以下操作：翻转一个区间，例如原有序序列是5 4 3 2 1，翻转区间是[2,4]的话，结果是5 2 3 4 1</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>Splay同样可以解决区间问题。对于区间修改，我们可以这么做。假设要反转的区间为$[l,r]$，我们找到$l-1$和$r+1$两个点。并把$l-1$旋转到根，把$r+1$旋转到根的右子树，那么要反转的区间就是$r+1$的左子树了。我们直接把这个区间打上反转标记。在每次Splay操作前，先把这次Splay路径上的所有点的标记PushDown，并反转子树的两个区间即可。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Splay_Tree</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> ch[maxn][<span class="number">2</span>],fa[maxn],val[maxn],size[maxn],Tag[maxn],<span class="built_in">stack</span>[maxn];</div><div class="line">	<span class="keyword">int</span> rt,cnt,top;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(Tag[x])&#123;</div><div class="line">			<span class="keyword">int</span> l=ch[x][<span class="number">0</span>],r=ch[x][<span class="number">1</span>];</div><div class="line">			Tag[x]^=<span class="number">1</span>;</div><div class="line">			Tag[l]^=<span class="number">1</span>,swap(ch[l][<span class="number">0</span>],ch[l][<span class="number">1</span>]);</div><div class="line">			Tag[r]^=<span class="number">1</span>,swap(ch[r][<span class="number">0</span>],ch[r][<span class="number">1</span>]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		size[x]=size[ch[x][<span class="number">0</span>]]+size[ch[x][<span class="number">1</span>]]+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">bool</span> f)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> y=fa[x],u=ch[x][f^<span class="number">1</span>];</div><div class="line">		<span class="keyword">if</span>(fa[y])ch[fa[y]][ch[fa[y]][<span class="number">1</span>] == y]=x;</div><div class="line">		fa[x]=fa[y];</div><div class="line">		ch[fa[y]=x][f^<span class="number">1</span>]=y;</div><div class="line">		ch[fa[u]=y][f]=u;</div><div class="line">		Update(y);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">		top=<span class="number">1</span>;<span class="built_in">stack</span>[top]=x;</div><div class="line">		<span class="keyword">int</span> i;</div><div class="line">		<span class="keyword">for</span>(i=x;fa[i]!=pos;i=fa[i])<span class="built_in">stack</span>[++top]=fa[i];</div><div class="line">		<span class="keyword">while</span>(top)Pushdown(<span class="built_in">stack</span>[top--]);</div><div class="line">		<span class="keyword">int</span> y,z;</div><div class="line">		<span class="keyword">for</span>(y=fa[x],z=fa[y];y!=pos;z=fa[y=fa[x]])&#123;</div><div class="line">			<span class="keyword">bool</span> f1=(ch[y][<span class="number">1</span>]==x),f2=(ch[z][<span class="number">1</span>]==y);</div><div class="line">			<span class="keyword">if</span>(z==pos)Rotate(x,f1);</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(f1^f2)Rotate(x,f1),Rotate(x,f2);</div><div class="line">			<span class="keyword">else</span> Rotate(y,f2),Rotate(x,f1);</div><div class="line">		&#125;</div><div class="line">		Update(x);</div><div class="line">		<span class="keyword">if</span>(pos==<span class="number">0</span>)rt=x;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(++cnt != <span class="number">1</span>)&#123;</div><div class="line">			Splay(cnt<span class="number">-1</span>,<span class="number">0</span>);</div><div class="line">			fa[cnt]=rt;val[cnt]=value;ch[rt][<span class="number">1</span>]=cnt;</div><div class="line">			size[cnt]=<span class="number">1</span>;size[rt]++;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> rt=cnt,size[rt]=<span class="number">1</span>,val[cnt]=value;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> pos=rt;</div><div class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">			Pushdown(pos);</div><div class="line">			<span class="keyword">if</span>(x&lt;=size[ch[pos][<span class="number">0</span>]])pos=ch[pos][<span class="number">0</span>];</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(x==size[ch[pos][<span class="number">0</span>]]+<span class="number">1</span>)<span class="keyword">return</span> pos;</div><div class="line">			<span class="keyword">else</span> x-=size[ch[pos][<span class="number">0</span>]]+<span class="number">1</span>,pos=ch[pos][<span class="number">1</span>];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Reverse</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		Splay(Find(l),<span class="number">0</span>),Pushdown(rt);</div><div class="line">		Splay(Find(r+<span class="number">2</span>),rt),Pushdown(ch[rt][<span class="number">1</span>]);</div><div class="line">		<span class="keyword">int</span> u=ch[ch[rt][<span class="number">1</span>]][<span class="number">0</span>];</div><div class="line">		Pushdown(u),Tag[u]^=<span class="number">1</span>;</div><div class="line">		swap(ch[u][<span class="number">0</span>],ch[u][<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Output</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">		Pushdown(u);</div><div class="line">		<span class="keyword">if</span>(ch[u][<span class="number">0</span>])Output(ch[u][<span class="number">0</span>]);</div><div class="line">		<span class="keyword">if</span>(val[u])<span class="built_in">printf</span>(<span class="string">"%d "</span>,val[u]);</div><div class="line">		<span class="keyword">if</span>(ch[u][<span class="number">1</span>])Output(ch[u][<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">&#125;Tree;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,k,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"BZOJ1503.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"BZOJ1503.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();k=read();</div><div class="line">	Tree.Insert(<span class="number">0</span>);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)Tree.Insert(i);</div><div class="line">	Tree.Insert(<span class="number">0</span>);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=k;i++)&#123;</div><div class="line">		<span class="keyword">int</span> l=read(),r=read();</div><div class="line">		Tree.Reverse(l,r);</div><div class="line">	&#125;</div><div class="line">	Tree.Output(Tree.rt);</div><div class="line">	<span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在这里讲的Splay只能算是Splay的入门吧。都是一些非常基本的操作，然而自己写得并不熟……还要好好加油啊！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Splay/" rel="tag"># Splay</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/09/树链剖分简单总结/" rel="next" title="树链剖分简单总结">
+                <i class="fa fa-chevron-left"></i> 树链剖分简单总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zhou888.coding.me/" title="zhou888大佬" target="_blank">zhou888大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnyali-lk.com/" title="LK大佬" target="_blank">LK大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://redbag.pw/" title="redbag大佬" target="_blank">redbag大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Hany01.coding.me/" title="韩一大佬" target="_blank">韩一大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/dengyixuan/" title="dyx大佬" target="_blank">dyx大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/zjp-shadow/" title="zjp_shadow大佬" target="_blank">zjp_shadow大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/ylsoi/" title="yls大佬" target="_blank">yls大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.cnblogs.com/chinhhh/" title="zqy大佬" target="_blank">zqy大佬</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/cjyyb/" title="yyb巨佬" target="_blank">yyb巨佬</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Splay操作详解"><span class="nav-number">1.</span> <span class="nav-text">Splay操作详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从二叉查找树到Splay"><span class="nav-number">1.1.</span> <span class="nav-text">从二叉查找树到Splay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Splay"><span class="nav-number">1.2.</span> <span class="nav-text">Splay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotate"><span class="nav-number">1.3.</span> <span class="nav-text">Rotate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zig-Zag"><span class="nav-number">1.3.1.</span> <span class="nav-text">Zig/Zag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZigZig-ZagZag"><span class="nav-number">1.3.2.</span> <span class="nav-text">ZigZig/ZagZag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZigZag-ZagZig"><span class="nav-number">1.3.3.</span> <span class="nav-text">ZigZag/ZagZig</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotate-amp-Splay操作总结"><span class="nav-number">1.4.</span> <span class="nav-text">Rotate&Splay操作总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insert"><span class="nav-number">1.5.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-number">1.6.</span> <span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-number">1.7.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Find"><span class="nav-number">1.8.</span> <span class="nav-text">Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-Pre-Nxt"><span class="nav-number">1.9.</span> <span class="nav-text">Query_Pre/Nxt</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BZOJ1588-郁闷的出纳员"><span class="nav-number">2.1.</span> <span class="nav-text">BZOJ1588 郁闷的出纳员</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">2.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">2.1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BZOJ1503-文艺平衡树"><span class="nav-number">2.2.</span> <span class="nav-text">BZOJ1503 文艺平衡树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
