@@ -102,17 +102,17 @@
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
 <meta property="og:description" content="最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://shichengxiao01.github.io/images/Zig&Zag_1.png">
 <meta property="og:image" content="http://shichengxiao01.github.io/images/Zig&Zag_2.png">
+<meta property="og:image" content="http://shichengxiao01.github.io/images/Zig&Zag_1.png">
 <meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZig&ZagZag_1.png">
 <meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZig&ZagZag_2.png">
 <meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZag&ZagZig_1.png">
 <meta property="og:image" content="http://shichengxiao01.github.io/images/ZigZag&ZagZig_2.png">
-<meta property="og:updated_time" content="2017-12-15T14:42:13.413Z">
+<meta property="og:updated_time" content="2017-12-16T00:32:28.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Splay入门详解">
 <meta name="twitter:description" content="最近新学了Splay，似乎并没有想象中的那么难……之前其实也学过Splay，只是那时看到LG写的6个旋转版本的Splay……就不想写了……这次发现……其实旋转两个函数就可以了，总共十来行……嗯这篇文章我要详解一下。">
-<meta name="twitter:image" content="http://shichengxiao01.github.io/images/Zig&Zag_1.png">
+<meta name="twitter:image" content="http://shichengxiao01.github.io/images/Zig&Zag_2.png">
 
 
 
@@ -341,7 +341,7 @@
 <h1 id="Splay操作详解"><a href="#Splay操作详解" class="headerlink" title="Splay操作详解"></a>Splay操作详解</h1><h2 id="从二叉查找树到Splay"><a href="#从二叉查找树到Splay" class="headerlink" title="从二叉查找树到Splay"></a>从二叉查找树到Splay</h2><p>二叉查找树（BST）相信都会吧……其性质就是保证了这棵树的中序遍历是有序的。这样我们就能进行插入，删除，单点修改点权，查找第k大或第k小等基本操作。所有的操作在随机数据下，都能做到$O(logn)$的时间复杂度。<br>但是BST是有缺陷的。比如说，丧心病狂的出题人把数据从小到大输进来，那么，BST建出的这棵树就退化为了一条链，于是所有的操作就变成$O(n)$的了……这当然是我们不愿意看到的，于是就要用Splay进行平衡。</p>
 <h2 id="Splay"><a href="#Splay" class="headerlink" title="Splay"></a>Splay</h2><p>Splay的平衡主要基于一个操作，即Splay（伸展操作）。这个操作就是把需要进行操作的点旋转到根节点，便于进行一些维护。但是……旋转操作该怎么搞呢？</p>
 <h2 id="Rotate"><a href="#Rotate" class="headerlink" title="Rotate"></a>Rotate</h2><p>旋转操作是对Splay进行平衡的主要操作，通过这个操作，可以使Splay的深度变浅，使得复杂度达到一个比较理想的状态。<br>但是，旋转是不能破坏BST的性质的，即中序遍历的有序性。所以不能随便旋转……<br>Rotate操作，如果要细分的话，分为以下三大类：（注：Zig为右旋，Zag为左旋）</p>
-<h3 id="Zig-Zag"><a href="#Zig-Zag" class="headerlink" title="Zig/Zag"></a>Zig/Zag</h3><p>如果我要旋转的节点是根节点的儿子了，那么只需做一次旋转就好了。比如对于这样一张图：<br><img src="/images/Zig&amp;Zag_1.png" alt=""><br>比如我要将$x$旋转到根节点，只需做一下旋转，变成下图的样子，就可以了。<br><img src="/images/Zig&amp;Zag_2.png" alt=""></p>
+<h3 id="Zig-Zag"><a href="#Zig-Zag" class="headerlink" title="Zig/Zag"></a>Zig/Zag</h3><p>如果我要旋转的节点是根节点的儿子了，那么只需做一次旋转就好了。比如对于这样一张图：<br><img src="/images/Zig&amp;Zag_2.png" alt=""><br>比如我要将$x$旋转到根节点，只需做一下旋转，变成下图的样子，就可以了。<br><img src="/images/Zig&amp;Zag_1.png" alt=""></p>
 <h3 id="ZigZig-ZagZag"><a href="#ZigZig-ZagZag" class="headerlink" title="ZigZig/ZagZag"></a>ZigZig/ZagZag</h3><p>如果这个点的父亲与父亲的父亲三点共线，如果只使用上图的两次单旋，你会发现，如果这棵树是一条链的话，做了两次旋转后，仍然是一条链，对复杂度并没有优化作用，于是我们要进行双旋。<br>具体来说，就是先将父节点向上旋转一次，再将要旋转的节点向上旋转一次：<br>比如对于这样一张图：<br><img src="/images/ZigZig&amp;ZagZag_1.png" alt=""><br>旋转后就变成了：<br><img src="/images/ZigZig&amp;ZagZag_2.png" alt=""></p>
 <h3 id="ZigZag-ZagZig"><a href="#ZigZag-ZagZig" class="headerlink" title="ZigZag/ZagZig"></a>ZigZag/ZagZig</h3><p>如果以上两种情况都不属于的话，我们只需对要旋转的节点向上做两次旋转，就可以了。<br>比如说对于这样一张图：<br><img src="/images/ZigZag&amp;ZagZig_1.png" alt=""><br>旋转后变为：<br><img src="/images/ZigZag&amp;ZagZig_2.png" alt=""></p>
 <h2 id="Rotate-amp-Splay操作总结"><a href="#Rotate-amp-Splay操作总结" class="headerlink" title="Rotate&amp;Splay操作总结"></a>Rotate&amp;Splay操作总结</h2><p>不难发现，以上的所有旋转，其实都是基于第一个操作，即Zig/Zag的。所以我们在Splay函数中，不断的进行以上三种旋转之一，直到该节点旋转到根节点即可。当然所有的旋转也并没有破坏它的中序遍历。代码实现上并不难做。先上Rotate函数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">bool</span> f)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> y=fa[x],u=ch[x][f^<span class="number">1</span>];</div><div class="line">	<span class="keyword">if</span>(fa[y])ch[fa[y]][ch[fa[y]][<span class="number">1</span>] == y]=x;</div><div class="line">	fa[x]=fa[y];</div><div class="line">	ch[fa[y]=x][f^<span class="number">1</span>]=y;</div><div class="line">	ch[fa[u]=y][f]=u;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
