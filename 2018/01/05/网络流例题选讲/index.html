@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络流,图论," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="之前的文章曾经讲解过网络流与费用流的各种算法，今天在这里总结一些最近做的好题。网络流的板子都是用的简洁版的ISAP，打起来很方便又跑得超快，美滋滋~">
+<meta name="keywords" content="网络流,图论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流例题选讲">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/05/网络流例题选讲/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="之前的文章曾经讲解过网络流与费用流的各种算法，今天在这里总结一些最近做的好题。网络流的板子都是用的简洁版的ISAP，打起来很方便又跑得超快，美滋滋~">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-04T16:29:21.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络流例题选讲">
+<meta name="twitter:description" content="之前的文章曾经讲解过网络流与费用流的各种算法，今天在这里总结一些最近做的好题。网络流的板子都是用的简洁版的ISAP，打起来很方便又跑得超快，美滋滋~">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/05/网络流例题选讲/"/>
+
+
+
+
+
+  <title>网络流例题选讲 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/Friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/05/网络流例题选讲/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络流例题选讲</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T00:25:55+08:00">
+                2018-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前的<a href="https://shichengxiao01.github.io/2017/08/18/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">文章</a>曾经讲解过网络流与费用流的各种算法，今天在这里总结一些最近做的好题。网络流的板子都是用的简洁版的<code>ISAP</code>，打起来很方便又跑得超快，美滋滋~<br><a id="more"></a></p>
+<h1 id="网络流例题选讲"><a href="#网络流例题选讲" class="headerlink" title="网络流例题选讲"></a>网络流例题选讲</h1><p>第一题倒是自己想出来了，第二题……结合了三个人的力量，才勉强拼凑出正解……还是比较有思维难度的。</p>
+<h2 id="BZOJ1934-SHOI2007-善意的投票"><a href="#BZOJ1934-SHOI2007-善意的投票" class="headerlink" title="BZOJ1934[SHOI2007] 善意的投票"></a>BZOJ1934[SHOI2007] 善意的投票</h2><p>题目链接：<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1934" target="_blank" rel="external">http://www.lydsy.com/JudgeOnline/problem.php?id=1934</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>幼儿园里有$n$个小朋友打算通过投票来决定睡不睡午觉。对他们来说，这个问题并不是很重要，于是他们决定发扬谦让精神。虽然每个人都有自己的主见，但是为了照顾一下自己朋友的想法，他们也可以投和自己本来意愿相反的票。我们定义一次投票的冲突数为好朋友之间发生冲突的总数加上和所有和自己本来意愿发生冲突的人数。 我们的问题就是，每位小朋友应该怎样投票，才能使冲突数最小？<br>第一行只有两个整数$n$，$m$，保证有$2 \leqslant n \leqslant 300$，$1 \leqslant m \leqslant \frac{n(n-1)}{2}$。其中$n$代表总人数，$m$代表好朋友的对数。文件第二行有$n$个整数，第$i$个整数代表第$i$个小朋友的意愿，当它为$1$时表示同意睡觉，当它为$0$时表示反对睡觉。接下来文件还有$m$行，每行有两个整数$i$，$j$。表示$i$，$j$是一对好朋友，我们保证任何两对$i$，$j$不会重复。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>对于这一类的模型（即对每个点都有两种值，求出某一特定的式子），我们都可以考虑最小割的模型：每个点与源汇点分别连一条边，割掉这条边分别表示两种取值，再根据题目的要求，在各点之间连边即可。比如说对这一道题，我们可以把每个点与源点和汇点分别连边。割掉与源点之间的边表示反对睡觉，否则表示同意睡觉。对于朋友之间得冲突，只需在每对朋友之间连一条边权为$1$的边即可。然后一遍最小割，问题解决。<br>时间复杂度$O(maxflow(n,m))$。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">3e2</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">2e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> to[maxm],nex[maxm],beg[maxn],gap[maxn],dis[maxn],a[maxn],flow[maxm];</div><div class="line"><span class="keyword">int</span> e=<span class="number">1</span>,n,m,s,t;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span>&#123;</div><div class="line">    to[++e]=y;nex[e]=beg[x];beg[x]=e;flow[e]=z;</div><div class="line">    swap(x,y);</div><div class="line">    to[++e]=y;nex[e]=beg[x];beg[x]=e;flow[e]=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Isap</span><span class="params">(<span class="keyword">int</span> x,ll f)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(x==t)<span class="keyword">return</span> f;</div><div class="line">    <span class="keyword">int</span> res=f,i;</div><div class="line">    <span class="keyword">for</span>(i=beg[x];i;i=nex[i])</div><div class="line">        <span class="keyword">if</span>(flow[i]&gt;<span class="number">0</span> &amp;&amp; dis[x]==dis[to[i]]+<span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">int</span> minflow=Isap(to[i],min(res,flow[i]));</div><div class="line">            flow[i]-=minflow;</div><div class="line">            flow[i^<span class="number">1</span>]+=minflow;</div><div class="line">            res-=minflow;</div><div class="line">            <span class="keyword">if</span>(!res)<span class="keyword">return</span> f;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">if</span>(!(--gap[dis[x]]))dis[s]=t;</div><div class="line">    gap[++dis[x]]++;</div><div class="line">    <span class="keyword">return</span> f-res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ1934.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ1934.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();m=read();</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        a[i]=read();</div><div class="line">        add(n+<span class="number">1</span>,i,a[i]);</div><div class="line">        add(i,n+<span class="number">2</span>,a[i]^<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">        <span class="keyword">int</span> x,y;</div><div class="line">        x=read();y=read();</div><div class="line">        add(x,y,<span class="number">1</span>);add(y,x,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    s=n+<span class="number">1</span>;t=n+<span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> maxflow=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(gap[<span class="number">0</span>]=t;dis[s]&lt;t;)maxflow+=Isap(s,<span class="number">1e9</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,maxflow);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="BZOJ2756-SCOI2012-奇怪的游戏"><a href="#BZOJ2756-SCOI2012-奇怪的游戏" class="headerlink" title="BZOJ2756[SCOI2012] 奇怪的游戏"></a>BZOJ2756[SCOI2012] 奇怪的游戏</h2><p>题目链接：<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2756" target="_blank" rel="external">http://www.lydsy.com/JudgeOnline/problem.php?id=2756</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>Blinker最近喜欢上一个奇怪的游戏。<br>这个游戏在一个$n \times m$的棋盘上玩，每个格子有一个数。每次Blinker会选择两个相邻的格子，并使这两个数都加上$1$。<br>现在Blinker想知道最少多少次能使棋盘上的数都变成同一个数，如果永远不能变成同<br>一个数则输出$-1$。<br>$1 \leqslant T \leqslant 10,1 \leqslant n,m \leqslant 40$。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>考虑对棋盘黑白染色，不难发现，每次对相邻的点对加$1$，都对黑色与白色的点都加了$1$。因此黑色格子的数之和与白色格子的数之和的差是不会变的。设黑色格子上的数之和为$sumb$，白色格子为$sumw$，共进行了$x$次操作，就会有这样一个式子：<br>$$\frac{sumb+x}{numb}=\frac{sumw+x}{numw}$$<br>如果$n,m$均为奇数，则黑色格子会比白色格子多一个。那么$x$就会有唯一解了，只需check一下就可以了。<br>如果$nm \equiv 0(mod  2)$，那么$numb=numw$。如果$sumb \not= sumw$，就可以输出$-1$，否则原方程就会有无穷多组解了。这个时候，我们注意到，若$x$是可行解，那么$x+\frac{nm}{2}$也会是一组可行解。所以可以二分一下最后每个格子里的数，再check一下就可以了。<br>check函数则要用网络流来处理。设$t$为最终每个格子里的数，将每个黑色格子与源点连一条流量为$t-a[i][j]$的边，相邻的格子之间连一条流量为$INF$的边，白色格子与汇点连一条流量为$t-a[i][j]$的边。check一下是否满流即可。<br>时间复杂度$O(maxflow(n \times m,n \times m)logINF)$。<br>这道题我和dyx，zhou888一起看了好久，最后我想到了前面的染色分类，dyx想到了二分格子里的数，zhou888想到了网络流的建模（orz），三个人勉强把正解凑了出来……</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> ll INF=<span class="number">1e18</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxsz=<span class="number">40</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">2e4</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> to[maxm],nex[maxm],beg[maxn],gap[maxn],dis[maxn],a[maxsz][maxsz];</div><div class="line">ll flow[maxm];</div><div class="line"><span class="keyword">int</span> e=<span class="number">1</span>,n,m,s,t;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Cls</span><span class="params">()</span></span>&#123;</div><div class="line">    e=<span class="number">1</span>;</div><div class="line">    <span class="built_in">memset</span>(beg,<span class="number">0</span>,<span class="keyword">sizeof</span>(beg));</div><div class="line">    <span class="built_in">memset</span>(gap,<span class="number">0</span>,<span class="keyword">sizeof</span>(gap));</div><div class="line">    <span class="built_in">memset</span>(dis,<span class="number">0</span>,<span class="keyword">sizeof</span>(dis));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,ll z)</span></span>&#123;</div><div class="line">    to[++e]=y;nex[e]=beg[x];beg[x]=e;flow[e]=z;</div><div class="line">    swap(x,y);</div><div class="line">    to[++e]=y;nex[e]=beg[x];beg[x]=e;flow[e]=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function">ll <span class="title">Isap</span><span class="params">(<span class="keyword">int</span> x,ll f)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(x==t)<span class="keyword">return</span> f;</div><div class="line">    ll res=f,i;</div><div class="line">    <span class="keyword">for</span>(i=beg[x];i;i=nex[i])</div><div class="line">        <span class="keyword">if</span>(flow[i]&gt;<span class="number">0</span> &amp;&amp; dis[x]==dis[to[i]]+<span class="number">1</span>)&#123;</div><div class="line">            ll minflow=Isap(to[i],min(res,flow[i]));</div><div class="line">            flow[i]-=minflow;</div><div class="line">            flow[i^<span class="number">1</span>]+=minflow;</div><div class="line">            res-=minflow;</div><div class="line">            <span class="keyword">if</span>(!res)<span class="keyword">return</span> f;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">if</span>(!(--gap[dis[x]]))dis[s]=t;</div><div class="line">    gap[++dis[x]]++;</div><div class="line">    <span class="keyword">return</span> f-res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">check</span><span class="params">(ll val)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j;</div><div class="line">    ll tot=<span class="number">0</span>;</div><div class="line">    Cls();</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m;j++)&#123;</div><div class="line">            <span class="keyword">if</span>((i+j)%<span class="number">2</span>==<span class="number">1</span>)&#123;</div><div class="line">                add(n*m+<span class="number">1</span>,(i<span class="number">-1</span>)*m+j,val-a[i][j]),tot+=val-a[i][j];</div><div class="line">                <span class="keyword">if</span>(i&gt;<span class="number">1</span>)add((i<span class="number">-1</span>)*m+j,(i<span class="number">-2</span>)*m+j,INF);</div><div class="line">                <span class="keyword">if</span>(j&gt;<span class="number">1</span>)add((i<span class="number">-1</span>)*m+j,(i<span class="number">-1</span>)*m+j<span class="number">-1</span>,INF);</div><div class="line">                <span class="keyword">if</span>(i&lt;n)add((i<span class="number">-1</span>)*m+j,i*m+j,INF);</div><div class="line">                <span class="keyword">if</span>(j&lt;m)add((i<span class="number">-1</span>)*m+j,(i<span class="number">-1</span>)*m+j+<span class="number">1</span>,INF);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> add((i<span class="number">-1</span>)*m+j,n*m+<span class="number">2</span>,val-a[i][j]);</div><div class="line">        &#125;</div><div class="line">    s=n*m+<span class="number">1</span>;t=n*m+<span class="number">2</span>;</div><div class="line">    ll maxflow=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(gap[<span class="number">0</span>]=t;dis[s]&lt;t;)maxflow+=Isap(s,INF);</div><div class="line">    <span class="keyword">return</span> maxflow==tot;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ2756.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ2756.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    T=read();</div><div class="line">    <span class="keyword">while</span>(T--)&#123;</div><div class="line">        Cls();</div><div class="line">        n=read();m=read();</div><div class="line">        ll sum1=<span class="number">0</span>,sum2=<span class="number">0</span>,maxa=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">            <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m;j++)&#123;</div><div class="line">                a[i][j]=read();</div><div class="line">                maxa=max(maxa,<span class="number">1l</span>l*a[i][j]);</div><div class="line">                <span class="keyword">if</span>((i+j)%<span class="number">2</span>==<span class="number">1</span>)sum1+=<span class="number">1l</span>l*a[i][j];</div><div class="line">                <span class="keyword">if</span>((i+j)%<span class="number">2</span>==<span class="number">0</span>)sum2+=<span class="number">1l</span>l*a[i][j];</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span> || m%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(sum1!=sum2)&#123;</div><div class="line">                <span class="built_in">puts</span>(<span class="string">"-1"</span>);</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            ll l=maxa,r=INF;</div><div class="line">            <span class="keyword">while</span>(l&lt;r)&#123;</div><div class="line">                ll mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">                <span class="keyword">if</span>(check(mid))r=mid;</div><div class="line">                <span class="keyword">else</span> l=mid+<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(l*n*m-sum1-sum2)/<span class="number">2</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span> &amp;&amp; m%<span class="number">2</span>==<span class="number">1</span>)&#123;</div><div class="line">            ll delta=sum2*(n*m/<span class="number">2</span>)-sum1*(n*m/<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">            ll x=(delta*<span class="number">2</span>+sum1+sum2)/(n*m);</div><div class="line">            <span class="keyword">if</span>(delta&lt;<span class="number">0</span> || (delta*<span class="number">2</span>+sum1+sum2)%(n*m)!=<span class="number">0</span> || !check(x))&#123;</div><div class="line">                <span class="built_in">puts</span>(<span class="string">"-1"</span>);</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,delta);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>据zhou888大佬说</p>
+<blockquote>
+<p>那些你做不太出来的，要建模的东西，数据范围又比较小的，那就肯定是网络流了。</p>
+</blockquote>
+<p>所以……以后也许可以这么想一想？<br>网络流的各种神级建模似乎还是比较多的……目前题做的太少了，建模能力比较菜，就是知道正解是网络流，似乎也想不出。最近还考了一个和第一道题类似的建模方式，但要比它复杂很多的一道题，受启发很大，忽然有种“网络流还可以这么玩”的感觉。<br>最近要做的题挺多的，网络流暂时先放下了，以后还有时间再来填一些好题进来。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/03/FFT及相关例题/" rel="next" title="FFT及相关例题">
+                <i class="fa fa-chevron-left"></i> FFT及相关例题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流例题选讲"><span class="nav-number">1.</span> <span class="nav-text">网络流例题选讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BZOJ1934-SHOI2007-善意的投票"><span class="nav-number">1.1.</span> <span class="nav-text">BZOJ1934[SHOI2007] 善意的投票</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">1.1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BZOJ2756-SCOI2012-奇怪的游戏"><span class="nav-number">1.2.</span> <span class="nav-text">BZOJ2756[SCOI2012] 奇怪的游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
