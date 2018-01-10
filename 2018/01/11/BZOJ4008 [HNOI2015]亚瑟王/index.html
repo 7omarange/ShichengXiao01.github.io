@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DP,矩阵快速幂," />
+  <meta name="keywords" content="DP,概率DP," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="题意求$$\Big(\sum_{i=0}^{\infty}C_{nk}^{ik+r}\Big)mod  p$$的值。其中$1 \leqslant n \leqslant 10^9, 0 \leqslant r &amp;lt; k \leqslant 50,2 \leqslant p \leqslant 2^{30}-1$。">
-<meta name="keywords" content="DP,矩阵快速幂">
+<meta name="description" content="题意小K不慎被LL邪教洗脑了，洗脑程度深到他甚至想要从亚瑟王邪教中脱坑。">
+<meta name="keywords" content="DP,概率DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BZOJ4870 [SHOI2017]组合数问题">
-<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/10/BZOJ4870 [SHOI2017]组合数问题/index.html">
+<meta property="og:title" content="BZOJ4008 [HNOI2015]亚瑟王">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="题意求$$\Big(\sum_{i=0}^{\infty}C_{nk}^{ik+r}\Big)mod  p$$的值。其中$1 \leqslant n \leqslant 10^9, 0 \leqslant r &amp;lt; k \leqslant 50,2 \leqslant p \leqslant 2^{30}-1$。">
+<meta property="og:description" content="题意小K不慎被LL邪教洗脑了，洗脑程度深到他甚至想要从亚瑟王邪教中脱坑。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T16:56:42.289Z">
+<meta property="og:updated_time" content="2018-01-10T16:36:22.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BZOJ4870 [SHOI2017]组合数问题">
-<meta name="twitter:description" content="题意求$$\Big(\sum_{i=0}^{\infty}C_{nk}^{ik+r}\Big)mod  p$$的值。其中$1 \leqslant n \leqslant 10^9, 0 \leqslant r &amp;lt; k \leqslant 50,2 \leqslant p \leqslant 2^{30}-1$。">
+<meta name="twitter:title" content="BZOJ4008 [HNOI2015]亚瑟王">
+<meta name="twitter:description" content="题意小K不慎被LL邪教洗脑了，洗脑程度深到他甚至想要从亚瑟王邪教中脱坑。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/10/BZOJ4870 [SHOI2017]组合数问题/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/"/>
 
 
 
 
 
-  <title>BZOJ4870 [SHOI2017]组合数问题 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BZOJ4008 [HNOI2015]亚瑟王 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/10/BZOJ4870 [SHOI2017]组合数问题/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BZOJ4870 [SHOI2017]组合数问题</h1>
+          <h1 class="post-title" itemprop="name headline">BZOJ4008 [HNOI2015]亚瑟王</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T00:52:15+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T00:34:40+08:00">
+                2018-01-11
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2018/01/10/BZOJ4870 [SHOI2017]组合数问题/" class="leancloud_visitors" data-flag-title="BZOJ4870 [SHOI2017]组合数问题">
+             <span id="/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/" class="leancloud_visitors" data-flag-title="BZOJ4008 [HNOI2015]亚瑟王">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,9 +351,9 @@
       
 
       
-        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>求$$\Big(\sum_{i=0}^{\infty}C_{nk}^{ik+r}\Big)mod  p$$的值。<br>其中$1 \leqslant n \leqslant 10^9, 0 \leqslant r &lt; k \leqslant 50,2 \leqslant p \leqslant 2^{30}-1$。<br><a id="more"></a></p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>初看这题以为是个推式子题，然后就深陷其中无法自拔了……于是根本没想到正解。<br>其实看范围应该是可以想到矩阵快速幂的。但是，个人认为……这道题的脑洞还是比较大的，需要考虑式子的组合意义。<br>在往组合意义的方向思考后，不难发现，这个式子求的是，在$nk$个物品中选出的个数在模$k$意义下为$r$的方案数，于是这个式子便可以轻松$O(nk^2)$来DP了。<br>然后可以注意到这里可以使用矩阵快速幂加速，于是这道题就可以在$O(k^3log(nk))$的时间内解决了。<br>啊……这种题连DP都没想到，更别说后面的加速……真的太菜了。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">50</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> mod,n;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> Res[maxn][maxn];</div><div class="line">    Matrix()&#123;</div><div class="line">        <span class="built_in">memset</span>(Res,<span class="number">0</span>,<span class="keyword">sizeof</span>(Res));</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> <span class="title">A</span>,<span class="title">B</span>,<span class="title">C</span>;</span></div><div class="line">Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix &amp;a,<span class="keyword">const</span> Matrix &amp;b)&#123;</div><div class="line">    Matrix res;</div><div class="line">    <span class="keyword">int</span> i,j,k;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">            <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</div><div class="line">                res.Res[i][j]=(res.Res[i][j]+<span class="number">1l</span>l*a.Res[i][k]*b.Res[k][j]%mod)%mod;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> Matrix <span class="title">qpow</span><span class="params">(Matrix Base,ll power)</span></span>&#123;</div><div class="line">    Matrix res;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)res.Res[i][i]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(power)&#123;</div><div class="line">        <span class="keyword">if</span>(power &amp; <span class="number">1l</span>l)res=res*Base;</div><div class="line">        Base=Base*Base;</div><div class="line">        power&gt;&gt;=<span class="number">1l</span>l;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,r;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ4870.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ4870.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    k=read();mod=read();n=read();r=read();</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        A.Res[i][i]++;A.Res[i][i%n+<span class="number">1</span>]++;</div><div class="line">    &#125;</div><div class="line">    B=qpow(A,<span class="number">1l</span>l*n*k);</div><div class="line">    C.Res[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;C=C*B;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,C.Res[<span class="number">1</span>][r+<span class="number">1</span>]);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>小K不慎被LL邪教洗脑了，洗脑程度深到他甚至想要从亚瑟王邪教中脱坑。<br><a id="more"></a><br>他决定，在脱坑之前，最后再来打一盘亚瑟王。既然是最后一战，就一定要打得漂亮。众所周知，亚瑟王是一个看脸的游戏，技能的发动都是看概率的。作为一个非洲人，同时作为一个前OIer，小K自然是希望最大化造成伤害的期望值。但他已经多年没写过代码，连Spaly都敲不对了，因此，希望你能帮帮小K，让他感受一下当欧洲人是怎样的体验。<br>本题中我们将考虑游戏的一个简化版模型。<br>玩家有一套卡牌，共$n$张。游戏时，玩家将$n$张卡牌排列成某种顺序，排列后将卡牌按从前往后依次编号为$1$~$n$。本题中，顺序已经确定，即为输入的顺序。<br>每张卡牌都有一个技能。第$i$张卡牌的技能发动概率为$p_i$，如果成功发动，则会对敌方造成$d_i$点伤害。也只有通过发动技能，卡牌才能对敌方造成伤害。基于现实因素以及小K非洲血统的考虑，$p_i$不会为$0$，也不会为$1$，即$0&lt;p_i&lt;1$。<br>一局游戏一共有$r$轮。在每一轮中，系统将从第一张卡牌开始，按照顺序依次<br>考虑每张卡牌。在一轮中，对于依次考虑的每一张卡牌：<br>1 如果这张卡牌在这一局游戏中已经发动过技能，则<br>1.1 如果这张卡牌不是最后一张，则跳过之（考虑下一张卡牌）；否则（是最后一张），结束这一轮游戏。<br>2 否则（这张卡牌在这一局游戏中没有发动过技能），设这张卡牌为第$i$张<br>2.1 将其以$p_i$的概率发动技能。<br>2.2 如果技能发动，则对敌方造成$d_i$点伤害，并结束这一轮。<br>2.3 如果这张卡牌已经是最后一张（即$i$等于$n$），则结束这一轮；否则，考虑下一张卡牌。<br>请帮助小K求出这一套卡牌在一局游戏中能造成的伤害的期望值。<br>$1 \leqslant T \leqslant 444，1 \leqslant n \leqslant 220，0 \leqslant r \leqslant 132，0 &lt; p_i &lt; 1，0 \leqslant d_i \leqslant 1000$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>话说这次HNOI我还考过……只是那时是真的太渣了，竟然爆0了= =。<br>不难想到概率DP。但注意到一个很烦人的问题，就是每张卡牌在发动完技能之后，就要退出这套卡牌，而普通的DP总是跳不出记录哪些卡牌已经使用过这一状态，而这个问题搞不定，就是个暴力了……我们不考虑普通的按照游戏的顺序DP，而是选择按照每张卡牌的顺序。即不考虑横向的DP，而是选择纵向的DP。记$dp[i][j]$表示在前$i$张卡牌，还有$j$张卡牌没有发动技能的概率。那么就有这样的转移方程：<br>$$dp[i][j]=dp[i-1][j] \times (1-p_i)^j+dp[i-1][j+1]<em>(1-(1-p_i)^{j+1})$$<br>稍微解释一下这个奇怪的式子。第一项表示不选择这一张卡牌，由于还有$j$张卡牌没有发动过，即还会考虑这张卡牌$j$次，故要乘上$(1-p_i)^j$的概率；第二项表示选择这张卡牌，那么用全部概率减去接下来的$j+1$次考虑这张卡牌的时候，都不选择它的概率，就是要乘的概率了，即$1-(1-p_i)^{j+1}$。<br>然后再顺便把期望求一下就好了。期望的式子长这样：<br>$$\begin{align</em>} E[i][j]&amp;=E[i-1][j] \times (1-p_i)^j\\&amp;+(E[i-1][j+1]+d_i \times dp[i-1][j+1]) \times (1-(1-p_i)^{j-1}) \end{align*}$$<br>意义与上一个式子很类似。<br>时间复杂度$O(nrT)$。<br>时间稍微有点卡，需要预处理幂。<br>话说这题DP的式子是真的难调，到处乘错概率……我改了半个晚上才调过去……真的菜。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">220</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">132</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">long</span> <span class="keyword">double</span> p[maxn],dp[maxn][maxm],P[maxn][maxm],Pow[maxn][maxm];</div><div class="line"><span class="keyword">int</span> d[maxn];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,n,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ4008.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ4008.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    T=read();</div><div class="line">    <span class="keyword">while</span>(T--)&#123;</div><div class="line">        n=read();m=read();</div><div class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">        <span class="built_in">memset</span>(P,<span class="number">0</span>,<span class="keyword">sizeof</span>(P));</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%Lf"</span>,&amp;p[i]),d[i]=read();</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">            Pow[i][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m+<span class="number">1</span>;j++)</div><div class="line">                Pow[i][j]=Pow[i][j<span class="number">-1</span>]*(<span class="number">1</span>-p[i]);</div><div class="line">        &#125;</div><div class="line">        P[<span class="number">0</span>][m]=<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">            <span class="keyword">for</span>(j=m;j&gt;=<span class="number">0</span>;j--)&#123;</div><div class="line">                P[i][j]=P[i<span class="number">-1</span>][j]*Pow[i][j]+P[i<span class="number">-1</span>][j+<span class="number">1</span>]*(<span class="number">1</span>-Pow[i][j+<span class="number">1</span>]);</div><div class="line">                <span class="keyword">if</span>(j==m)<span class="keyword">continue</span>;</div><div class="line">                dp[i][j]=dp[i<span class="number">-1</span>][j]*Pow[i][j]+(dp[i<span class="number">-1</span>][j+<span class="number">1</span>]+d[i]*P[i<span class="number">-1</span>][j+<span class="number">1</span>])*(<span class="number">1</span>-Pow[i][j+<span class="number">1</span>]);</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">double</span> ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)ans+=dp[n][i];</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.15Lf\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -372,7 +372,7 @@
           
             <a href="/tags/DP/" rel="tag"># DP</a>
           
-            <a href="/tags/矩阵快速幂/" rel="tag"># 矩阵快速幂</a>
+            <a href="/tags/概率DP/" rel="tag"># 概率DP</a>
           
         </div>
       
@@ -385,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/05/网络流例题选讲/" rel="next" title="网络流例题选讲">
-                <i class="fa fa-chevron-left"></i> 网络流例题选讲
+              <a href="/2018/01/10/BZOJ4455 [ZJOI2016]小星星/" rel="next" title="BZOJ4455 [ZJOI2016]小星星">
+                <i class="fa fa-chevron-left"></i> BZOJ4455 [ZJOI2016]小星星
               </a>
             
           </div>
@@ -394,10 +394,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/BZOJ4455 [ZJOI2016]小星星/" rel="prev" title="BZOJ4455 [ZJOI2016]小星星">
-                BZOJ4455 [ZJOI2016]小星星 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
