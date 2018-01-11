@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数论,Miller-Rabin," />
+  <meta name="keywords" content="线段树,数据结构," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="算法1:直接根据素数的定义枚举i从2到(n-1)，如果n%i==0，n为合数。时间复杂度：O($n$)">
-<meta name="keywords" content="数论,Miller-Rabin">
+<meta name="description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
+<meta name="keywords" content="线段树,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【转】Miller-Rabin素数判定">
-<meta property="og:url" content="http://shichengxiao01.github.io/2017/08/27/【转】Miller-Rabin素数判定/index.html">
+<meta property="og:title" content="BZOJ2957 楼房重建">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="算法1:直接根据素数的定义枚举i从2到(n-1)，如果n%i==0，n为合数。时间复杂度：O($n$)">
+<meta property="og:description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-27T15:44:52.527Z">
+<meta property="og:updated_time" content="2018-01-11T16:40:49.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【转】Miller-Rabin素数判定">
-<meta name="twitter:description" content="算法1:直接根据素数的定义枚举i从2到(n-1)，如果n%i==0，n为合数。时间复杂度：O($n$)">
+<meta name="twitter:title" content="BZOJ2957 楼房重建">
+<meta name="twitter:description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2017/08/27/【转】Miller-Rabin素数判定/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/"/>
 
 
 
 
 
-  <title>【转】Miller-Rabin素数判定 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BZOJ2957 楼房重建 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/08/27/【转】Miller-Rabin素数判定/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【转】Miller-Rabin素数判定</h1>
+          <h1 class="post-title" itemprop="name headline">BZOJ2957 楼房重建</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T23:31:39+08:00">
-                2017-08-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T00:39:19+08:00">
+                2018-01-12
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2017/08/27/【转】Miller-Rabin素数判定/" class="leancloud_visitors" data-flag-title="【转】Miller-Rabin素数判定">
+             <span id="/2018/01/12/BZOJ2957 楼房重建/" class="leancloud_visitors" data-flag-title="BZOJ2957 楼房重建">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,30 +351,9 @@
       
 
       
-        <h1 id="算法1"><a href="#算法1" class="headerlink" title="算法1:"></a>算法1:</h1><p>直接根据素数的定义枚举i从2到(n-1)，如果n%i==0，n为合数。<br>时间复杂度：O($n$)<br><a id="more"></a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">for</span>(i = <span class="number">2</span>; i &lt; n; i++)</div><div class="line">		<span class="keyword">if</span>(n % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="算法2"><a href="#算法2" class="headerlink" title="算法2:"></a>算法2:</h1><p>发现若存在$i&lt;n$使得n%i==0，则必有n%(n/i)==0。<br>所以只需枚举i从2到$\sqrt n$即可。<br>时间复杂度：O($\sqrt n$)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">for</span>(i = <span class="number">2</span>; i * i &lt;= n; i++)</div><div class="line">		<span class="keyword">if</span>(n % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="Miller-Rabin算法"><a href="#Miller-Rabin算法" class="headerlink" title="Miller-Rabin算法:"></a>Miller-Rabin算法:</h1><p>这是一种随机性素数判定算法，也就是说，答案可能出错，但是可能性极小。<br>先是讲两个定理：</p>
-<ul>
-<li>费马小定理：</li>
-</ul>
-<p>对于一个质数$p$，取任意整数$a$，满足$gcd(p,a)=1$，则有</p>
-<center>$a^{p-1}≡1(mod p)$    </center>
-
-<ul>
-<li>二次探测定理：</li>
-</ul>
-<p>对于$x∈(0,p)$，若$p$是素数，则方程：</p>
-<center>$x^{2}≡1(mod p)$</center><br>的解为：<br><center>$x_1=1,x_2=p-1$</center>
-
-<p>因为费马小定理的逆命题不成立，而逆否命题成立，所以我们可以利用一下一点：</p>
-<p>对于任意整数$p&gt;a$，不满足</p>
-<p><center>$a^{p-1}≡1(mod p)$</center><br>则p为合数。</p>
-<p>所以我们可以不断在区间$[2,p-1]$范围内随机取$a$，并进行判定。在$s$次判定不为合数之后，我们就可以说这个数是质数。<br>但是这还不够精确，我们可以先把$p-1$分解成<center>$2^{t}×u(u∈{x|x=2k+1,k∈N})$</center>的形式<br>然后令<center>$x[0]=a^u mod p$</center><br>那么将$x[0]$平方$t$次就是<center>(a^u)^2^t mod p</center>的值<br>我们设$x[i]$为$x[0]$平方i次的值，根据二次探测定理:<br>若$x[i]$等于$1$，则$x[i-1]$等于$1$或$p-1$，不满足则$p$为合数。<br>注意以上操作中所有的形如$a^bmodp$的式子都要用快速幂运算，当$n$比较大时，形如$a*bmodp$的式子也要使用分治的思想来计算。</p>
-<p>这就是Miller-Rabin算法的主要内容。<br>时间复杂度：考虑常数后为O($s(log_2n)^{3}$)</p>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">65</span>;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> n, x[MAXN];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">multi</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b, <span class="keyword">long</span> <span class="keyword">long</span> p)</span> </span>&#123;</div><div class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(b) &#123;</div><div class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1L</span>L) ans = (ans+a)%p;</div><div class="line">		a = (a+a)%p;</div><div class="line">		b &gt;&gt;= <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b, <span class="keyword">long</span> <span class="keyword">long</span> p)</span> </span>&#123;</div><div class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(b) &#123;</div><div class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1L</span>L) ans = multi(ans, a, p);</div><div class="line">		a = multi(a, a, p);</div><div class="line">		b &gt;&gt;= <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Miller_Rabin</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(n == <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	<span class="keyword">int</span> s = <span class="number">20</span>, i, t = <span class="number">0</span>;</div><div class="line">	<span class="keyword">long</span> <span class="keyword">long</span> u = n<span class="number">-1</span>;</div><div class="line">	<span class="keyword">while</span>(!(u &amp; <span class="number">1</span>)) &#123;</div><div class="line">		t++;</div><div class="line">		u &gt;&gt;= <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(s--) &#123;</div><div class="line">		<span class="keyword">long</span> <span class="keyword">long</span> a = rand()%(n<span class="number">-2</span>)+<span class="number">2</span>;</div><div class="line">		x[<span class="number">0</span>] = qpow(a, u, n);</div><div class="line">		<span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= t; i++) &#123;</div><div class="line">			x[i] = multi(x[i<span class="number">-1</span>], x[i<span class="number">-1</span>], n);</div><div class="line">			<span class="keyword">if</span>(x[i] == <span class="number">1</span> &amp;&amp; x[i<span class="number">-1</span>] != <span class="number">1</span> &amp;&amp; x[i<span class="number">-1</span>] != n<span class="number">-1</span>)</div><div class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(x[t] != <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。<a id="more"></a><br>为了简化问题，我们考虑这些事件发生在一个二维平面上。小A在平面上$(0,0)$点的位置，第i栋楼房可以用一条连接$(i,0)$和$(i,H_i)$的线段表示，其中$H_i$为第$i$栋楼房的高度。如果这栋楼房上任何一个高度大于$0$的点与$(0,0)$的连线没有与之前的线段相交，那么这栋楼房就被认为是可见的。<br>施工队的建造总共进行了$M$天。初始时，所有楼房都还没有开始建造，它们的高度均为$0$。在第$i$天，建筑队将会将横坐标为$X_i$的房屋的高度变为$Y_i$(高度可以比原来大——修建，也可以比原来小——拆除，甚至可以保持不变——建筑队这天什么事也没做)。请你帮小A数数每天在建筑队完工之后，他能看到多少栋楼房？<br>$1 \leqslant n,m \leqslant 1e5$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>考虑用线段树维护一个最大值，与只考虑这一个区间的答案。那么每次单点修改的时候，我们就要重新维护一下这个区间的答案。将修改点的右侧分为两个区间，若修改后楼房的高度，要比两个区间中的左区间要大，那么左区间对答案的贡献为$0$，继续递归计算右区间对答案的贡献，否则，右区间对答案的贡献不会改变，于是递归计算左区间即可。由于在<code>push_up</code>操作的复杂度为$O(logn)$，故总时间复杂度为$O(nlog^2n)$。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> Ans[maxn&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="keyword">double</span> Max[maxn&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">GetAns</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">double</span> Maxval)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> Max[h]&gt;Maxval?<span class="number">1</span>:<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(Maxval&gt;Max[h&lt;&lt;<span class="number">1</span>])<span class="keyword">return</span> GetAns(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,Maxval);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> Ans[h]-Ans[h&lt;&lt;<span class="number">1</span>]+GetAns(h&lt;&lt;<span class="number">1</span>,l,mid,Maxval);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos,<span class="keyword">double</span> val)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        Max[h]=val;</div><div class="line">        Ans[h]=<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(pos&lt;=mid)Modify(h&lt;&lt;<span class="number">1</span>,l,mid,pos,val);</div><div class="line">    <span class="keyword">else</span> Modify(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,pos,val);</div><div class="line">    Max[h]=max(Max[h&lt;&lt;<span class="number">1</span>],Max[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">    Ans[h]=Ans[h&lt;&lt;<span class="number">1</span>]+GetAns(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,Max[h&lt;&lt;<span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,n,q;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ2957.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ2957.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();q=read();</div><div class="line">    <span class="keyword">while</span>(q--)&#123;</div><div class="line">        <span class="keyword">int</span> x,y;</div><div class="line">        x=read();y=read();</div><div class="line">        Modify(<span class="number">1</span>,<span class="number">1</span>,n,x,y*<span class="number">1.0</span>/x);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,Ans[<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -391,9 +370,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数论/" rel="tag"># 数论</a>
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
           
-            <a href="/tags/Miller-Rabin/" rel="tag"># Miller-Rabin</a>
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -406,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/25/【转】莫比乌斯反演/" rel="next" title="【转】莫比乌斯反演">
-                <i class="fa fa-chevron-left"></i> 【转】莫比乌斯反演
+              <a href="/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/" rel="next" title="BZOJ4008 [HNOI2015]亚瑟王">
+                <i class="fa fa-chevron-left"></i> BZOJ4008 [HNOI2015]亚瑟王
               </a>
             
           </div>
@@ -416,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/09/Codeforces Round 433 (Div.2)题解/" rel="prev" title="Codeforces Round 433 (Div.2)题解">
-                Codeforces Round 433 (Div.2)题解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/12/栈（stack）/" rel="prev" title="栈（stack）">
+                栈（stack） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -543,7 +522,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法1"><span class="nav-number">1.</span> <span class="nav-text">算法1:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法2"><span class="nav-number">2.</span> <span class="nav-text">算法2:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Miller-Rabin算法"><span class="nav-number">3.</span> <span class="nav-text">Miller-Rabin算法:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
