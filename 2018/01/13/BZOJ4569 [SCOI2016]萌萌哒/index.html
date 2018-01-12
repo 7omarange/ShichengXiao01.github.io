@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据结构,线段树," />
+  <meta name="keywords" content="数据结构,并查集,ST表," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
-<meta name="keywords" content="数据结构,线段树">
+<meta name="description" content="题意一个长度为$n$的大数，用$S_1S_2S_3…S_n$表示，其中$S_i$表示数的第$i$位,$S_1$是数的最高位。告诉你$m$个限制条件，每个条件表示为四个数，$l_1,r_1,l_2,r_2$，即两个长度相同的区间，表示子串$S_{l_1}S_{l_1+1}S_{l_1+2}…S_{r_1}$与$S_{l_2}S_{l_2+1}S_{l_2+2}…S_{r_2}$完全相同。">
+<meta name="keywords" content="数据结构,并查集,ST表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BZOJ2957 楼房重建">
-<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/index.html">
+<meta property="og:title" content="BZOJ4569 [SCOI2016]萌萌哒">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/13/BZOJ4569 [SCOI2016]萌萌哒/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
+<meta property="og:description" content="题意一个长度为$n$的大数，用$S_1S_2S_3…S_n$表示，其中$S_i$表示数的第$i$位,$S_1$是数的最高位。告诉你$m$个限制条件，每个条件表示为四个数，$l_1,r_1,l_2,r_2$，即两个长度相同的区间，表示子串$S_{l_1}S_{l_1+1}S_{l_1+2}…S_{r_1}$与$S_{l_2}S_{l_2+1}S_{l_2+2}…S_{r_2}$完全相同。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T16:40:49.211Z">
+<meta property="og:updated_time" content="2018-01-12T16:20:09.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BZOJ2957 楼房重建">
-<meta name="twitter:description" content="题意小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。">
+<meta name="twitter:title" content="BZOJ4569 [SCOI2016]萌萌哒">
+<meta name="twitter:description" content="题意一个长度为$n$的大数，用$S_1S_2S_3…S_n$表示，其中$S_i$表示数的第$i$位,$S_1$是数的最高位。告诉你$m$个限制条件，每个条件表示为四个数，$l_1,r_1,l_2,r_2$，即两个长度相同的区间，表示子串$S_{l_1}S_{l_1+1}S_{l_1+2}…S_{r_1}$与$S_{l_2}S_{l_2+1}S_{l_2+2}…S_{r_2}$完全相同。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/13/BZOJ4569 [SCOI2016]萌萌哒/"/>
 
 
 
 
 
-  <title>BZOJ2957 楼房重建 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BZOJ4569 [SCOI2016]萌萌哒 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/12/BZOJ2957 楼房重建/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/13/BZOJ4569 [SCOI2016]萌萌哒/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BZOJ2957 楼房重建</h1>
+          <h1 class="post-title" itemprop="name headline">BZOJ4569 [SCOI2016]萌萌哒</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T00:39:19+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T00:11:11+08:00">
+                2018-01-13
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2018/01/12/BZOJ2957 楼房重建/" class="leancloud_visitors" data-flag-title="BZOJ2957 楼房重建">
+             <span id="/2018/01/13/BZOJ4569 [SCOI2016]萌萌哒/" class="leancloud_visitors" data-flag-title="BZOJ4569 [SCOI2016]萌萌哒">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,9 +351,9 @@
       
 
       
-        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>小A的楼房外有一大片施工工地，工地上有N栋待建的楼房。每天，这片工地上的房子拆了又建、建了又拆。他经常无聊地看着窗外发呆，数自己能够看到多少栋房子。<a id="more"></a><br>为了简化问题，我们考虑这些事件发生在一个二维平面上。小A在平面上$(0,0)$点的位置，第i栋楼房可以用一条连接$(i,0)$和$(i,H_i)$的线段表示，其中$H_i$为第$i$栋楼房的高度。如果这栋楼房上任何一个高度大于$0$的点与$(0,0)$的连线没有与之前的线段相交，那么这栋楼房就被认为是可见的。<br>施工队的建造总共进行了$M$天。初始时，所有楼房都还没有开始建造，它们的高度均为$0$。在第$i$天，建筑队将会将横坐标为$X_i$的房屋的高度变为$Y_i$(高度可以比原来大——修建，也可以比原来小——拆除，甚至可以保持不变——建筑队这天什么事也没做)。请你帮小A数数每天在建筑队完工之后，他能看到多少栋楼房？<br>$1 \leqslant n,m \leqslant 1e5$。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>考虑用线段树维护一个最大值，与只考虑这一个区间的答案。那么每次单点修改的时候，我们就要重新维护一下这个区间的答案。将修改点的右侧分为两个区间，若修改后楼房的高度，要比两个区间中的左区间要大，那么左区间对答案的贡献为$0$，继续递归计算右区间对答案的贡献，否则，右区间对答案的贡献不会改变，于是递归计算左区间即可。由于在<code>push_up</code>操作的复杂度为$O(logn)$，故总时间复杂度为$O(nlog^2n)$。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> Ans[maxn&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="keyword">double</span> Max[maxn&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">GetAns</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">double</span> Maxval)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> Max[h]&gt;Maxval?<span class="number">1</span>:<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(Maxval&gt;Max[h&lt;&lt;<span class="number">1</span>])<span class="keyword">return</span> GetAns(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,Maxval);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> Ans[h]-Ans[h&lt;&lt;<span class="number">1</span>]+GetAns(h&lt;&lt;<span class="number">1</span>,l,mid,Maxval);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos,<span class="keyword">double</span> val)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        Max[h]=val;</div><div class="line">        Ans[h]=<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(pos&lt;=mid)Modify(h&lt;&lt;<span class="number">1</span>,l,mid,pos,val);</div><div class="line">    <span class="keyword">else</span> Modify(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,pos,val);</div><div class="line">    Max[h]=max(Max[h&lt;&lt;<span class="number">1</span>],Max[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">    Ans[h]=Ans[h&lt;&lt;<span class="number">1</span>]+GetAns(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,Max[h&lt;&lt;<span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,n,q;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ2957.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ2957.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();q=read();</div><div class="line">    <span class="keyword">while</span>(q--)&#123;</div><div class="line">        <span class="keyword">int</span> x,y;</div><div class="line">        x=read();y=read();</div><div class="line">        Modify(<span class="number">1</span>,<span class="number">1</span>,n,x,y*<span class="number">1.0</span>/x);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,Ans[<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>一个长度为$n$的大数，用$S_1S_2S_3…S_n$表示，其中$S_i$表示数的第$i$位,$S_1$是数的最高位。告诉你$m$个限制条件，每个条件表示为四个数，$l_1,r_1,l_2,r_2$，即两个长度相同的区间，表示子串$S_{l_1}S_{l_1+1}S_{l_1+2}…S_{r_1}$与$S_{l_2}S_{l_2+1}S_{l_2+2}…S_{r_2}$完全相同。<a id="more"></a>比如$n=6$时，某限制条件$l_1=1,r_1=3,l_2=4,r_2=6$，那么$123123$，$351351$均满足条件，但是$12012$，$131141$不满足条件，前者数的长度不为$6$，后者第二位与第五位不同。问满足以上所有条件的数有多少个。<br>$1 \leqslant n,m \leqslant 1e5$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>看到这种一些数与另一些数相同，容易让人想到并查集。但是并查集暴力连边会T掉，该怎么办呢？我们考虑一种神奇的操作：即用ST表来维护并查集。开$logn$个并查集维护ST表中每一层的情况。其中第$i$层的并查集中有一条$x$到$y$的边，表示区间<code>[x,x+(1&lt;&lt;i)-1]</code>与区间<code>[y,y+(1&lt;&lt;i)-1]</code>中的每个数都相同。每次加入一个限制条件，只需在对应的并查集上连边即可。最后统计答案时，把每一层的连边下传。若最后一层的联通块个数为$sum$，那么答案就是$9 \times 10^{sum}$啦~注意特判一下$n=1$的情况。<br>时间复杂度$O(nlog(n) \alpha(n))$。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxsz=<span class="number">20</span>;</div><div class="line"><span class="keyword">int</span> logn[maxn];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DSU</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> fa[maxn];</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Initialize</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> i;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)fa[i]=i;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> fa[x]==x ? x : fa[x]=Find(fa[x]);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> u=Find(x),v=Find(y);</div><div class="line">        <span class="keyword">if</span>(u!=v)fa[u]=v;</div><div class="line">    &#125;</div><div class="line">&#125;T[maxsz];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ4569.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ4569.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();m=read();</div><div class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=(n&lt;&lt;<span class="number">1</span>);i&lt;&lt;=<span class="number">1</span>)T[cnt++].Initialize(n);</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)logn[i]=logn[i&gt;&gt;<span class="number">1</span>]+<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">        <span class="keyword">int</span> l1,l2,r1,r2;</div><div class="line">        l1=read();r1=read();l2=read();r2=read();</div><div class="line">        T[logn[r1-l1+<span class="number">1</span>]].Merge(l1,l2);</div><div class="line">        T[logn[r1-l1+<span class="number">1</span>]].Merge(r1-(<span class="number">1</span>&lt;&lt;logn[r1-l1+<span class="number">1</span>])+<span class="number">1</span>,r2-(<span class="number">1</span>&lt;&lt;logn[r1-l1+<span class="number">1</span>])+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(i=cnt;i;i--)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j+(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>&lt;=n;j++)&#123;</div><div class="line">            T[i<span class="number">-1</span>].Merge(j,T[i].Find(j));</div><div class="line">            T[i<span class="number">-1</span>].Merge(j+(<span class="number">1</span>&lt;&lt;(i<span class="number">-1</span>)),T[i].Find(j)+(<span class="number">1</span>&lt;&lt;(i<span class="number">-1</span>)));</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;ll ans=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">if</span>(T[<span class="number">0</span>].Find(i)==i)sum++;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;sum;i++)(ans*=<span class="number">10</span>)%=mod;</div><div class="line">    ans=ans*<span class="number">9</span>%mod;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans+(n==<span class="number">1</span>));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -372,7 +372,9 @@
           
             <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
-            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+            <a href="/tags/并查集/" rel="tag"># 并查集</a>
+          
+            <a href="/tags/ST表/" rel="tag"># ST表</a>
           
         </div>
       
@@ -385,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/11/BZOJ4008 [HNOI2015]亚瑟王/" rel="next" title="BZOJ4008 [HNOI2015]亚瑟王">
-                <i class="fa fa-chevron-left"></i> BZOJ4008 [HNOI2015]亚瑟王
+              <a href="/2018/01/12/栈（stack）/" rel="next" title="栈（stack）">
+                <i class="fa fa-chevron-left"></i> 栈（stack）
               </a>
             
           </div>
@@ -394,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/12/栈（stack）/" rel="prev" title="栈（stack）">
-                栈（stack） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
