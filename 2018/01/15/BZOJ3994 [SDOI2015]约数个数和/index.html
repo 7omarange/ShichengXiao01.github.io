@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NOIP,OI历程," />
+  <meta name="keywords" content="莫比乌斯反演,数论," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
-<meta name="keywords" content="NOIP,OI历程">
+<meta name="description" content="题意设$d(x)$为$x$的约数个数，给定$n,m$，求$$\sum_{i=1}^{n}\sum_{j=1}^{m}d(ij)$$的值。多组数据，数据组数为$T$。">
+<meta name="keywords" content="莫比乌斯反演,数论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIP2017游记">
-<meta property="og:url" content="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/index.html">
+<meta property="og:title" content="BZOJ3994 [SDOI2015]约数个数和">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/15/BZOJ3994 [SDOI2015]约数个数和/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
+<meta property="og:description" content="题意设$d(x)$为$x$的约数个数，给定$n,m$，求$$\sum_{i=1}^{n}\sum_{j=1}^{m}d(ij)$$的值。多组数据，数据组数为$T$。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-03T16:06:31.314Z">
+<meta property="og:updated_time" content="2018-01-14T16:35:13.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOIP2017游记">
-<meta name="twitter:description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
+<meta name="twitter:title" content="BZOJ3994 [SDOI2015]约数个数和">
+<meta name="twitter:description" content="题意设$d(x)$为$x$的约数个数，给定$n,m$，求$$\sum_{i=1}^{n}\sum_{j=1}^{m}d(ij)$$的值。多组数据，数据组数为$T$。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/15/BZOJ3994 [SDOI2015]约数个数和/"/>
 
 
 
 
 
-  <title>NOIP2017游记 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BZOJ3994 [SDOI2015]约数个数和 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/15/BZOJ3994 [SDOI2015]约数个数和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NOIP2017游记</h1>
+          <h1 class="post-title" itemprop="name headline">BZOJ3994 [SDOI2015]约数个数和</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T00:03:36+08:00">
-                2017-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T00:33:59+08:00">
+                2018-01-15
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2017/12/04/NOIP2017游记/" class="leancloud_visitors" data-flag-title="NOIP2017游记">
+             <span id="/2018/01/15/BZOJ3994 [SDOI2015]约数个数和/" class="leancloud_visitors" data-flag-title="BZOJ3994 [SDOI2015]约数个数和">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,30 +351,14 @@
       
 
       
-        <p>这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）<br><a id="more"></a></p>
-<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>Day0似乎……没有干什么。扫了几个不太记得的模板，写了一发vimrc（然而并没有去试一试自己的vimrc有没有问题……于是考场上调vim20min）然后……就去颓了。</p>
-<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><p>到了考场，发现我是一考室第一组的第一个……右边两个是Gt，右边四个是dyy，右边六个是Wearry，右边八个是长者……鏼鏼发抖……<br>今年NOIP考试前竟然不能动电脑，而且还有开机密码= =差评。不知道密码的我在那里干等着，以为会有个开机密码的ppt。然后发呆了一会突然发现右边大佬竟然知道开机密码，已经进系统了……老师强调不能动电脑，于是他又把电脑锁上了。等到八点半，我亲眼看着他从键盘里输入“123456”，就进去了……我……（后来hyj告诉我，NOILinux的初始密码就是123456，我……我没用过NOILinux不知道啊……）<br>急匆匆地开始配vim，后来发现自己的快捷编译竟然没用？一脸懵逼的我试了一下手动输编译命令，没问题。于是开始找vimrc的问题。但是……平常vim配得太少了啊……都是用的原来的模板，根本不知道哪里写错了……于是胡乱加了一句imap，然后……就可以了。（还是后来day2考完后，py告诉我，忘打空格了……）看一眼表，8:50……开始看题。</p>
-<h2 id="Math-小凯的疑惑"><a href="#Math-小凯的疑惑" class="headerlink" title="Math 小凯的疑惑"></a>Math 小凯的疑惑</h2><p>期望得分 100<br>实际得分 100</p>
-<h3 id="考场思路"><a href="#考场思路" class="headerlink" title="考场思路"></a>考场思路</h3><p>看到这道题，第一反应是道原题，好像叫麦香牛块。依稀记得这题是结论题，然而结论不太记得了= =。先写了发暴力稍微玩了一下，然后就找到规律了。照着规律就这么写了，竟然……拍出错了，心里一阵慌乱。<br>后来发现gen写错了……</p>
-<h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>正解就是输出$ab-a-b$啦。在这里简单证明一下：<br>若$x$无法用$a$和$b$组合出来，则存在整数$p$和$q$，使得<br>$x=ap+bq=a(p-b)+b(q+a)$且$0&lt;p,q&lt;0,p-b&lt;0,0&lt;q+a$<br>于是$0&lt;p&lt;b,-a&lt;q&lt;0$<br>最大的$x$在$p=b-1,q=-1$时取得，即$x=a(b-1)+(-b)=ab-a-b$。</p>
-<h2 id="Complexity-时间复杂度"><a href="#Complexity-时间复杂度" class="headerlink" title="Complexity 时间复杂度"></a>Complexity 时间复杂度</h2><p>期望得分 100<br>实际得分 90</p>
-<h3 id="考场思路-1"><a href="#考场思路-1" class="headerlink" title="考场思路"></a>考场思路</h3><p>一股浓浓的Codeforces Div2B/C的气息扑面而来，超级模拟题。明明打了那么多cf，坑点应该要注意了吧……然而还是写挂了一个细节，数组貌似会访问到负值。（啊这种错也能有……我还是太菜了）终测数据gg了10分……</p>
-<h3 id="正解-1"><a href="#正解-1" class="headerlink" title="正解"></a>正解</h3><p>该写点啥呢……暴力即正解。</p>
-<h2 id="Park-逛公园"><a href="#Park-逛公园" class="headerlink" title="Park 逛公园"></a>Park 逛公园</h2><p>期望得分 60<br>实际得分 30</p>
-<h3 id="考场思路-2"><a href="#考场思路-2" class="headerlink" title="考场思路"></a>考场思路</h3><p>其实写到这题的时候，时间还是挺充裕的。然而本来就没有拿下这题的打算，所以一上来就直接去想60pts。<br>看到$k \leqslant 50$于是想到了一个dp。然而我并不知道怎么转移……想了想就写个直接dfs转移吧……考场上完全无法证明复杂度，于是就假想复杂度是$O(n^2)$的。然而直到考后我才发现，我的dp完全没有发挥dp的作用，而我的复杂度是$O(ans×len)$级别的，其中$len$是路径经过的点的个数……于是……我感觉30都很玄乎了。还好终测数据水，这30分倒是保住了。</p>
-<h3 id="正解-2"><a href="#正解-2" class="headerlink" title="正解"></a>正解</h3><p>两遍dijkstra+toposort+dp。暂时没有深究细节，不太清楚如何实现。</p>
-<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>Day1民测出来，发现自己挂了一些分数，但相对来讲还算比较稳的。进考场的时候也没啥心理压力。Day1考得不上不下的，反正进top15肯定没戏，一等看上去又比较稳……<br>进考场，这回没什么意外了。然而配vim又费了我老长的时间……</p>
-<h2 id="cheese-奶酪"><a href="#cheese-奶酪" class="headerlink" title="cheese 奶酪"></a>cheese 奶酪</h2><p>期望得分 100<br>实际得分 100</p>
-<h3 id="考场思路-3"><a href="#考场思路-3" class="headerlink" title="考场思路"></a>考场思路</h3><p>嗯这种题作为day2T1算是正常许多了，并没有遇到任何麻烦，也并没有注意到会爆<code>long long</code>……细节一定要注意啊啊啊……还好最后的终测并没有卡。但是这类似的问题很值得关注。</p>
-<h3 id="正解-3"><a href="#正解-3" class="headerlink" title="正解"></a>正解</h3><p>并查集乱搞一下就可以了。</p>
-<h2 id="treasure-宝藏"><a href="#treasure-宝藏" class="headerlink" title="treasure 宝藏"></a>treasure 宝藏</h2><p>期望得分 70<br>实际得分 70</p>
-<h3 id="考场思路-4"><a href="#考场思路-4" class="headerlink" title="考场思路"></a>考场思路</h3><p>看到暴力竟然有70，赶紧写了发暴力。然而码力太差暴力调了好久，而且复杂度似乎并不那么优。（我写的暴枚每一条边，后面还写了个树形dp求最优的根。然而这么做判树太慢了，还不如枚举每个点和哪个点相连……）于是这就导致……我的大样例……竟然会T一点点，卡了卡常才跑过去的。（考试完后才发现别人的暴力就只有12的点跑不过了……）觉得70比较满足，就先看T3去了，后来就没回来想这道题了。当然这题我也根本没往正解的思路去想，表示看到12的范围想到的是搜索/摊手。T2说实话，时间浪费得有点多，最终的得分也并不高……算是day2做得不太好的地方了。</p>
-<h3 id="正解-4"><a href="#正解-4" class="headerlink" title="正解"></a>正解</h3><p>正解是一个状压，状压方式多种多样。各种复杂度都可过。目前已知有$O(4^n),O(3^n \times n),O(2^n \times n^4)$均跑过了最后的数据。不过12的范围还是太小了，以上算法中的正确性可能还存在一些问题……当然据说爆搜剪枝也可过，而且比以上几种都要快……</p>
-<h2 id="phalanx-队列"><a href="#phalanx-队列" class="headerlink" title="phalanx 队列"></a>phalanx 队列</h2><p>期望得分 30<br>实际得分 30</p>
-<h3 id="考场思路-5"><a href="#考场思路-5" class="headerlink" title="考场思路"></a>考场思路</h3><p>Day2T3竟然是数据结构题！说好的NOIP不考数据结构的来着……哎我数据结构最差了……<br>简单码完30的暴力，又觉得数据结构题自己比较差，就没往正解去想了，开始思考部分分。没过太久就想到了一个$O(nlogn^2)$解决$x=1$的做法，也就是二分套树状数组。跑过了样例之后，自己手造了一发$1e5$随机数据，发现跑的挺快的？于是又改成$3e5$，还是跑的挺快的？大喜过望，以为这30pts到手了。结果和暴力一拍，发现输出的行数都不一样……有的询问我竟然会没有输出，也就是说二分不出答案……一脸懵逼地开始调，然后……就调到了考试结束……</p>
-<h3 id="正解-5"><a href="#正解-5" class="headerlink" title="正解"></a>正解</h3><p>用$n+1$个树状数组维护情况，具体实现还没有仔细研究。</p>
-<h1 id="Day-infty"><a href="#Day-infty" class="headerlink" title="Day $\infty$"></a>Day $\infty$</h1><p>这次NOIP其实也不能算考挂，如果讲最后真正写的分数其实只写了$430$，总共挂$10$分。但是，像Day1T3，Day2T3等题都是准备写更高的分数的，Day1T3没有自己想复杂度的问题，Day2T3调试能力太差，直接没调出来……这$60$~$70$分自认为是比较可惜的。<br>像NOIP这类型的考试，把暴力和能写的正解写稳，争取高分暴力，是很容易拿到高分的……<br>但接下来，面对的就不是NOIP了……HNOI绝不仅仅是写稳暴力就能考好的。近段时间，主要目标是把HNOI的算法天坑先填完……（然而这方面和其他人相比……差的太多了），增强代码能力，多写写工业题（现在的工业水平真是……不堪一击）。然后再加强各种题的思维训练，多总结一些套路。<br>总之，HNOI2018加油吧！</p>
-
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>设$d(x)$为$x$的约数个数，给定$n,m$，求<br>$$\sum_{i=1}^{n}\sum_{j=1}^{m}d(ij)$$的值。<br>多组数据，数据组数为$T$。<br><a id="more"></a><br>$1 \leqslant n,m,T \leqslant 50000$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>这题一上来就需要一个结论，而且这个结论并不是那么好证明……这就很无奈了……第一步都推不出来……</p>
+<ul>
+<li>结论：存在这样一个式子：$$d(ij)=\sum_{x|i}\sum_{y|j}[\gcd(i,j)=1]$$</li>
+<li>证明：（搬运了网上的博客……简直巧妙）设$nm=p_1^{x_1}p_2^{x_2}p_3^{x_3}…p_k^{x_k}$，且$n=p_1^{y_1}p_2^{y_2}p_3^{y_3}…p_k^{y_k}$，则$m=p_1^{x_1-y_1}p_2^{x_2-y_2}p_3^{x_3-y_3}…p_k^{x_k-y_k}$。设$i=p_1^{a_1}p_2^{a_2}p_3^{a_3}…p_k^{a_k}$，$j=p_1^{b_1}p_2^{b_2}p_3^{b_3}…p_k^{b_k}$，要使$\gcd(i,j)=1$，必然对于任意的$i$有$a_i \times b_i=0$。如果$a_i=0$，那么$b_i$有$x_i-y_i+1$种取值；如果$b_i=0$，那么$a_i$有$y_i+1$种取值，算重了一次$a_i=b_i=0$，所以对于一个$i$，总共有$x_i+1$种取值。所以总共有$\prod(x_i+1)$种取值，即$nm$的约数个数，得证。</li>
+</ul>
+<p>然后有了这样一个神奇的式子之后，我们就可以开始推式子了。<br>由刚刚的结论，原式可化为<br>$$\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{x|i}\sum_{y|j}[\gcd(x,y)=1]$$<br>然后可以想到把里面的两个和式移出去，式子于是变成<br>$$\sum_{x=1}^{n}\sum_{y=1}^{m}[\gcd(x,y)=1]\lfloor\frac{n}{x}\rfloor \lfloor\frac{m}{y}\rfloor$$<br>然后就可以莫比乌斯反演啦，式子变成<br>$$\sum_{d=1}^{n}\mu(d)\sum_{x=1}^{\frac{n}{d}}\sum_{y=1}^{\frac{m}{d}}\lfloor\frac{n}{dx}\rfloor\lfloor\frac{m}{dy}\rfloor$$<br>再交换一下和式的位置，式子变成<br>$$\sum_{d=1}^{n}\mu(d)\sum_{x=1}^{\frac{n}{d}}\lfloor\frac{n}{dx}\rfloor\sum_{y=1}^{\frac{m}{x}}\lfloor\frac{m}{dy}\rfloor$$<br>这下就明朗很多了。式子很明显可以预处理，然后整除分块。具体来说，就是预处理$F(n)=\sum_{i=1}^{n}\lfloor\frac{n}{i}\rfloor$，然后$\sum_{x=1}^{\frac{n}{d}}\lfloor\frac{n}{dx}\rfloor=F(\lfloor\frac{n}{d}\rfloor)$，再求一下$\mu()$的前缀和，即可在$O(\sqrt{n})$的复杂度内回答单次询问。总时间复杂度是$O(T\sqrt{n}+n\ln n)$。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e4</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> mu[maxn],vis[maxn],prime[maxn],sum[maxn],F[maxn];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    vis[<span class="number">1</span>]=<span class="number">1</span>;mu[<span class="number">1</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> i,j,cnt=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(!vis[i])&#123;</div><div class="line">            prime[++cnt]=i;</div><div class="line">            mu[i]=<span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=cnt &amp;&amp; i*prime[j]&lt;=n;j++)&#123;</div><div class="line">            vis[i*prime[j]]=<span class="number">1</span>;</div><div class="line">            mu[i*prime[j]]=-mu[i];</div><div class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)&#123;</div><div class="line">                mu[i*prime[j]]=<span class="number">0</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[i]=sum[i<span class="number">-1</span>]+mu[i];</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</div><div class="line">            <span class="keyword">int</span> k=i/(i/j);</div><div class="line">            ans+=(k-j+<span class="number">1</span>)*(i/j);</div><div class="line">            j=k;</div><div class="line">        &#125;</div><div class="line">        F[i]=ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,m,n,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ3994.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ3994.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    initialize(maxn<span class="number">-5</span>);</div><div class="line">    T=read();</div><div class="line">    <span class="keyword">while</span>(T--)&#123;</div><div class="line">        n=read();m=read();</div><div class="line">        ll ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=min(n,m);i++)&#123;</div><div class="line">            j=min(n/(n/i),m/(m/i));</div><div class="line">            ans+=<span class="number">1l</span>l*(sum[j]-sum[i<span class="number">-1</span>])*F[n/i]*F[m/i];</div><div class="line">            i=j;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -391,9 +375,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
+            <a href="/tags/莫比乌斯反演/" rel="tag"># 莫比乌斯反演</a>
           
-            <a href="/tags/OI历程/" rel="tag"># OI历程</a>
+            <a href="/tags/数论/" rel="tag"># 数论</a>
           
         </div>
       
@@ -406,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/04/NOIP考点总结之——DP/" rel="next" title="NOIP考点总结之——DP">
-                <i class="fa fa-chevron-left"></i> NOIP考点总结之——DP
+              <a href="/2018/01/13/BZOJ3529 [SDOI2014]数表/" rel="next" title="BZOJ3529 [SDOI2014]数表">
+                <i class="fa fa-chevron-left"></i> BZOJ3529 [SDOI2014]数表
               </a>
             
           </div>
@@ -415,10 +399,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/09/树链剖分简单总结/" rel="prev" title="树链剖分简单总结">
-                树链剖分简单总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-0"><span class="nav-number">1.</span> <span class="nav-text">Day 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-1"><span class="nav-number">2.</span> <span class="nav-text">Day 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-小凯的疑惑"><span class="nav-number">2.1.</span> <span class="nav-text">Math 小凯的疑惑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路"><span class="nav-number">2.1.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解"><span class="nav-number">2.1.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complexity-时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">Complexity 时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Park-逛公园"><span class="nav-number">2.3.</span> <span class="nav-text">Park 逛公园</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">正解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-2"><span class="nav-number">3.</span> <span class="nav-text">Day 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cheese-奶酪"><span class="nav-number">3.1.</span> <span class="nav-text">cheese 奶酪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-3"><span class="nav-number">3.1.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-3"><span class="nav-number">3.1.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#treasure-宝藏"><span class="nav-number">3.2.</span> <span class="nav-text">treasure 宝藏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-4"><span class="nav-number">3.2.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-4"><span class="nav-number">3.2.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phalanx-队列"><span class="nav-number">3.3.</span> <span class="nav-text">phalanx 队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-5"><span class="nav-number">3.3.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-5"><span class="nav-number">3.3.2.</span> <span class="nav-text">正解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-infty"><span class="nav-number">4.</span> <span class="nav-text">Day $\infty$</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
