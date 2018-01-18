@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="字符串,后缀数组," />
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="长风破浪会有时，直挂云帆济沧海！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ShichengXiao&#39;s Blog">
-<meta property="og:url" content="http://shichengxiao01.github.io/tags/OI历程/index.html">
+<meta name="description" content="这玩意儿网上的博客比比皆是，并且各种图片讲解得也很清楚，我这里就不详细讲解了。这里先来强调几个我多次搞混的概念：">
+<meta name="keywords" content="字符串,后缀数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀数组（SA）具体实现简单讲解">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/01/19/后缀数组（SA）具体实现简单讲解/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="长风破浪会有时，直挂云帆济沧海！">
+<meta property="og:description" content="这玩意儿网上的博客比比皆是，并且各种图片讲解得也很清楚，我这里就不详细讲解了。这里先来强调几个我多次搞混的概念：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-18T17:24:00.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ShichengXiao&#39;s Blog">
-<meta name="twitter:description" content="长风破浪会有时，直挂云帆济沧海！">
+<meta name="twitter:title" content="后缀数组（SA）具体实现简单讲解">
+<meta name="twitter:description" content="这玩意儿网上的博客比比皆是，并且各种图片讲解得也很清楚，我这里就不详细讲解了。这里先来强调几个我多次搞混的概念：">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/tags/OI历程/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/01/19/后缀数组（SA）具体实现简单讲解/"/>
 
 
 
 
 
-  <title>标签: OI历程 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>后缀数组（SA）具体实现简单讲解 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -163,7 +165,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,54 +259,174 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>OI历程<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/01/19/后缀数组（SA）具体实现简单讲解/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/04/NOIP2017游记/" itemprop="url">
-              
-                <span itemprop="name">NOIP2017游记</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">后缀数组（SA）具体实现简单讲解</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-04T00:03:36+08:00"
-              content="2017-12-04" >
-          12-04
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T01:21:08+08:00">
+                2018-01-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/19/后缀数组（SA）具体实现简单讲解/" class="leancloud_visitors" data-flag-title="后缀数组（SA）具体实现简单讲解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这玩意儿网上的博客比比皆是，并且各种图片讲解得也很清楚，我这里就不详细讲解了。这里先来强调几个我多次搞混的概念：<a id="more"></a></p>
+<ul>
+<li><code>SA[i]</code>表示排名第$i$的字符串的起始位置；</li>
+<li><code>height[i]</code>表示排名第$i$与排名第$i-1$之间的最长公共前缀。</li>
+<li><code>h[i]</code>表示以$i$开始的后缀与以$i-1$开始的后缀的最长公共前缀；</li>
+</ul>
+<p>然后就是代码讲解。这玩意儿讲起来并不难，但代码写得感觉非常难懂……并且好像没有在网上找到许多简洁的代码……<br>现在直接上代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">GetSA</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> m=<span class="number">150</span>;</div><div class="line">    <span class="keyword">int</span> n=<span class="built_in">strlen</span>(str+<span class="number">1</span>),i,k;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)cnt[rankcur[i]=str[i]]++;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)cnt[i]+=cnt[i<span class="number">-1</span>];</div><div class="line">    <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)SA[cnt[rankcur[i]]--]=i;</div><div class="line">    <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k&lt;&lt;=<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">int</span> pos=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)SAnex[i]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=n-k+<span class="number">1</span>;i&lt;=n;i++)SAnex[++pos]=i;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(SA[i]&gt;k)SAnex[++pos]=SA[i]-k;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)cnt[i]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)cnt[rankcur[SAnex[i]]]++;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)cnt[i]=cnt[i<span class="number">-1</span>]+cnt[i];</div><div class="line">        <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)SA[cnt[rankcur[SAnex[i]]]--]=SAnex[i];</div><div class="line">        swap(SAnex,rankcur);</div><div class="line">        rankcur[SA[<span class="number">1</span>]]=<span class="number">1</span>;pos=<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(SAnex[SA[i<span class="number">-1</span>]]!=SAnex[SA[i]] || SAnex[SA[i<span class="number">-1</span>]+k]!=SAnex[SA[i]+k])pos++;</div><div class="line">            rankcur[SA[i]]=pos;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(pos&gt;=n)<span class="keyword">break</span>;</div><div class="line">        m=pos;</div><div class="line">    &#125;</div><div class="line">    k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;Height[rankcur[i++]]=k)</div><div class="line">        <span class="keyword">for</span>(k=k ? k<span class="number">-1</span> : k,j=SA[rankcur[i]<span class="number">-1</span>];a[i+k]==a[j+k];k++);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注释我要写在代码后面，因为我要写的注释实在太多了……<br>先来讲一下数组：</p>
+<ul>
+<li><code>rankcur[i]</code>表示目前以第$i$个字母开始的这段长度为$k$的字符串的排名，一开始的时候<code>rankcur[i]=str[i]</code>；</li>
+<li><code>SA[i]</code>表示排名第$i$的字符串的起始位置；（上面已经说过了）</li>
+<li><code>SAnex[i]</code>表示进行后缀排序的第二关键字排名为$i$的对应的第一关键字的串的起始位置（怎么讲不清楚的感觉）；</li>
+<li><code>cnt[]</code>是一个统计数组，用于辅助计算<code>SA[]</code>。</li>
+</ul>
+<p>然后一段段来讲代码：<br>首先看看前三个<code>for</code>：这三个<code>for</code>就是把整个字符串进行第一次排序，得到每个字符的<code>SA[]</code>数组。这个不难理解。先对于每个字符加到桶里去，然后累前缀和，再按顺序把每个字符的<code>SA[]</code>算出来。<br>然后就是倍增的过程了。<br>先看<code>SAnex[]</code>的处理。清空<code>SAnex[]</code>数组后，先将第二关键字的字符串为空的<code>SAnex[]</code>单独考虑出来，不难发现他们的排名是最靠前的，<code>SAnex[]</code>的第$1$到第$k$项可以直接处理出来。<br>再看看后面的那一个<code>for</code>。<code>if(SA[i]&gt;k)</code>则说明以<code>SA[i]</code>为起始点的第二关键字的字符串存在对应的第一关键字的字符串，那么对应的第一关键字的字符串的起始点为<code>SA[i]-k</code>。<br>然后是计算<code>SA[]</code>与<code>rankcur[]</code>，也算是重头戏吧。重头戏之前，先回头总结一下，我们得到了什么：<br>主要是两个数组，一个是第一关键字以$i$为起始点的排名<code>rankcur[i]</code>，另一个是第二关键字排名为$i$的起始点<code>SAnex[i]</code>。<br>先来看看这<code>SA[]</code>的计算。其实还是类似于第一步里<code>SA[]</code>的计算，只不过把第一步里的<code>i</code>换成了<code>SAnex[i]</code>。不难理解，这样恰好加入了第二关键字的排序（我也不知道要怎么讲，手动模拟一下应该不难理解）。<br>然后是<code>rankcur[]</code>的计算。如果<code>rankcur[SA[i]]</code>与<code>rankcur[SA[i-1]]</code>相同，且<code>rankcur[SA[i]+k]</code>与<code>rankcur[SA[i-1]+k]</code>相同，那么<code>rankcur[i]</code>也和<code>rankcur[i-1]</code>相同（注意代码中此时交换了数组），否则<code>rankcur[SA[i]]=rankcur[SA[i-1]]+1</code>。理解一下，似乎也不需要多讲。<br>关于<code>height[]</code>数组的计算，我们有这么个东西：$$height[rank[i]] \geqslant height[rank[i-1]]-1$$<br>然后理解起来就不难了，这样也保证了<code>height[]</code>的计算复杂度为$O(n)$。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/后缀数组/" rel="tag"># 后缀数组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/18/AC自动机强制在线/" rel="next" title="AC自动机强制在线">
+                <i class="fa fa-chevron-left"></i> AC自动机强制在线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -312,6 +434,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -506,10 +632,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
