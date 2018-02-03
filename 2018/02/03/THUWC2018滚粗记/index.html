@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="考试,错误," />
+  <meta name="keywords" content="OI历程," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="考试中的那些事……">
-<meta name="keywords" content="考试,错误">
+<meta name="description" content="Day 0这次THUWC有Pretest简直很良心啊……但是听说隔壁PKU直接IOI赛制，并且可以实时看榜？想想都觉得恐怖……">
+<meta name="keywords" content="OI历程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIP2017的注意事项">
-<meta property="og:url" content="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/index.html">
+<meta property="og:title" content="THUWC2018滚粗记">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/02/03/THUWC2018滚粗记/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="考试中的那些事……">
+<meta property="og:description" content="Day 0这次THUWC有Pretest简直很良心啊……但是听说隔壁PKU直接IOI赛制，并且可以实时看榜？想想都觉得恐怖……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-01T16:03:11.703Z">
+<meta property="og:updated_time" content="2018-02-03T01:48:11.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOIP2017的注意事项">
-<meta name="twitter:description" content="考试中的那些事……">
+<meta name="twitter:title" content="THUWC2018滚粗记">
+<meta name="twitter:description" content="Day 0这次THUWC有Pretest简直很良心啊……但是听说隔壁PKU直接IOI赛制，并且可以实时看榜？想想都觉得恐怖……">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/02/03/THUWC2018滚粗记/"/>
 
 
 
 
 
-  <title>NOIP2017的注意事项 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>THUWC2018滚粗记 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/02/03/THUWC2018滚粗记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NOIP2017的注意事项</h1>
+          <h1 class="post-title" itemprop="name headline">THUWC2018滚粗记</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T23:52:19+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T09:40:52+08:00">
+                2018-02-03
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2017/11/01/NOIP2017的注意事项/" class="leancloud_visitors" data-flag-title="NOIP2017的注意事项">
+             <span id="/2018/02/03/THUWC2018滚粗记/" class="leancloud_visitors" data-flag-title="THUWC2018滚粗记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,79 +351,22 @@
       
 
       
-        <p>考试中的那些事……<br><a id="more"></a></p>
-<h1 id="失误篇"><a href="#失误篇" class="headerlink" title="失误篇"></a>失误篇</h1><h2 id="代码上的失误"><a href="#代码上的失误" class="headerlink" title="代码上的失误"></a>代码上的失误</h2><h3 id="错误导致直接失分"><a href="#错误导致直接失分" class="headerlink" title="错误导致直接失分"></a>错误导致直接失分</h3><ul>
-<li>数组开大开小。开大现在很少了，开小倒是较为频繁。PS:注意不能简单的通过极限数据看是否RE来看是否存在数组问题，有时数组开小不会RE，而是访问到别的地址。建议使用-O2优化编译一下看答案是否相同（2017-10-29 cashier等）。</li>
-<li>数据范围的$maxn$与$maxm$写反导致RE；</li>
-<li>频繁地<code>memset</code>一个数组导致TLE；</li>
-<li>写错题目中的字母（如$n$与$m$写反）（2017-10-30 a）；</li>
-<li>数组访问到负数导致RE。在不开-O2的情况下，这个有时同样不会报错。同样建议使用-O2优化编译测试（某一天的组合数题算$C(m,n)$要判$m&lt;n$）；</li>
-<li>坑爹的<code>long long</code>（一系列问题：读入优化没改<code>long long</code>，输出写的<code>%d</code>，<code>long long</code>与<code>int</code>计算没乘<code>1ll</code>，各种爆<code>int</code>，<code>a&lt;&lt;b</code>即使b是<code>long long</code>，但a不是就会炸）；</li>
-<li>全开<code>long long</code>结果又TLE了；</li>
-<li>取模不彻底，爆<code>long long</code>；</li>
-<li>没有测试大数据导致各种奇怪原因的TLE；</li>
-</ul>
-<h3 id="错误导致半天调不出来"><a href="#错误导致半天调不出来" class="headerlink" title="错误导致半天调不出来"></a>错误导致半天调不出来</h3><ul>
-<li>dfs的时候经常写错函数名（如本来这个函数叫dfs1，结果中间写成dfs了，然后就跳到另一个函数去了）（各种有几个dfs的题都会写错）；</li>
-<li>注意在条件语句只会进一个的时候，尽量使用if…else if…。否则有可能在if那里改变了值使得又进入了下一个if（Codeforces Round#433 (Div. 2) C）；</li>
-<li>拿特殊数据的分的时候把数组开小导致只剩暴力分；</li>
-<li>多个if嵌套要打大括号，要不然你也不知道它是怎么执行的（把几个if写一起就好了）；</li>
-<li><code>for(j=1;j&lt;=n;i++)</code>；</li>
-</ul>
-<h2 id="策略上的失误"><a href="#策略上的失误" class="headerlink" title="策略上的失误"></a>策略上的失误</h2><ul>
-<li>硬刚某道题两小时以上；</li>
-<li>某题先写正解结果没写或没调出来，又没写暴力，爆0；</li>
-<li>dp方程没想好就开始写，然后写的过程中一改再改，耽误大量时间；</li>
-<li>就现在这工业水平，看到是工业题就一定赶紧写完暴力走人，别耽误时间；</li>
-</ul>
-<p>关于失误最后总结一点：一定要对拍！</p>
-<h1 id="技巧篇"><a href="#技巧篇" class="headerlink" title="技巧篇"></a>技巧篇</h1><ul>
-<li>编译命令加上<code>-Wall -Wshadow -Wextra</code>以防各种奇怪的错误；</li>
-<li>编译时开O2不开O2都跑一遍看答案是否一样；</li>
-<li>使用<code>cerr</code>输出中间结果；</li>
-</ul>
-<h1 id="方法篇"><a href="#方法篇" class="headerlink" title="方法篇"></a>方法篇</h1><h2 id="考试前"><a href="#考试前" class="headerlink" title="考试前"></a>考试前</h2><ul>
-<li>配Vim，记得加上以下几个东西：<ul>
-<li>-O2编译与非-O2编译；</li>
-<li>快速开文件的东西；</li>
-<li>写缺省源，记得测试缺省源中快读的负数；</li>
-</ul>
-</li>
-<li>熟悉系统环境等</li>
-</ul>
-<h2 id="考试过程中"><a href="#考试过程中" class="headerlink" title="考试过程中"></a>考试过程中</h2><ul>
-<li>一定要先把题完整看一遍，以防有去年T2比T3难很多的情况；</li>
-<li>花半小时先写好暴力；</li>
-<li><p>发现看错了题：</p>
+        <h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>这次THUWC有Pretest简直很良心啊……但是听说隔壁PKU直接IOI赛制，并且可以实时看榜？想想都觉得恐怖……<br><a id="more"></a><br>考前刷了一点数据结构题，发现自己的数据结构简直一无所知……匆忙背了一下vim配置，然后就睡了。</p>
+<h1 id="Day-0-5"><a href="#Day-0-5" class="headerlink" title="Day 0.5"></a>Day 0.5</h1><p>上午报道之后，开始试机。试机题是Codeplus11月的三道月赛题，不太想写……于是就随便码了一下T1，T2乱写了一下就走了。但是写的时候遇到了一个问题，那就是我的脚总是会不自觉地踢到插座……然后电脑就关机了……还好关机并不会把所有东西清掉……但是如果没保存，那就gg了……（flag）</p>
+<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>下午的考试时间略有些不适应，不过影响不大。<br>好的崩盘从现在开始：<br>T1似乎是个签到题？开始想简单了，就随便贪心了一发，写到一半才发现好像不对，没有考虑两个数组的负数个数差得很多的情况……于是匆忙改改改，改得自己觉得差不多了，就急忙交了一发。结果wa了……Pretest只过了三个点……并且还是三个特殊数据的分数，连$n,m \leqslant 4$的分都是wa的。没过多久才发现，自己的写法似乎有些问题……于是又是一阵改改改，又交一发，结果还是wa了……而且Pretest变成只过了一个点……此后的一个小时里头，我的Pretest得分就一直在三个点和一个点之间徘徊。最后实在没办法了，就写了一个只能跑$4$的暴力拍了一下，瞬间拍出错……调了一阵之后，终于把T1给过了……然而此时已经过去了两个多小时……<br>T2看上去会$O(n^2)$，但是暴力只有10分，于是先跳过了，去看T3。<br>T3研究了一会性质之后，然后一阵激动：这……后缀数组套个二分不就没了？然后急匆匆的开始写，觉得今天有戏啊……（flag$\times$2）。然而写到一半，发现后缀数组不是那么记得了= =，又回忆了好一阵后缀数组。在整个写T3的过程中，连续两次一脚踢到插座……没过多久就把我认为正确的T3写完了。然而……交上去之后，又wa了，而且wa得一个点也不剩……想了一会……才发现我的算法是个错的，心里一阵凉。稍微冷静下来之后，我发现，我的算法要改成$50$pts非常轻松，于是马上去改。可惜，自从发现我的T3的想法是错的之后，我的心态开始有点崩，$50$pts往死里调也调不出来。最后想了想，我直接写暴力的$15$pts吧。结果暴力也是各种wa，然后就这样……一直wa到了考试结束……<br>Day1考试结束的那一刻，其实我已经知道这次THUWC肯定没戏了。作为一名本身没什么实力的选手，想要在THUWC上签掉，大概就是要保住所有分吧。<br>出考场问其他同学，发现大家都至少有150+。哎凉了凉了。</p>
+<h2 id="题目回顾"><a href="#题目回顾" class="headerlink" title="题目回顾"></a>题目回顾</h2><h3 id="snack-零食"><a href="#snack-零食" class="headerlink" title="snack 零食"></a>snack 零食</h3><p>Pretest: 100<br>正解好像和我写的是一样的，是一种有点偏细节的贪心。然而我的同学们都是一种非常好的方法：考虑枚举其中一种零食被分为了$n$区间，然后另一种零食只可能被分为$n-1,n,n+1$个区间，然后计算一下答案就可以了。</p>
+<h3 id="city-城市规划"><a href="#city-城市规划" class="headerlink" title="city 城市规划"></a>city 城市规划</h3><p>Pretest: 0<br>正解是一个线段树合并，然而我连线段树合并都不会……听说$O(n^2)$再把没用的状态去掉，就能拿到$40$~$50$pts……</p>
+<h3 id="字胡串"><a href="#字胡串" class="headerlink" title="字胡串"></a>字胡串</h3><p>Pretest: 0<br>正解是后缀自动机。然而我还是不会……</p>
+<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>想着Day1早已完炸，似乎心态也放开了？<br>Day2的考试时间一推再推，一直推迟到了2:20才开始，然而我们1:50就进了系统，打完配置大概2:05，我干等着没事干，就打了个FFT的模板，结果，想不到还真就是T2的正解……FFT倒是罕见地手打一遍过了，感觉今天状态不错？<br>拿到题目，看了看T1觉得似乎不太可做……T2又是个比较明显的DP，于是我就先开了T2。T2想了很久之后，转化为了一个我很熟悉的问题：在$n$维空间上，需要从起点走向终点，每次可以在某一维上走一步，有一些点是不能走的，问从起点走向终点的方案数。然后我就想起了猫曾经出过的一道题：<a href="http://codeforces.com/problemset/problem/559/C" target="_blank" rel="external">CF559C</a>。于是写了个DP+容斥，但是并没有预处理，交了一发，有$40$pts，但是其中有个点跑了<code>4925ms</code>，然而时限是<code>5000ms</code>，心里很虚，拿了个极限数据，发现要<code>5300ms</code>左右。卡了很久还是没什么效果，于是就弃掉了。此时大概过了1.5h。思考了20min正解，但是觉得并不可做，于是暂时放下了T2。<br>T1和T3之间选择了一下。T1我不太会，T3的材料实在太多了，还有什么中英文的材料，根本不想看。于是先看了T1。<br>T1的贪心策略想了很久，一直没有一个很靠谱的，最后想了想，T3的分应该还容易搞？于是又暂时弃掉了T1，去看T3。<br>T3我本来是不打算认真去写的，于是交了个随机数上去……结果爆0了。后来发现我的随机数不合法（？？？）然后交了个正确的随机数，$20$pts，似乎很可观啊。猛然间觉得T3是挺好搞分的，于是开始看他给的材料。看完一部分材料，开始写三个算法中最好写的FAST。然而效果非常不理想，得分竟然和随机数是一样的= =。此时时间只剩下了两个小时左右。于是我开始各种玄学调参，但是调了很久，Pretest也只有$23$pts，效果很不好。他给的那些工具，我很多都不太会用，调起来非常不方便。剩下的时间也不太多了，于是又暂时把T3给放下来了，去写T1。<br>T1的贪心策略仍然没有想到一个靠谱的，思考了许久之后，敲了一个$5$pts的暴力上去，之后就在想$15$分，结果直到最后，连$15$分的都不知道怎么写。<br>考试结束后问了一圈，T1小学生直接A掉了（orz），T2我好像搞到了为数不多的$40$。勇石博士T3搞了$59$pts，而且他写的也是FAST（？？？）后来他跟我说，是不是你的$w$和$h$读反了，我仔细一想，好像还蛮符合他说的那些问题……我……真不知道说些什么……如果T3也搞了个五六十分，也许……可能就Day2翻盘了？</p>
+<h2 id="题目回顾-1"><a href="#题目回顾-1" class="headerlink" title="题目回顾"></a>题目回顾</h2><h3 id="sunrise-明天的太阳照样会升起"><a href="#sunrise-明天的太阳照样会升起" class="headerlink" title="sunrise 明天的太阳照样会升起"></a>sunrise 明天的太阳照样会升起</h3><p>Pretest: 5<br>此题的正解是一个偏细节的倍增。先考虑一下$15$分的$O(nm)$的贪心，贪心策略大概是这样：</p>
 <ul>
-<li>一定要冷静；</li>
-<li>不要局限在原来的思路中；</li>
-<li>算法的错误容易随机/构造出来吗？如果并不容易，可以考虑先放一放，或是打打补丁；</li>
-<li>认真看题，提高严谨性；</li>
+<li>在所有在这个点能加满油能走到的地方中，寻找第一个油价比出发的地点低的点，如果存在这样一个点，那么就直接把油刚好加到那个城市即可。</li>
+<li>如果不存在这样一个点，那么就在这个点把油加满，并且开到一个能开到的油价最低的点。</li>
 </ul>
-</li>
-<li><p>死也想不出来：</p>
-<ul>
-<li>一定要冷静；</li>
-<li>再看一遍题；</li>
-<li>用力想 （二分答案？容斥？单调性？猜结论？etc.）；</li>
-<li>记得特殊关照一下玄学复杂度的题，别分析错复杂度了；</li>
-<li>想特殊的部分分；</li>
-<li>先去做其他题, 或是先拿尽可能多的部分分；</li>
-<li>想不正确（或是不会证明）但是不容易被卡的方法；</li>
-</ul>
-</li>
-<li><p>死也调不出来/拍出错了</p>
-<ul>
-<li>一定要冷静；</li>
-<li>不要只对着最容易出错的地方调；</li>
-<li>检查题意有没有搞错，数据有没有错，暴力有没有错，checker有没有错；</li>
-<li>检查算法的正确性；</li>
-<li>如果是很难打的题，实在调不出来，可以先打个暴力；</li>
-</ul>
-</li>
-</ul>
-<p>（以上部分摘自__debug的博客 orz）<a href="http://debug18.com" target="_blank" rel="external">http://debug18.com</a></p>
+<p>然后注意到对于每个点，它都只有一条唯一的出边，所以就可以倍增了。倍增的时候要处理一些起点和终点的细节就可以了。</p>
+<h3 id="sequence-七彩序列"><a href="#sequence-七彩序列" class="headerlink" title="sequence 七彩序列"></a>sequence 七彩序列</h3><p>Pretest: 40<br>这道题的正解是个NTT……然而窝太菜了，根本没听懂……</p>
+<h3 id="cd-角点检测"><a href="#cd-角点检测" class="headerlink" title="cd 角点检测"></a>cd 角点检测</h3><p>Pretest: 23<br>乱搞题，正解不存在的……听说std长达40k（？？？）不是，我真的有点忍不住了……</p>
+<h1 id="Day-infty"><a href="#Day-infty" class="headerlink" title="Day $\infty$"></a>Day $\infty$</h1><p>这次THUWC，其实真的浪费了太多的机会……Day1T2，Day1T3，Day2T3的失分都真的很可惜……听说和面试分数线就差一个暴力，想想也是觉得很可惜。但是，毕竟自己的考试策略也有一定的问题，在想到Day1T3的一个算法之后，我并没有直接去证明算法的正确性，而是急匆匆地开始码，这个选择无论是从哪个角度来讲，都是不太理智的。而最后直接连暴力都调不出来，应该来讲心态上的调整做得不够到位。Day2的话个人觉得发挥还行，没有太受到Day1的影响（你Day1都滚粗了还有什么影响……）但是这个创新题搞得并不好，还是不太敢去花大量的时间去搞一个不知道自己能搞多少分的题。不过话说回来，自己这次的收获还是很多的，也算是认识到了自己还是比较菜吧……<br>最后，强势围观勇石博士直接无条件（省队）一本！orzorzorz<br>雅礼整体签得略惨，6个进面试只有3个拿了约，不过罗大神最后也拿约啦~<br>完结撒花~HNOI继续奋斗吧~相信自己吧！</p>
 
       
     </div>
@@ -441,9 +384,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/考试/" rel="tag"># 考试</a>
-          
-            <a href="/tags/错误/" rel="tag"># 错误</a>
+            <a href="/tags/OI历程/" rel="tag"># OI历程</a>
           
         </div>
       
@@ -456,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/30/Codeforces Round 443 (Div.2)题解/" rel="next" title="Codeforces Round 443 (Div.2)题解">
-                <i class="fa fa-chevron-left"></i> Codeforces Round 443 (Div.2)题解
+              <a href="/2018/01/27/斜率优化小结/" rel="next" title="斜率优化小结">
+                <i class="fa fa-chevron-left"></i> 斜率优化小结
               </a>
             
           </div>
@@ -465,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/03/NOIP考点总结之——树上操作/" rel="prev" title="NOIP考点总结之——树上操作">
-                NOIP考点总结之——树上操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#失误篇"><span class="nav-number">1.</span> <span class="nav-text">失误篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码上的失误"><span class="nav-number">1.1.</span> <span class="nav-text">代码上的失误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误导致直接失分"><span class="nav-number">1.1.1.</span> <span class="nav-text">错误导致直接失分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误导致半天调不出来"><span class="nav-number">1.1.2.</span> <span class="nav-text">错误导致半天调不出来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略上的失误"><span class="nav-number">1.2.</span> <span class="nav-text">策略上的失误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技巧篇"><span class="nav-number">2.</span> <span class="nav-text">技巧篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法篇"><span class="nav-number">3.</span> <span class="nav-text">方法篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#考试前"><span class="nav-number">3.1.</span> <span class="nav-text">考试前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考试过程中"><span class="nav-number">3.2.</span> <span class="nav-text">考试过程中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-0"><span class="nav-number">1.</span> <span class="nav-text">Day 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-0-5"><span class="nav-number">2.</span> <span class="nav-text">Day 0.5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-1"><span class="nav-number">3.</span> <span class="nav-text">Day 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#心路历程"><span class="nav-number">3.1.</span> <span class="nav-text">心路历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目回顾"><span class="nav-number">3.2.</span> <span class="nav-text">题目回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#snack-零食"><span class="nav-number">3.2.1.</span> <span class="nav-text">snack 零食</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#city-城市规划"><span class="nav-number">3.2.2.</span> <span class="nav-text">city 城市规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字胡串"><span class="nav-number">3.2.3.</span> <span class="nav-text">字胡串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-2"><span class="nav-number">4.</span> <span class="nav-text">Day 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目回顾-1"><span class="nav-number">4.1.</span> <span class="nav-text">题目回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sunrise-明天的太阳照样会升起"><span class="nav-number">4.1.1.</span> <span class="nav-text">sunrise 明天的太阳照样会升起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequence-七彩序列"><span class="nav-number">4.1.2.</span> <span class="nav-text">sequence 七彩序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-角点检测"><span class="nav-number">4.1.3.</span> <span class="nav-text">cd 角点检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-infty"><span class="nav-number">5.</span> <span class="nav-text">Day $\infty$</span></a></li></ol></div>
             
 
           </div>
