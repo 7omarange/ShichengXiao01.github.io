@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="考试,错误," />
+  <meta name="keywords" content="数论,斯特林数," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="考试中的那些事……">
-<meta name="keywords" content="考试,错误">
+<meta name="description" content="题意求$$\sum_{i=0}^{n}C(n,i) \times i^k$$的值。$1 \leqslant n \leqslant 1e9,1 \leqslant k \leqslant 5e3$。">
+<meta name="keywords" content="数论,斯特林数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIP2017的注意事项">
-<meta property="og:url" content="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/index.html">
+<meta property="og:title" content="Codeforces 932E Team Work">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/02/16/Codeforces 932E Team Work/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="考试中的那些事……">
+<meta property="og:description" content="题意求$$\sum_{i=0}^{n}C(n,i) \times i^k$$的值。$1 \leqslant n \leqslant 1e9,1 \leqslant k \leqslant 5e3$。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-01T16:03:11.703Z">
+<meta property="og:updated_time" content="2018-02-16T16:00:04.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOIP2017的注意事项">
-<meta name="twitter:description" content="考试中的那些事……">
+<meta name="twitter:title" content="Codeforces 932E Team Work">
+<meta name="twitter:description" content="题意求$$\sum_{i=0}^{n}C(n,i) \times i^k$$的值。$1 \leqslant n \leqslant 1e9,1 \leqslant k \leqslant 5e3$。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/02/16/Codeforces 932E Team Work/"/>
 
 
 
 
 
-  <title>NOIP2017的注意事项 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Codeforces 932E Team Work | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/11/01/NOIP2017的注意事项/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/02/16/Codeforces 932E Team Work/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NOIP2017的注意事项</h1>
+          <h1 class="post-title" itemprop="name headline">Codeforces 932E Team Work</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T23:52:19+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-16T23:56:51+08:00">
+                2018-02-16
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2017/11/01/NOIP2017的注意事项/" class="leancloud_visitors" data-flag-title="NOIP2017的注意事项">
+             <span id="/2018/02/16/Codeforces 932E Team Work/" class="leancloud_visitors" data-flag-title="Codeforces 932E Team Work">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,80 +351,9 @@
       
 
       
-        <p>考试中的那些事……<br><a id="more"></a></p>
-<h1 id="失误篇"><a href="#失误篇" class="headerlink" title="失误篇"></a>失误篇</h1><h2 id="代码上的失误"><a href="#代码上的失误" class="headerlink" title="代码上的失误"></a>代码上的失误</h2><h3 id="错误导致直接失分"><a href="#错误导致直接失分" class="headerlink" title="错误导致直接失分"></a>错误导致直接失分</h3><ul>
-<li>数组开大开小。开大现在很少了，开小倒是较为频繁。PS:注意不能简单的通过极限数据看是否RE来看是否存在数组问题，有时数组开小不会RE，而是访问到别的地址。建议使用-O2优化编译一下看答案是否相同（2017-10-29 cashier等）。</li>
-<li>数据范围的$maxn$与$maxm$写反导致RE；</li>
-<li>频繁地<code>memset</code>一个数组导致TLE；</li>
-<li>写错题目中的字母（如$n$与$m$写反）（2017-10-30 a）；</li>
-<li>数组访问到负数导致RE。在不开-O2的情况下，这个有时同样不会报错。同样建议使用-O2优化编译测试（某一天的组合数题算$C(m,n)$要判$m&lt;n$）；</li>
-<li>坑爹的<code>long long</code>（一系列问题：读入优化没改<code>long long</code>，输出写的<code>%d</code>，<code>long long</code>与<code>int</code>计算没乘<code>1ll</code>，各种爆<code>int</code>，<code>a&lt;&lt;b</code>即使b是<code>long long</code>，但a不是就会炸）；</li>
-<li>全开<code>long long</code>结果又TLE了；</li>
-<li>取模不彻底，爆<code>long long</code>；</li>
-<li>没有测试大数据导致各种奇怪原因的TLE；</li>
-</ul>
-<h3 id="错误导致半天调不出来"><a href="#错误导致半天调不出来" class="headerlink" title="错误导致半天调不出来"></a>错误导致半天调不出来</h3><ul>
-<li>dfs的时候经常写错函数名（如本来这个函数叫dfs1，结果中间写成dfs了，然后就跳到另一个函数去了）（各种有几个dfs的题都会写错）；</li>
-<li>注意在条件语句只会进一个的时候，尽量使用if…else if…。否则有可能在if那里改变了值使得又进入了下一个if（Codeforces Round#433 (Div. 2) C）；</li>
-<li>拿特殊数据的分的时候把数组开小导致只剩暴力分；</li>
-<li>多个if嵌套要打大括号，要不然你也不知道它是怎么执行的（把几个if写一起就好了）；</li>
-<li><code>for(j=1;j&lt;=n;i++)</code>；</li>
-</ul>
-<h2 id="策略上的失误"><a href="#策略上的失误" class="headerlink" title="策略上的失误"></a>策略上的失误</h2><ul>
-<li>硬刚某道题两小时以上；</li>
-<li>某题先写正解结果没写或没调出来，又没写暴力，爆0；</li>
-<li>dp方程没想好就开始写，然后写的过程中一改再改，耽误大量时间；</li>
-<li>就现在这工业水平，看到是工业题就一定赶紧写完暴力走人，别耽误时间；</li>
-</ul>
-<p>关于失误最后总结一点：一定要对拍！</p>
-<h1 id="技巧篇"><a href="#技巧篇" class="headerlink" title="技巧篇"></a>技巧篇</h1><ul>
-<li>编译命令加上<code>-Wall -Wshadow -Wextra</code>以防各种奇怪的错误；</li>
-<li>编译时开O2不开O2都跑一遍看答案是否一样；</li>
-<li>使用<code>cerr</code>输出中间结果；</li>
-</ul>
-<h1 id="方法篇"><a href="#方法篇" class="headerlink" title="方法篇"></a>方法篇</h1><h2 id="考试前"><a href="#考试前" class="headerlink" title="考试前"></a>考试前</h2><ul>
-<li>配Vim，记得加上以下几个东西：<ul>
-<li>-O2编译与非-O2编译；</li>
-<li>快速开文件的东西；</li>
-<li>写缺省源，记得测试缺省源中快读的负数；</li>
-</ul>
-</li>
-<li>熟悉系统环境等</li>
-</ul>
-<h2 id="考试过程中"><a href="#考试过程中" class="headerlink" title="考试过程中"></a>考试过程中</h2><ul>
-<li>一定要先把题完整看一遍，以防有去年T2比T3难很多的情况；</li>
-<li>花半小时先写好暴力；</li>
-<li><p>发现看错了题：</p>
-<ul>
-<li>一定要冷静；</li>
-<li>不要局限在原来的思路中；</li>
-<li>算法的错误容易随机/构造出来吗？如果并不容易，可以考虑先放一放，或是打打补丁；</li>
-<li>认真看题，提高严谨性；</li>
-</ul>
-</li>
-<li><p>死也想不出来：</p>
-<ul>
-<li>一定要冷静；</li>
-<li>再看一遍题；</li>
-<li>用力想 （二分答案？容斥？单调性？猜结论？etc.）；</li>
-<li>记得特殊关照一下玄学复杂度的题，别分析错复杂度了；</li>
-<li>想特殊的部分分；</li>
-<li>先去做其他题, 或是先拿尽可能多的部分分；</li>
-<li>想不正确（或是不会证明）但是不容易被卡的方法；</li>
-</ul>
-</li>
-<li><p>死也调不出来/拍出错了</p>
-<ul>
-<li>一定要冷静；</li>
-<li>不要只对着最容易出错的地方调；</li>
-<li>检查题意有没有搞错，数据有没有错，暴力有没有错，checker有没有错；</li>
-<li>检查算法的正确性；</li>
-<li>如果是很难打的题，实在调不出来，可以先打个暴力；</li>
-</ul>
-</li>
-</ul>
-<p>（以上部分摘自__debug的博客 orz）<a href="http://debug18.com" target="_blank" rel="external">http://debug18.com</a></p>
-
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>求$$\sum_{i=0}^{n}C(n,i) \times i^k$$的值。<br>$1 \leqslant n \leqslant 1e9,1 \leqslant k \leqslant 5e3$。<br><a id="more"></a></p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>关于$p^k$的转化，之前的模拟赛中也出现过，这里再写一遍：<br>$$p^k=\sum_{i=0}^{k}S(k,i) \times C(p,i) \times i!$$<br>然后原式可化为：<br>$$\sum_{i=0}^{n}C(n,i)\sum_{j=0}^{k}S(k,j) \times C(i,j) \times i!$$<br>把外面的组合数放进去，原式化为：<br>$$\sum_{i=0}^{n}\sum_{j=0}^{k}S(k,j) \times C(i,j) \times C(n,i)\times i!$$<br>把后面三个东西捣腾一下，就变车这样了：<br>$$n!\sum_{i=0}^{n}\sum_{j=0}^{k}S(k,j) \times \frac{1}{(n-i)!} \times \frac{1}{(i-j)!}$$<br>后面两个东西可以变成组合数：<br>$$n!\sum_{i=0}^{n}\sum_{j=0}^{k}S(k,j) \times C(n-j,n-i) \times \frac{1}{(n-j)!}$$<br>然后把第一个和式放进去，就变成：<br>$$n!\sum_{j=0}^{k}S(k,j)\sum_{i=0}^{n}C(n-j,n-i) \times \frac{1}{(n-j)!}$$<br>中间这个组合数可以处理掉了，变成：<br>$$n!\sum_{j=0}^{k}S(k,j) \times 2^{n-j} \times \frac{1}{(n-j)!}$$<br>$n! \times \frac{1}{(n-j)!}$就是下降幂了。于是这道题也就可以$O(k^2)$计算了。瓶颈在于斯特林数的预处理。事实上，斯特林数是可以利用NTT在$O(n\log n)$的时间内，处理处$S(n,i)$的。也就是说，这题可以优化到$O(k\log k)$</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxk=<span class="number">5e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</div><div class="line"><span class="keyword">int</span> S[maxk][maxk];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">fpm</span><span class="params">(ll a,ll b)</span></span>&#123;</div><div class="line">	ll ans=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(b)&#123;</div><div class="line">		<span class="keyword">if</span>(b &amp; <span class="number">1</span>)ans=ans*a%mod;</div><div class="line">		a=a*a%mod;b/=<span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j;</div><div class="line">	S[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)</div><div class="line">			S[i][j]=(S[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1l</span>l*S[i<span class="number">-1</span>][j]*j)%mod;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"E.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"E.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();k=read();</div><div class="line">	initialize(k);</div><div class="line">	ll ans=<span class="number">0</span>,prod=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=k;i++)&#123;</div><div class="line">		(ans+=<span class="number">1l</span>l*S[k][i]*fpm(<span class="number">2</span>,n-i)%mod*prod%mod)%=mod;</div><div class="line">		(prod*=(n-i))%=mod;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -441,9 +370,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/考试/" rel="tag"># 考试</a>
+            <a href="/tags/数论/" rel="tag"># 数论</a>
           
-            <a href="/tags/错误/" rel="tag"># 错误</a>
+            <a href="/tags/斯特林数/" rel="tag"># 斯特林数</a>
           
         </div>
       
@@ -456,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/30/Codeforces Round 443 (Div.2)题解/" rel="next" title="Codeforces Round 443 (Div.2)题解">
-                <i class="fa fa-chevron-left"></i> Codeforces Round 443 (Div.2)题解
+              <a href="/2018/02/13/BZOJ4552 [HEOI2016 & TJOI2016]排序/" rel="next" title="BZOJ4552 [HEOI2016 & TJOI2016]排序">
+                <i class="fa fa-chevron-left"></i> BZOJ4552 [HEOI2016 & TJOI2016]排序
               </a>
             
           </div>
@@ -465,10 +394,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/03/NOIP考点总结之——树上操作/" rel="prev" title="NOIP考点总结之——树上操作">
-                NOIP考点总结之——树上操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#失误篇"><span class="nav-number">1.</span> <span class="nav-text">失误篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码上的失误"><span class="nav-number">1.1.</span> <span class="nav-text">代码上的失误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误导致直接失分"><span class="nav-number">1.1.1.</span> <span class="nav-text">错误导致直接失分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误导致半天调不出来"><span class="nav-number">1.1.2.</span> <span class="nav-text">错误导致半天调不出来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略上的失误"><span class="nav-number">1.2.</span> <span class="nav-text">策略上的失误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技巧篇"><span class="nav-number">2.</span> <span class="nav-text">技巧篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法篇"><span class="nav-number">3.</span> <span class="nav-text">方法篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#考试前"><span class="nav-number">3.1.</span> <span class="nav-text">考试前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考试过程中"><span class="nav-number">3.2.</span> <span class="nav-text">考试过程中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
