@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
 <meta property="og:description" content="最近做了一些斜率优化的题。这里稍微小结一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-27T14:53:34.862Z">
+<meta property="og:updated_time" content="2018-03-13T15:02:17.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斜率优化小结">
 <meta name="twitter:description" content="最近做了一些斜率优化的题。这里稍微小结一下。">
@@ -355,8 +355,8 @@
 <h1 id="简单问题解决"><a href="#简单问题解决" class="headerlink" title="简单问题解决"></a>简单问题解决</h1><p>先来解决一些问题：</p>
 <ol>
 <li>什么样的题可以用斜率优化？<br>简单来说，只要具有决策单调性的，就可以使用斜率优化。<br>还是不太清晰= =，更具体地，对于一个形如<br>$$dp[i]=min\{a[i] \times b[j]+c[i]+d[j]\}$$<br>的转移方程，就可以进行斜率优化。其中，$a[x],b[x],c[x],d[x]$都是一个关于$x$的函数。当然把$min$换成$max$也没有问题。</li>
-<li>斜率优化的具体实现？<br>简单的斜率优化是可以直接通过单调队列来实现的。但是据说还有难题还得用平衡树/CDQ分治维护？表示太菜了没看过这种题……<br>这里先讲讲单调队列怎么实现的吧。<br>首先，能用单调队列实现的条件是，上式中的$b[x]$具有单调性。<br>如果$b[x]$具有单调性，可以按照以下的套路来：<br>上面是$min$还是$max$是同理的，这里就讲$min$的情况。<br>假设有$i$前两个决策点$j,k(k<j)$，且$j$的决策要比$k$好，即： $$a[i]?b[j]+c[j]+d[i]="" \leqslant="" a[i]?b[k]+c[k]+d[i],k<j<i$$="" 然后式子可以化成这个形式：="" $$\frac{c[k]-c[j]}{b[j]-b[k]}="" \geqslant="" a[i]$$="" 由上面的假设，我们可以得到，如果上式成立的话，那么决策点$j$要比决策点$k$更好。="" 我们记$slope(j,k)="\frac{c[k]-c[j]}{b[j]-b[k]}$。设$k<j<i$，如果$Slope(i,j)" slope(j,k)$，那么$j$点便永远不可能成为最优解，可以直接将它踢出我们的最优解集。为什么呢？="" 我们假设$slope(i,j)\geqslant="" a[i]$，那么就是说$i$点要比$j$点优，排除$j$点。="" 如果$slope(i,j)<a[i]$，那么$j$点此时是比$i$点要更优，但是同时$slope(k,j)="">Slope(i,j)&gt;a[i]$。这说明还有k点会比j点更优，同样排除j点。<br>于是这个过程我们可以用单调队列来实现。大概的代码长这样：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    <span class="keyword">while</span>(f&lt;l &amp;&amp; Slope(q[f],Q[f+<span class="number">1</span>])&gt;=h[i])f++;</div><div class="line">    f[i]=f[q[f]]+Calc(i,q[f]);</div><div class="line">    <span class="keyword">while</span>(f&lt;l &amp;&amp; Slope(q[l<span class="number">-1</span>],q[l)&gt;=Slope(q[l],i))l--;</div><div class="line">    q[++l]=i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</j)$，且$j$的决策要比$k$好，即：></li>
+<li>斜率优化的具体实现？<br>简单的斜率优化是可以直接通过单调队列来实现的。但是据说还有难题还得用平衡树/CDQ分治维护？表示太菜了没看过这种题……<br>这里先讲讲单调队列怎么实现的吧。<br>首先，能用单调队列实现的条件是，上式中的$b[x]$具有单调性。<br>如果$b[x]$具有单调性，可以按照以下的套路来：<br>上面是$min$还是$max$是同理的，这里就讲$min$的情况。<br>假设有$i$前两个决策点$j,k(k&lt;j)$，且$j$的决策要比$k$好，即：<br>$$a[i] \times b[j]+c[j]+d[i] \leqslant a[i] \times b[k]+c[k]+d[i],k&lt;j&lt;i$$<br>然后式子可以化成这个形式：<br>$$\frac{c[k]-c[j]}{b[j]-b[k]} \geqslant a[i]$$<br>由上面的假设，我们可以得到，如果上式成立的话，那么决策点$j$要比决策点$k$更好。<br>我们记$Slope(j,k)=\frac{c[k]-c[j]}{b[j]-b[k]}$。设$k&lt;j&lt;i$，如果$Slope(i,j) \leqslant Slope(j,k)$，那么$j$点便永远不可能成为最优解，可以直接将它踢出我们的最优解集。为什么呢？<br>我们假设$Slope(i,j)\geqslant a[i]$，那么就是说$i$点要比$j$点优，排除$j$点。<br>如果$Slope(i,j)&lt;a[i]$，那么$j$点此时是比$i$点要更优，但是同时$a[i]&lt;Slope(i,j)&lt;Slope(k,j)$。这说明还有k点会比j点更优，同样排除j点。<br>于是这个过程我们可以用单调队列来实现。大概的代码长这样：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    <span class="keyword">while</span>(f&lt;l &amp;&amp; Slope(q[f],Q[f+<span class="number">1</span>])&gt;=h[i])f++;</div><div class="line">    f[i]=f[q[f]]+Calc(i,q[f]);</div><div class="line">    <span class="keyword">while</span>(f&lt;l &amp;&amp; Slope(q[l<span class="number">-1</span>],q[l)&gt;=Slope(q[l],i))l--;</div><div class="line">    q[++l]=i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 <p>推式子的时候一定要注意符号。如果实在推得晕了你可以把4种情况都试一下看看哪个的答案最小（逃</p>
 <h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="BZOJ1096-ZJOI2007-仓库建设"><a href="#BZOJ1096-ZJOI2007-仓库建设" class="headerlink" title="BZOJ1096 [ZJOI2007]仓库建设"></a>BZOJ1096 [ZJOI2007]仓库建设</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>L公司有$n$个工厂，由高到底分布在一座山上。如图所示，工厂$1$在山顶，工厂$n$在山脚。由于这座山处于高原内陆地区（干燥少雨），L公司一般把产品直接堆放在露天，以节省费用。突然有一天，L公司的总裁L先生接到气象部门的电话，被告知三天之后将有一场暴雨，于是L先生决定紧急在某些工厂建立一些仓库以免产品被淋坏。由于地形的不同，在不同工厂建立仓库的费用可能是不同的。第$i$个工厂目前已有成品$P_i$件，在第$i$个工厂位置建立仓库的费用是$C_i$。对于没有建立仓库的工厂，其产品应被运往其他的仓库进行储藏，而由于L公司产品的对外销售处设置在山脚的工厂$n$，故产品只能往山下运（即只能运往编号更大的工厂的仓库），当然运送产品也是需要费用的，假设一件产品运送$1$个单位距离的费用是$1$。假设建立的仓库容量都都是足够大的，可以容下所有的产品。你将得到以下数据：</p>
@@ -514,7 +514,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
