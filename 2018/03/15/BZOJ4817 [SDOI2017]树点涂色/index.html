@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构,线段树,LCT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="题意Bob有一棵$n$个点的有根树，其中$1$号点是根节点。Bob在每个点上涂了颜色，并且每个点上的颜色不同。">
+<meta name="keywords" content="数据结构,线段树,LCT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BZOJ4817 [SDOI2017]树点涂色">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/03/15/BZOJ4817 [SDOI2017]树点涂色/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="题意Bob有一棵$n$个点的有根树，其中$1$号点是根节点。Bob在每个点上涂了颜色，并且每个点上的颜色不同。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-15T11:54:56.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BZOJ4817 [SDOI2017]树点涂色">
+<meta name="twitter:description" content="题意Bob有一棵$n$个点的有根树，其中$1$号点是根节点。Bob在每个点上涂了颜色，并且每个点上的颜色不同。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/03/15/BZOJ4817 [SDOI2017]树点涂色/"/>
+
+
+
+
+
+  <title>BZOJ4817 [SDOI2017]树点涂色 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/Friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/03/15/BZOJ4817 [SDOI2017]树点涂色/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BZOJ4817 [SDOI2017]树点涂色</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T19:53:33+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/15/BZOJ4817 [SDOI2017]树点涂色/" class="leancloud_visitors" data-flag-title="BZOJ4817 [SDOI2017]树点涂色">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>Bob有一棵$n$个点的有根树，其中$1$号点是根节点。Bob在每个点上涂了颜色，并且每个点上的颜色不同。<a id="more"></a><br>定义一条路径的权值是：这条路径上的点（包括起点和终点）共有多少种不同的颜色。<br>Bob可能会进行这几种操作：</p>
+<ul>
+<li><code>1 x</code> 把点$x$到根节点的路径上所有的点染上一种没有用过的新颜色。</li>
+<li><code>2 x y</code> 求$x$到$y$的路径的权值。</li>
+<li><code>3 x</code> 在以$x$为根的子树中选择一个点，使得这个点到根节点的路径权值最大，求最大权值。</li>
+</ul>
+<p>Bob一共会进行$m$次操作。<br>$n,m \leqslant 10^5$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>这道题我是按着LCT的标签找的，然而看到这道题的时候满脑子都是树剖……根本看不出哪里要用LCT……个人觉得这题还是蛮巧妙的。<br>首先，如果我们把同一种颜色的点放到LCT的一棵Splay中去，那么可以发现，1操作恰好就是LCT的<code>access</code>操作了。<br>对于一个点，他到根节点的权值，也就是LCT中这个点到根节点的实链的条数。记$f[i]$表示$i$号节点到根的权值。由这个权值的性质，我们不难得到，对于两个点$x$与$y$，$x$到$y$的路径上的权值为$$f[x]+f[y]-2f[lca(x,y)]+1$$<br>于是第二个操作也解决了。<br>第三个操作，我们不难想到把dfs序抽出来，在线段树上查询即可。<br>最后我们还有一个问题，也就是$f$数组该如何维护。其实不难想到，在<code>access</code>操作把一条虚边变为实边，我们就把这条虚边对应的子树在线段树上$-1$，若将一条实边变为虚边，就把实边对应的子树在线段树上$+1$。于是问题得到了解决。<br>时间复杂度$O(n\log^2n)$。<br>代码实现上遇到了一些麻烦，这里讲一下我写的时候遇到的几个错误：</p>
+<ul>
+<li>注意线段树初始化的值为这个点在原树上的深度+1。</li>
+<li>还是原树与辅助树的问题，<code>access</code>操作时，当我们要对线段树上修改的时候，假如我们在Splay上要把实边$u$到$v$去掉，在线段树上修改的时候，并不是直接把$dfn[v]$到$dfn[v]+size[v]-1$这一段的答案$+1$，而应该找到$v$点所在的Splay中一直往左走，走到这棵Splay中深度最浅的点，再在线段树上进行修改。</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> to[maxn&lt;&lt;<span class="number">1</span>],nex[maxn&lt;&lt;<span class="number">1</span>],beg[maxn],dfn[maxn],id[maxn],f[maxn][<span class="number">20</span>],dep[maxn],size[maxn];</div><div class="line"><span class="keyword">int</span> e,dfs_time,n;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Seg_T</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> Seg[maxn&lt;&lt;<span class="number">2</span>],Tag[maxn&lt;&lt;<span class="number">2</span>];</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Build</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(l==r)&#123;</div><div class="line">            Seg[h]=dep[id[l]];</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">        Build(h&lt;&lt;<span class="number">1</span>,l,mid),Build(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">        Seg[h]=max(Seg[h&lt;&lt;<span class="number">1</span>],Seg[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Push_Down</span><span class="params">(<span class="keyword">int</span> h)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(Tag[h])&#123;</div><div class="line">            Tag[h&lt;&lt;<span class="number">1</span>]+=Tag[h],Seg[h&lt;&lt;<span class="number">1</span>]+=Tag[h];</div><div class="line">            Tag[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=Tag[h],Seg[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=Tag[h];</div><div class="line">            Tag[h]=<span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(L&lt;=l &amp;&amp; r&lt;=R)&#123;</div><div class="line">            Seg[h]+=val,Tag[h]+=val;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        Push_Down(h);</div><div class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(L&lt;=mid)Modify(h&lt;&lt;<span class="number">1</span>,l,mid,L,R,val);</div><div class="line">        <span class="keyword">if</span>(R&gt;mid)Modify(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,L,R,val);</div><div class="line">        Seg[h]=max(Seg[h&lt;&lt;<span class="number">1</span>],Seg[h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(L&lt;=l &amp;&amp; r&lt;=R)<span class="keyword">return</span> Seg[h];</div><div class="line">        Push_Down(h);</div><div class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>,ans=<span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(L&lt;=mid)ans=max(ans,Query(h&lt;&lt;<span class="number">1</span>,l,mid,L,R));</div><div class="line">        <span class="keyword">if</span>(R&gt;mid)ans=max(ans,Query(h&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,L,R));</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;Seg;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LCT</span>&#123;</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rel(x) (ch[fa[x]][1]==x)</span></div><div class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>],fa[maxn];</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">isroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> ch[fa[x]][<span class="number">0</span>]!=x &amp;&amp; ch[fa[x]][<span class="number">1</span>]!=x;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> y=fa[x],t=fa[y],flag=rel(x);</div><div class="line">        ch[fa[ch[x][flag^<span class="number">1</span>]]=y][flag]=ch[x][flag^<span class="number">1</span>];</div><div class="line">        fa[x]=t;<span class="keyword">if</span>(!isroot(y))ch[t][rel(y)]=x;</div><div class="line">        ch[fa[y]=x][flag^<span class="number">1</span>]=y;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(;!isroot(x);Rotate(x))</div><div class="line">            <span class="keyword">if</span>(!isroot(fa[x]))Rotate(rel(x)^rel(fa[x])?x:fa[x]);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Getl</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">while</span>(ch[x][<span class="number">0</span>])x=ch[x][<span class="number">0</span>];</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;x;x=fa[i=x])&#123;</div><div class="line">            Splay(x);</div><div class="line">            <span class="keyword">if</span>(ch[x][<span class="number">1</span>])&#123;</div><div class="line">                <span class="keyword">int</span> pos=Getl(ch[x][<span class="number">1</span>]);</div><div class="line">                Seg.Modify(<span class="number">1</span>,<span class="number">1</span>,n,dfn[pos],dfn[pos]+size[pos]<span class="number">-1</span>,<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            ch[x][<span class="number">1</span>]=i;</div><div class="line">            <span class="keyword">if</span>(i)&#123;</div><div class="line">                <span class="keyword">int</span> pos=Getl(i);</div><div class="line">                Seg.Modify(<span class="number">1</span>,<span class="number">1</span>,n,dfn[pos],dfn[pos]+size[pos]<span class="number">-1</span>,<span class="number">-1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;T;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    to[++e]=y;</div><div class="line">    nex[e]=beg[x];</div><div class="line">    beg[x]=e;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    dfn[x]=++dfs_time;id[dfs_time]=x;</div><div class="line">    f[x][<span class="number">0</span>]=fa;T.fa[x]=fa;size[x]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=beg[x];i;i=nex[i])&#123;</div><div class="line">        <span class="keyword">if</span>(to[i]==fa)<span class="keyword">continue</span>;</div><div class="line">        dep[to[i]]=dep[x]+<span class="number">1</span>;</div><div class="line">        dfs(to[i],x);</div><div class="line">        size[x]+=size[to[i]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Get_LCA</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">if</span>(dep[x]&lt;dep[y])swap(x,y);</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">18</span>;i&gt;=<span class="number">0</span>;i--)</div><div class="line">        <span class="keyword">if</span>((dep[x]-dep[y]) &amp; (<span class="number">1</span>&lt;&lt;i))</div><div class="line">            x=f[x][i];</div><div class="line">    <span class="keyword">if</span>(x==y)<span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">18</span>;i&gt;=<span class="number">0</span>;i--)</div><div class="line">        <span class="keyword">if</span>(f[x][i]!=f[y][i])</div><div class="line">            x=f[x][i],y=f[y][i];</div><div class="line">    <span class="keyword">return</span> f[x][<span class="number">0</span>];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,q;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ4817.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ4817.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();q=read();</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)&#123;</div><div class="line">        <span class="keyword">int</span> x=read(),y=read();</div><div class="line">        add(x,y);add(y,x);</div><div class="line">    &#125;</div><div class="line">    dep[<span class="number">1</span>]=<span class="number">1</span>;dfs(<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">18</span>;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">            f[j][i]=f[f[j][i<span class="number">-1</span>]][i<span class="number">-1</span>];</div><div class="line">    Seg.Build(<span class="number">1</span>,<span class="number">1</span>,n);</div><div class="line">    <span class="keyword">while</span>(q--)&#123;</div><div class="line">        <span class="keyword">int</span> opt=read();</div><div class="line">        <span class="keyword">if</span>(opt==<span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">int</span> x=read();</div><div class="line">            T.Access(x);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(opt==<span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">int</span> x=read(),y=read(),lca=Get_LCA(x,y);</div><div class="line">            <span class="keyword">int</span> ans=Seg.Query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[x],dfn[x])+Seg.Query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[y],dfn[y]);</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans<span class="number">-2</span>*Seg.Query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[lca],dfn[lca])+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(opt==<span class="number">3</span>)&#123;</div><div class="line">            <span class="keyword">int</span> x=read();</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,Seg.Query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[x],dfn[x]+size[x]<span class="number">-1</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/LCT/" rel="tag"># LCT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/Hihocoder1456 Rikka with Lattice/" rel="next" title="Hihocoder1456 Rikka with Lattice">
+                <i class="fa fa-chevron-left"></i> Hihocoder1456 Rikka with Lattice
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/15/UOJ3 [NOI2014]魔法森林/" rel="prev" title="UOJ3 [NOI2014]魔法森林">
+                UOJ3 [NOI2014]魔法森林 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mUFErhYIN8SnIyxXzFi4jyrA-gzGzoHsz", "PTLCnAu3ivsJ0j6MJizHhIaH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -94,19 +94,19 @@
 
 
 
-<meta name="description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A 题意问能否把一个长度为$n$的序列分为奇数个长度为奇数的序列，并且每个序列的第一个数和最后一个数都要是奇数？$1 \leqslant n \leqslant 100$。 题解判断长度是否为奇数，第一个和最后一个数是否为奇数即可。 代码123456789101112131">
+<meta name="description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A">
 <meta name="keywords" content="Codeforces">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 431 (Div.2)题解">
 <meta property="og:url" content="http://shichengxiao01.github.io/2017/09/15/Codeforces Round 431 (Div.2)题解/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A 题意问能否把一个长度为$n$的序列分为奇数个长度为奇数的序列，并且每个序列的第一个数和最后一个数都要是奇数？$1 \leqslant n \leqslant 100$。 题解判断长度是否为奇数，第一个和最后一个数是否为奇数即可。 代码123456789101112131">
+<meta property="og:description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://codeforces.com/predownloaded/9b/9f/9b9fb73178590e383ca6e5925d5dcf60501e28ef.png">
-<meta property="og:updated_time" content="2018-03-03T04:06:34.719Z">
+<meta property="og:updated_time" content="2018-03-15T12:02:24.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 431 (Div.2)题解">
-<meta name="twitter:description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A 题意问能否把一个长度为$n$的序列分为奇数个长度为奇数的序列，并且每个序列的第一个数和最后一个数都要是奇数？$1 \leqslant n \leqslant 100$。 题解判断长度是否为奇数，第一个和最后一个数是否为奇数即可。 代码123456789101112131">
+<meta name="twitter:description" content="A Odds and Ends题目链接：http://codeforces.com/contest/849/problem/A">
 <meta name="twitter:image" content="http://codeforces.com/predownloaded/9b/9f/9b9fb73178590e383ca6e5925d5dcf60501e28ef.png">
 
 
@@ -353,8 +353,7 @@
       
 
       
-        <a id="more"></a>
-<h1 id="A-Odds-and-Ends"><a href="#A-Odds-and-Ends" class="headerlink" title="A Odds and Ends"></a>A Odds and Ends</h1><p>题目链接：<a href="http://codeforces.com/contest/849/problem/A" target="_blank" rel="external">http://codeforces.com/contest/849/problem/A</a></p>
+        <h1 id="A-Odds-and-Ends"><a href="#A-Odds-and-Ends" class="headerlink" title="A Odds and Ends"></a>A Odds and Ends</h1><p>题目链接：<a href="http://codeforces.com/contest/849/problem/A" target="_blank" rel="external">http://codeforces.com/contest/849/problem/A</a><br><a id="more"></a></p>
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>问能否把一个长度为$n$的序列分为奇数个长度为奇数的序列，并且每个序列的第一个数和最后一个数都要是奇数？<br>$1 \leqslant n \leqslant 100$。</p>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>判断长度是否为奇数，第一个和最后一个数是否为奇数即可。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">4e5</span>+<span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	ll x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	ll i,j,k,m,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"A.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"A.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();</div><div class="line">	<span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">		<span class="built_in">puts</span>(<span class="string">"NO"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		ll tmp=read();</div><div class="line">		<span class="keyword">if</span>((i==<span class="number">1</span> || i==n) &amp;&amp; tmp%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">			<span class="built_in">puts</span>(<span class="string">"NO"</span>);</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">puts</span>(<span class="string">"YES"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -492,7 +491,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -505,7 +504,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
