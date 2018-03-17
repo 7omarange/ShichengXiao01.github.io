@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LCT,泰勒展开,组合数学," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="题意数字和数学规律主宰着这个世界。机器的运转，生命的消长，宇宙的进程，这些神秘而又美妙的过程无不可以用数学的语言展现出来。">
+<meta name="keywords" content="LCT,泰勒展开,组合数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BZOJ5020 [THUWC2017]在美妙的数学王国中畅游">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="题意数字和数学规律主宰着这个世界。机器的运转，生命的消长，宇宙的进程，这些神秘而又美妙的过程无不可以用数学的语言展现出来。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-17T16:07:29.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BZOJ5020 [THUWC2017]在美妙的数学王国中畅游">
+<meta name="twitter:description" content="题意数字和数学规律主宰着这个世界。机器的运转，生命的消长，宇宙的进程，这些神秘而又美妙的过程无不可以用数学的语言展现出来。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/"/>
+
+
+
+
+
+  <title>BZOJ5020 [THUWC2017]在美妙的数学王国中畅游 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/Friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BZOJ5020 [THUWC2017]在美妙的数学王国中畅游</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T23:58:42+08:00">
+                2018-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/" class="leancloud_visitors" data-flag-title="BZOJ5020 [THUWC2017]在美妙的数学王国中畅游">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>数字和数学规律主宰着这个世界。<br>机器的运转，<br>生命的消长，<br>宇宙的进程，<br>这些神秘而又美妙的过程无不可以用数学的语言展现出来。<a id="more"></a><br>这印证了一句古老的名言：<br>“学好数理化，走遍天下都不怕。”<br>学渣小R被大学的数学课程虐得生活不能自理，微积分的成绩曾是他在教室里上的课的最低分。然而他的某位陈姓室友却能轻松地在数学考试中得到满分。为了提升自己的数学课成绩，有一天晚上（在他睡觉的时候），他来到了数学王国。<br>数学王国中，每个人的智商可以用一个属于$[0,1]$的实数表示。数学王国中有$n$个城市，编号从$0$到$n?1$，这些城市由若干座魔法桥连接。每个城市的中心都有一个魔法球，每个魔法球中藏有一道数学题。每个人在做完这道数学题之后都会得到一个在$[0,1]$区间内的分数。一道题可以用一个从$[0,1]$映射到$[0,1]$的函数$f(x)$表示。若一个人的智商为$x$，则他做完这道数学题之后会得到$f(x)$分。函数$f$有三种形式：</p>
+<ul>
+<li>正弦函数$sin(ax+b)(a \in [0,1],b \in [0,\pi],a+b \in [0,\pi])$</li>
+<li>指数函数$e^{ax+b}(a \in [-1,1],b \in [-2,0],a+b \in [-2,0])$</li>
+<li>一次函数$ax+b(a \in [-1,1],b \in [0,1],a+b \in [0,1])$</li>
+</ul>
+<p>数学王国中的魔法桥会发生变化，有时会有一座魔法桥消失，有时会有一座魔法桥出现。但在任意时刻，只存在至多一条连接任意两个城市的简单路径（即所有城市形成一个森林）。在初始情况下，数学王国中不存在任何的魔法桥。<br>数学王国的国王拉格朗日很乐意传授小R数学知识，但前提是小R要先回答国王的问题。这些问题具有相同的形式，即一个智商为$x$的人从城市$u$旅行到城市$v$（即经过$u$到$v$这条路径上的所有城市，包括$u$和$v$）且做了所有城市内的数学题后，他所有得分的总和是多少。<br>总共会发生以下四类事件：</p>
+<ul>
+<li><code>appear u v</code>表示数学王国中出现了一条连接$u$和$v$这两座城市的魔法桥$( 0 \leqslant u,v &lt; n, u \not= v)$，保证连接前$u$和$v$这两座城市不能互相到达。</li>
+<li><code>disappear u v</code>表示数学王国中连接$u$和$v$这两座城市的魔法桥消失了，保证这座魔法桥是存在的。</li>
+<li><code>magic c f a b</code>表示城市$c$的魔法球中的魔法变成了类型为$f$，参数为$a,b$的函数</li>
+<li><code>travel u v x</code>表示询问一个智商为$x$的人从城市$u$旅行到城市$v$（即经过$u$到$v$这条路径上的所有城市，包括$u$和$v$）后，他得分的总和是多少。若无法从$u$到达$v$，则输出一行一个字符串<code>unreachable</code>。</li>
+</ul>
+<p>$n \leqslant 100000,m \leqslant 200000$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>这题LCT的部分就是个裸题……那我就讲一下这个函数该怎么维护吧……<br>题目的最后给了一个泰勒展开的式子，但是我看不太懂啊= =。然后仔细想了想，感觉大概是这个意思：<br>$$f(x)=\sum_{i=0}^{\infty}\frac{f^{(i)}(x_0) \times (x-x_0)^i}{i!}$$<br>其中$f^{(i)}$表示的是$f$的$i$阶导。要求$f$的$i$阶导在某一个区间$[a,b]$内连续，且$x_0 \in [a,b]$内任意实数。<br>注意到这里的函数的定义域都是$[0,1]$，所以$x_0$可以取一个$0.5$就好。<br>还注意到分母是很小的，而分子的增长很快，所以取这个函数的前几项就可以保证精度了。实验证明大概取个$15$项就非常稳了。<br>因为$\frac{(x-x_0)^i}{i!}$就和这个函数无关了，于是我们可以维护一下Splay路径上的函数的$i(0 \leqslant i \leqslant 15)$阶导之和。最后算答案的时候统一再把系数乘上去就行。<br>关于这个求导应该不难，还是写下式子吧：<br>若$f(x)=ax+b$则$f^{\prime}(x)=a,f^{\prime\prime}(x)=f^{\prime\prime\prime}(x)=0$；<br>若$f(x)=sin(ax+b)$，则$f^{\prime}(x)=cos(ax+b) \times (ax+b)^{\prime}=a \times cos(ax+b)$；$f^{\prime\prime}(x)=a \times cos(ax+b)^{\prime}=-a \times sin(ax+b) \times (ax+b)^{\prime}=-a^2 \times sin(ax+b)$。即$f^{(i)}(x)=-a^2f^{(i-2)}(x)$<br>若$f(x)=e^{ax+b}$，则$f^{\prime}(x)=e^{ax+b} \times (ax+b)^{\prime}=e^{ax+b} \times a$，即$f^{(i)}(x)=f^{(i-1)}(x) \times a$。<br>时间复杂度$O(15n\log n)$，常数不小还是写上了。<br>$e$我不会求啊= =，只好复制了网上的数……</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> e=<span class="number">2.7182818284590452</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e5</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">char</span> type[<span class="number">10</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">F</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> type;</div><div class="line">	<span class="keyword">double</span> a,b;</div><div class="line">&#125;func[maxn];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LCT</span>&#123;</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rel(x) (ch[fa[x]][1]==x)</span></div><div class="line">	<span class="keyword">int</span> fa[maxn],ch[maxn][<span class="number">2</span>],rev[maxn],stk[maxn];</div><div class="line">	<span class="keyword">double</span> val[maxn][<span class="number">16</span>];</div><div class="line">	<span class="keyword">int</span> top;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">isroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> ch[fa[x]][<span class="number">0</span>]!=x &amp;&amp; ch[fa[x]][<span class="number">1</span>]!=x;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Push_Up</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> i;</div><div class="line">		<span class="keyword">double</span> sum=func[x].a*<span class="number">0.5</span>+func[x].b;</div><div class="line">		<span class="keyword">if</span>(func[x].type==<span class="number">1</span>)&#123;</div><div class="line">			val[x][<span class="number">0</span>]=<span class="built_in">sin</span>(sum),val[x][<span class="number">1</span>]=<span class="built_in">cos</span>(sum)*func[x].a;</div><div class="line">			<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=<span class="number">15</span>;i++)val[x][i]=<span class="number">-1</span>*val[x][i<span class="number">-2</span>]*func[x].a*func[x].a;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(func[x].type==<span class="number">2</span>)&#123;</div><div class="line">			val[x][<span class="number">0</span>]=<span class="built_in">pow</span>(e,sum);</div><div class="line">			<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">15</span>;i++)val[x][i]=val[x][i<span class="number">-1</span>]*func[x].a;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(func[x].type==<span class="number">3</span>)&#123;</div><div class="line">			val[x][<span class="number">0</span>]=sum;val[x][<span class="number">1</span>]=func[x].a;</div><div class="line">			<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=<span class="number">15</span>;i++)val[x][i]=<span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">15</span>;i++)val[x][i]+=val[ch[x][<span class="number">0</span>]][i]+val[ch[x][<span class="number">1</span>]][i];</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Push_Down</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(rev[x])&#123;</div><div class="line">			<span class="keyword">int</span> l=ch[x][<span class="number">0</span>],r=ch[x][<span class="number">1</span>];</div><div class="line">			swap(ch[l][<span class="number">0</span>],ch[l][<span class="number">1</span>]),rev[l]^=<span class="number">1</span>;</div><div class="line">			swap(ch[r][<span class="number">0</span>],ch[r][<span class="number">1</span>]),rev[r]^=<span class="number">1</span>;</div><div class="line">			rev[x]^=<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> y=fa[x],t=fa[y],f=rel(x);</div><div class="line">		ch[fa[ch[x][f^<span class="number">1</span>]]=y][f]=ch[x][f^<span class="number">1</span>];</div><div class="line">		fa[x]=t;<span class="keyword">if</span>(!isroot(y))ch[t][rel(y)]=x;</div><div class="line">		ch[fa[y]=x][f^<span class="number">1</span>]=y;Push_Up(y);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		stk[top=<span class="number">1</span>]=x;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=x;!isroot(i);i=fa[i])stk[++top]=fa[i];</div><div class="line">		<span class="keyword">while</span>(top)Push_Down(stk[top--]);</div><div class="line">		<span class="keyword">for</span>(;!isroot(x);Rotate(x))</div><div class="line">			<span class="keyword">if</span>(!isroot(fa[x]))Rotate(rel(x)^rel(fa[x])?x:fa[x]);</div><div class="line">		Push_Up(x);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;x;x=fa[i=x])Splay(x),ch[x][<span class="number">1</span>]=i,Push_Up(x);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Makeroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		Access(x);Splay(x);rev[x]^=<span class="number">1</span>,swap(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Findroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">		Access(x);Splay(x);</div><div class="line">		<span class="keyword">while</span>(ch[x][<span class="number">0</span>])Push_Down(x),x=ch[x][<span class="number">0</span>];</div><div class="line">		Splay(x);<span class="keyword">return</span> x;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Split</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">		Makeroot(x);Access(y);Splay(y);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">		Makeroot(x);</div><div class="line">		<span class="keyword">if</span>(Findroot(y)==x)<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">		fa[x]=y;<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Cut</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">		Split(x,y);<span class="keyword">if</span>(ch[y][<span class="number">0</span>]==x)fa[x]=ch[y][<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;T;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n,q;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"BZOJ5020.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"BZOJ5020.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=read();q=read();<span class="built_in">scanf</span>(<span class="string">"%s"</span>,type+<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		<span class="keyword">int</span> opt=read();<span class="keyword">double</span> a,b;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a,&amp;b);</div><div class="line">		func[i]=(F)&#123;opt,a,b&#125;;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(q--)&#123;</div><div class="line">		<span class="keyword">int</span> x,y,opt;<span class="keyword">double</span> a,b;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,type+<span class="number">1</span>);</div><div class="line">		<span class="keyword">if</span>(type[<span class="number">1</span>]==<span class="string">'a'</span>)&#123;</div><div class="line">			x=read()+<span class="number">1</span>,y=read()+<span class="number">1</span>;</div><div class="line">			T.Link(x,y);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(type[<span class="number">1</span>]==<span class="string">'d'</span>)&#123;</div><div class="line">			x=read()+<span class="number">1</span>,y=read()+<span class="number">1</span>;</div><div class="line">			T.Cut(x,y);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(type[<span class="number">1</span>]==<span class="string">'m'</span>)&#123;</div><div class="line">			x=read()+<span class="number">1</span>,opt=read();</div><div class="line">			T.Access(x),T.Splay(x);</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a,&amp;b);</div><div class="line">			func[x]=(F)&#123;opt,a,b&#125;;</div><div class="line">			T.Push_Up(x);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(type[<span class="number">1</span>]==<span class="string">'t'</span>)&#123;</div><div class="line">			x=read()+<span class="number">1</span>,y=read()+<span class="number">1</span>;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;a);</div><div class="line">			<span class="keyword">if</span>(T.Findroot(x)!=T.Findroot(y))<span class="built_in">puts</span>(<span class="string">"unreachable"</span>);</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				T.Split(x,y);</div><div class="line">				<span class="keyword">double</span> ans=<span class="number">0</span>,prod1=<span class="number">1</span>,prod2=<span class="number">1</span>;</div><div class="line">				<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">15</span>;i++)&#123;</div><div class="line">					ans+=T.val[y][i]*prod1/prod2;</div><div class="line">					prod1*=(a<span class="number">-0.5</span>),prod2*=<span class="number">1.0</span>*(i+<span class="number">1</span>);</div><div class="line">				&#125;</div><div class="line">				<span class="built_in">printf</span>(<span class="string">"%.8e\n"</span>,ans);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LCT/" rel="tag"># LCT</a>
+          
+            <a href="/tags/泰勒展开/" rel="tag"># 泰勒展开</a>
+          
+            <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/15/UOJ3 [NOI2014]魔法森林/" rel="next" title="UOJ3 [NOI2014]魔法森林">
+                <i class="fa fa-chevron-left"></i> UOJ3 [NOI2014]魔法森林
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mUFErhYIN8SnIyxXzFi4jyrA-gzGzoHsz", "PTLCnAu3ivsJ0j6MJizHhIaH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
