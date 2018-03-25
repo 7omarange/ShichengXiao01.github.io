@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OI历程,NOIP," />
+  <meta name="keywords" content="DP,组合数学," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
-<meta name="keywords" content="OI历程,NOIP">
+<meta name="description" content="题意计算机科学中，图可以看做是点集和边集所组成的二元组。通过给每个点设置一个平面坐标，图可以镶嵌在欧几里得平面中。一个图被认为是刚体，如果该图无法只改变其中一部分的形状，而使得余下的部分的形状保持不变。">
+<meta name="keywords" content="DP,组合数学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIP2017游记">
-<meta property="og:url" content="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/index.html">
+<meta property="og:title" content="51Nod1634 刚体图">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/03/26/51Nod1634 刚体图/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
+<meta property="og:description" content="题意计算机科学中，图可以看做是点集和边集所组成的二元组。通过给每个点设置一个平面坐标，图可以镶嵌在欧几里得平面中。一个图被认为是刚体，如果该图无法只改变其中一部分的形状，而使得余下的部分的形状保持不变。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-03T16:06:31.314Z">
+<meta property="og:updated_time" content="2018-03-25T17:01:40.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOIP2017游记">
-<meta name="twitter:description" content="这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）">
+<meta name="twitter:title" content="51Nod1634 刚体图">
+<meta name="twitter:description" content="题意计算机科学中，图可以看做是点集和边集所组成的二元组。通过给每个点设置一个平面坐标，图可以镶嵌在欧几里得平面中。一个图被认为是刚体，如果该图无法只改变其中一部分的形状，而使得余下的部分的形状保持不变。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/"/>
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/03/26/51Nod1634 刚体图/"/>
 
 
 
 
 
-  <title>NOIP2017游记 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>51Nod1634 刚体图 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2017/12/04/NOIP2017游记/">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/03/26/51Nod1634 刚体图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shicheng Xiao">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NOIP2017游记</h1>
+          <h1 class="post-title" itemprop="name headline">51Nod1634 刚体图</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T00:03:36+08:00">
-                2017-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T01:00:41+08:00">
+                2018-03-26
               </time>
             
 
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2017/12/04/NOIP2017游记/" class="leancloud_visitors" data-flag-title="NOIP2017游记">
+             <span id="/2018/03/26/51Nod1634 刚体图/" class="leancloud_visitors" data-flag-title="51Nod1634 刚体图">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,30 +351,9 @@
       
 
       
-        <p>这次的NOIP就在几分欣喜与遗憾中度过了。说实话考得还是不错的，至少人品不错233。然而终测数据太水了啊……怎么不强一点（我当然不会告诉你是因为我排名掉了）<br><a id="more"></a></p>
-<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>Day0似乎……没有干什么。扫了几个不太记得的模板，写了一发vimrc（然而并没有去试一试自己的vimrc有没有问题……于是考场上调vim20min）然后……就去颓了。</p>
-<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><p>到了考场，发现我是一考室第一组的第一个……右边两个是Gt，右边四个是dyy，右边六个是Wearry，右边八个是长者……鏼鏼发抖……<br>今年NOIP考试前竟然不能动电脑，而且还有开机密码= =差评。不知道密码的我在那里干等着，以为会有个开机密码的ppt。然后发呆了一会突然发现右边大佬竟然知道开机密码，已经进系统了……老师强调不能动电脑，于是他又把电脑锁上了。等到八点半，我亲眼看着他从键盘里输入“123456”，就进去了……我……（后来hyj告诉我，NOILinux的初始密码就是123456，我……我没用过NOILinux不知道啊……）<br>急匆匆地开始配vim，后来发现自己的快捷编译竟然没用？一脸懵逼的我试了一下手动输编译命令，没问题。于是开始找vimrc的问题。但是……平常vim配得太少了啊……都是用的原来的模板，根本不知道哪里写错了……于是胡乱加了一句imap，然后……就可以了。（还是后来day2考完后，py告诉我，忘打空格了……）看一眼表，8:50……开始看题。</p>
-<h2 id="Math-小凯的疑惑"><a href="#Math-小凯的疑惑" class="headerlink" title="Math 小凯的疑惑"></a>Math 小凯的疑惑</h2><p>期望得分 100<br>实际得分 100</p>
-<h3 id="考场思路"><a href="#考场思路" class="headerlink" title="考场思路"></a>考场思路</h3><p>看到这道题，第一反应是道原题，好像叫麦香牛块。依稀记得这题是结论题，然而结论不太记得了= =。先写了发暴力稍微玩了一下，然后就找到规律了。照着规律就这么写了，竟然……拍出错了，心里一阵慌乱。<br>后来发现gen写错了……</p>
-<h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>正解就是输出$ab-a-b$啦。在这里简单证明一下：<br>若$x$无法用$a$和$b$组合出来，则存在整数$p$和$q$，使得<br>$x=ap+bq=a(p-b)+b(q+a)$且$0&lt;p,q&lt;0,p-b&lt;0,0&lt;q+a$<br>于是$0&lt;p&lt;b,-a&lt;q&lt;0$<br>最大的$x$在$p=b-1,q=-1$时取得，即$x=a(b-1)+(-b)=ab-a-b$。</p>
-<h2 id="Complexity-时间复杂度"><a href="#Complexity-时间复杂度" class="headerlink" title="Complexity 时间复杂度"></a>Complexity 时间复杂度</h2><p>期望得分 100<br>实际得分 90</p>
-<h3 id="考场思路-1"><a href="#考场思路-1" class="headerlink" title="考场思路"></a>考场思路</h3><p>一股浓浓的Codeforces Div2B/C的气息扑面而来，超级模拟题。明明打了那么多cf，坑点应该要注意了吧……然而还是写挂了一个细节，数组貌似会访问到负值。（啊这种错也能有……我还是太菜了）终测数据gg了10分……</p>
-<h3 id="正解-1"><a href="#正解-1" class="headerlink" title="正解"></a>正解</h3><p>该写点啥呢……暴力即正解。</p>
-<h2 id="Park-逛公园"><a href="#Park-逛公园" class="headerlink" title="Park 逛公园"></a>Park 逛公园</h2><p>期望得分 60<br>实际得分 30</p>
-<h3 id="考场思路-2"><a href="#考场思路-2" class="headerlink" title="考场思路"></a>考场思路</h3><p>其实写到这题的时候，时间还是挺充裕的。然而本来就没有拿下这题的打算，所以一上来就直接去想60pts。<br>看到$k \leqslant 50$于是想到了一个dp。然而我并不知道怎么转移……想了想就写个直接dfs转移吧……考场上完全无法证明复杂度，于是就假想复杂度是$O(n^2)$的。然而直到考后我才发现，我的dp完全没有发挥dp的作用，而我的复杂度是$O(ans×len)$级别的，其中$len$是路径经过的点的个数……于是……我感觉30都很玄乎了。还好终测数据水，这30分倒是保住了。</p>
-<h3 id="正解-2"><a href="#正解-2" class="headerlink" title="正解"></a>正解</h3><p>两遍dijkstra+toposort+dp。暂时没有深究细节，不太清楚如何实现。</p>
-<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>Day1民测出来，发现自己挂了一些分数，但相对来讲还算比较稳的。进考场的时候也没啥心理压力。Day1考得不上不下的，反正进top15肯定没戏，一等看上去又比较稳……<br>进考场，这回没什么意外了。然而配vim又费了我老长的时间……</p>
-<h2 id="cheese-奶酪"><a href="#cheese-奶酪" class="headerlink" title="cheese 奶酪"></a>cheese 奶酪</h2><p>期望得分 100<br>实际得分 100</p>
-<h3 id="考场思路-3"><a href="#考场思路-3" class="headerlink" title="考场思路"></a>考场思路</h3><p>嗯这种题作为day2T1算是正常许多了，并没有遇到任何麻烦，也并没有注意到会爆<code>long long</code>……细节一定要注意啊啊啊……还好最后的终测并没有卡。但是这类似的问题很值得关注。</p>
-<h3 id="正解-3"><a href="#正解-3" class="headerlink" title="正解"></a>正解</h3><p>并查集乱搞一下就可以了。</p>
-<h2 id="treasure-宝藏"><a href="#treasure-宝藏" class="headerlink" title="treasure 宝藏"></a>treasure 宝藏</h2><p>期望得分 70<br>实际得分 70</p>
-<h3 id="考场思路-4"><a href="#考场思路-4" class="headerlink" title="考场思路"></a>考场思路</h3><p>看到暴力竟然有70，赶紧写了发暴力。然而码力太差暴力调了好久，而且复杂度似乎并不那么优。（我写的暴枚每一条边，后面还写了个树形dp求最优的根。然而这么做判树太慢了，还不如枚举每个点和哪个点相连……）于是这就导致……我的大样例……竟然会T一点点，卡了卡常才跑过去的。（考试完后才发现别人的暴力就只有12的点跑不过了……）觉得70比较满足，就先看T3去了，后来就没回来想这道题了。当然这题我也根本没往正解的思路去想，表示看到12的范围想到的是搜索/摊手。T2说实话，时间浪费得有点多，最终的得分也并不高……算是day2做得不太好的地方了。</p>
-<h3 id="正解-4"><a href="#正解-4" class="headerlink" title="正解"></a>正解</h3><p>正解是一个状压，状压方式多种多样。各种复杂度都可过。目前已知有$O(4^n),O(3^n \times n),O(2^n \times n^4)$均跑过了最后的数据。不过12的范围还是太小了，以上算法中的正确性可能还存在一些问题……当然据说爆搜剪枝也可过，而且比以上几种都要快……</p>
-<h2 id="phalanx-队列"><a href="#phalanx-队列" class="headerlink" title="phalanx 队列"></a>phalanx 队列</h2><p>期望得分 30<br>实际得分 30</p>
-<h3 id="考场思路-5"><a href="#考场思路-5" class="headerlink" title="考场思路"></a>考场思路</h3><p>Day2T3竟然是数据结构题！说好的NOIP不考数据结构的来着……哎我数据结构最差了……<br>简单码完30的暴力，又觉得数据结构题自己比较差，就没往正解去想了，开始思考部分分。没过太久就想到了一个$O(nlogn^2)$解决$x=1$的做法，也就是二分套树状数组。跑过了样例之后，自己手造了一发$1e5$随机数据，发现跑的挺快的？于是又改成$3e5$，还是跑的挺快的？大喜过望，以为这30pts到手了。结果和暴力一拍，发现输出的行数都不一样……有的询问我竟然会没有输出，也就是说二分不出答案……一脸懵逼地开始调，然后……就调到了考试结束……</p>
-<h3 id="正解-5"><a href="#正解-5" class="headerlink" title="正解"></a>正解</h3><p>用$n+1$个树状数组维护情况，具体实现还没有仔细研究。</p>
-<h1 id="Day-infty"><a href="#Day-infty" class="headerlink" title="Day $\infty$"></a>Day $\infty$</h1><p>这次NOIP其实也不能算考挂，如果讲最后真正写的分数其实只写了$430$，总共挂$10$分。但是，像Day1T3，Day2T3等题都是准备写更高的分数的，Day1T3没有自己想复杂度的问题，Day2T3调试能力太差，直接没调出来……这$60$~$70$分自认为是比较可惜的。<br>像NOIP这类型的考试，把暴力和能写的正解写稳，争取高分暴力，是很容易拿到高分的……<br>但接下来，面对的就不是NOIP了……HNOI绝不仅仅是写稳暴力就能考好的。近段时间，主要目标是把HNOI的算法天坑先填完……（然而这方面和其他人相比……差的太多了），增强代码能力，多写写工业题（现在的工业水平真是……不堪一击）。然后再加强各种题的思维训练，多总结一些套路。<br>总之，HNOI2018加油吧！</p>
-
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>计算机科学中，图可以看做是点集和边集所组成的二元组。通过给每个点设置一个平面坐标，图可以镶嵌在欧几里得平面中。<br>一个图被认为是刚体，如果该图无法只改变其中一部分的形状，而使得余下的部分的形状保持不变。<a id="more"></a><br>为了简化问题，我们现在只考虑$n \times m$的格点图。我们的问题是，对于$m \times n$的个点图，有多少种添加支撑的方案可以使其变为刚体？<br>注意本题在每个小矩形中，我们至多只允许添加一个方向的对角线。例如，对于$2 \times 3$的格点图，一共有$448$种方案。<br>$n,m \leqslant 100$。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>其实这道题最关键也是最精彩的地方就在于模型的转化。<br>考虑一个格点图是一个刚体，需要满足什么条件。其实你每往一个小矩形里加入一条对角线，就相当于强制要求某一横行的竖边，和某一竖行的横边垂直。题目的要求，是要让每一横行的竖边和每一竖行的横边都垂直。所以我们就可以把题目转化为，给出一个左边$n$个点，右边$m$个点的二分图。求使得这个二分图联通的方案数。此时可以考虑DP来做。<br>设$dp[i][j]$表示左边$i$个点，右边$j$个点所能形成的联通的二分图的方案数。直接计数不太好统计，我们考虑反向枚举，即统计有多少个不连通的。这个时候问题也就大大简化了。考虑枚举左边$1$号点所在的联通块，左边有多少个点，右边有多少个点，于是我们得到了如下的转移方程：<br>$$dp[i][j]=3^{ij}-\sum_{k=1}^i\sum_{l=0}^jC_{i-1}^{k-1}C_{j}^{l}dp[k][l]3^{(i-k)(j-l)}$$<br>理解起来不难，$k$和$l$分别表示$1$号点所在的联通块，左边右边分别的点数。先要从剩下的点里头选出这些点，再乘上这些点联通的方案数，再乘上其他点任意连的方案数即可。<br>时间复杂度$O(n^2m^2)$。不太懂51nod上为啥$n$和$m$只出到$10$……</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e2</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</div><div class="line"><span class="keyword">int</span> dp[maxn][maxn],C[maxn][maxn],Pow3[maxn*maxn];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">fpm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> ans=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(b)&#123;</div><div class="line">		<span class="keyword">if</span>(b &amp; <span class="number">1</span>)ans=<span class="number">1l</span>l*ans*a%mod;</div><div class="line">		a=<span class="number">1l</span>l*a*a%mod;b/=<span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Mod</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(val&gt;=mod)val-=mod;</div><div class="line">	<span class="keyword">if</span>(val&lt;<span class="number">0</span>)val+=mod;</div><div class="line">	<span class="keyword">return</span> val;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> i,j,k,l,m,n,T;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">	freopen(<span class="string">"51Nod1634.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"51Nod1634.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	n=<span class="number">10</span>;m=<span class="number">10</span>;</div><div class="line">	C[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	Pow3[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n*m;i++)Pow3[i]=<span class="number">1l</span>l*Pow3[i<span class="number">-1</span>]*<span class="number">3</span>%mod;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		C[i][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">			C[i][j]=Mod(C[i<span class="number">-1</span>][j<span class="number">-1</span>]+C[i<span class="number">-1</span>][j]);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=m;j++)&#123;</div><div class="line">			<span class="keyword">int</span> &amp;res=dp[i][j];res=Pow3[i*j];</div><div class="line">			<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=i;k++)</div><div class="line">				<span class="keyword">for</span>(l=<span class="number">0</span>;l&lt;=j;l++)&#123;</div><div class="line">					<span class="keyword">if</span>(k==i &amp;&amp; j==l)<span class="keyword">continue</span>;</div><div class="line">					res=Mod(res<span class="number">-1l</span>l*Pow3[(i-k)*(j-l)]*dp[k][l]%mod*C[i<span class="number">-1</span>][k<span class="number">-1</span>]%mod*C[j][l]%mod);</div><div class="line">				&#125;</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m)==<span class="number">2</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[n][m]);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -391,9 +370,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OI历程/" rel="tag"># OI历程</a>
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
-            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
+            <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
           
         </div>
       
@@ -406,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/04/NOIP考点总结之——DP/" rel="next" title="NOIP考点总结之——DP">
-                <i class="fa fa-chevron-left"></i> NOIP考点总结之——DP
+              <a href="/2018/03/26/BZOJ3591 最长上升子序列/" rel="next" title="BZOJ3591 最长上升子序列">
+                <i class="fa fa-chevron-left"></i> BZOJ3591 最长上升子序列
               </a>
             
           </div>
@@ -415,10 +394,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/09/树链剖分简单总结/" rel="prev" title="树链剖分简单总结">
-                树链剖分简单总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-0"><span class="nav-number">1.</span> <span class="nav-text">Day 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-1"><span class="nav-number">2.</span> <span class="nav-text">Day 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-小凯的疑惑"><span class="nav-number">2.1.</span> <span class="nav-text">Math 小凯的疑惑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路"><span class="nav-number">2.1.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解"><span class="nav-number">2.1.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complexity-时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">Complexity 时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Park-逛公园"><span class="nav-number">2.3.</span> <span class="nav-text">Park 逛公园</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">正解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-2"><span class="nav-number">3.</span> <span class="nav-text">Day 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cheese-奶酪"><span class="nav-number">3.1.</span> <span class="nav-text">cheese 奶酪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-3"><span class="nav-number">3.1.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-3"><span class="nav-number">3.1.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#treasure-宝藏"><span class="nav-number">3.2.</span> <span class="nav-text">treasure 宝藏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-4"><span class="nav-number">3.2.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-4"><span class="nav-number">3.2.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phalanx-队列"><span class="nav-number">3.3.</span> <span class="nav-text">phalanx 队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考场思路-5"><span class="nav-number">3.3.1.</span> <span class="nav-text">考场思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正解-5"><span class="nav-number">3.3.2.</span> <span class="nav-text">正解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Day-infty"><span class="nav-number">4.</span> <span class="nav-text">Day $\infty$</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
