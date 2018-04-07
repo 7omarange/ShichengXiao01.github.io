@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="容斥原理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言其实我觉得，这篇博客更像是把__debug的课件搬过来了……即使真的像是把课件搬过来，我也想来写一写，算是给课件做一个更加详细的解释吧。（注：只要用了引用语法的，就是引用的__debug的原话）">
+<meta name="keywords" content="容斥原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="容斥原理小结">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/04/08/容斥原理小结/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="前言其实我觉得，这篇博客更像是把__debug的课件搬过来了……即使真的像是把课件搬过来，我也想来写一写，算是给课件做一个更加详细的解释吧。（注：只要用了引用语法的，就是引用的__debug的原话）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-07T16:10:27.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="容斥原理小结">
+<meta name="twitter:description" content="前言其实我觉得，这篇博客更像是把__debug的课件搬过来了……即使真的像是把课件搬过来，我也想来写一写，算是给课件做一个更加详细的解释吧。（注：只要用了引用语法的，就是引用的__debug的原话）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/04/08/容斥原理小结/"/>
+
+
+
+
+
+  <title>容斥原理小结 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/Friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/04/08/容斥原理小结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">容斥原理小结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T00:04:52+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/08/容斥原理小结/" class="leancloud_visitors" data-flag-title="容斥原理小结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>其实我觉得，这篇博客更像是把__debug的课件搬过来了……即使真的像是把课件搬过来，我也想来写一写，算是给课件做一个更加详细的解释吧。（注：只要用了引用语法的，就是引用的__debug的原话）<br><a id="more"></a></p>
+<h1 id="经典容斥"><a href="#经典容斥" class="headerlink" title="经典容斥"></a>经典容斥</h1><p>先来看一下比较经典的容斥。经典的容斥总结起来，其实都是这样的一个问题：</p>
+<blockquote>
+<p>给定一些条件，问全部满足的对象的个数。<br>答案 = 所有对象 - 至少不满足其中一个的 + 至少不满足其中两个的 - 至少不满足其中三个的 + …</p>
+</blockquote>
+<p>相信对于基本的容斥，大家还是比较熟悉的。所以就直接上题了。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>懒癌犯了……放上以前的题解吧……</p>
+<p><a href="https://shichengxiao01.github.io/2018/02/07/BZOJ2669%20[CQOI2012]%E5%B1%80%E9%83%A8%E6%9E%81%E5%B0%8F%E5%80%BC/">BZOJ2669 [CQOI2012]局部极小值</a></p>
+<p><a href="https://shichengxiao01.github.io/2018/01/10/BZOJ4455%20[ZJOI2016]%E5%B0%8F%E6%98%9F%E6%98%9F/">BZOJ4455 [ZJOI2016]小星星</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>稍微总结一下，容斥原理在这里起到怎样的作用呢？大家可以感受一下:</p>
+<blockquote>
+<ul>
+<li>$=$ 和 $\not=$</li>
+<li>$\min$ 和 $\max$</li>
+<li>$\gcd$ 和 $\mathrm{lcm}$</li>
+<li>“恰好” 和 “至少”</li>
+<li>…</li>
+</ul>
+</blockquote>
+<h1 id="凑系数"><a href="#凑系数" class="headerlink" title="凑系数"></a>凑系数</h1><p>上面讲的，是比较经典的容斥。对于更加一般化的容斥，我们该怎么来定义呢？</p>
+<blockquote>
+<p>对于更加一般的容斥，我们可以这样认为：<br>在所有物品中，问在某个条件$C_0$下所有物品的贡献之和。<br>构造一些相对容易计算贡献的条件$C_1,…,C_n$，再对于每个条件构造容斥系数$f_1,…,f_n$，满足对于每个物品<br>$$\sum_{i=1}^{n}s(C_i)f_i=s(C_0)$$<br>其中$s(C_i)$表示这个物品在条件$C_i$下所产生的贡献。<br>对于常见的计数问题，物品的贡献只会是$0/1$，表示这个物品是否满足此条件。</p>
+</blockquote>
+<p>与我们之前常见的容斥相比较，这种容斥把容斥系数，条件的选择以及每个物品的贡献都一般化了。对于经典的容斥，容斥系数一般都形如$(-1)^k$，而$C_i$一般形如“给定了$n$个条件，满足了其中$i$个条件”，物品贡献也只会有$0/1$。</p>
+<p>这种一般化的容斥该怎么理解呢？我们可以考虑我们最终容斥计数的时候是如何计算一个物品的贡献的。不难发现，等式右边是该物品应该产生的贡献，左边则是在对于每一个条件计算时产生的贡献。为了使我们最终计算出来的答案是正确的，我们必须配上一个容斥系数，使得这个式子对于所有物品都成立。</p>
+<p>如果上面那个式子有所理解了，那么答案不难发现就是这样的式子：</p>
+<p>$$\sum_{i=1}^{n}\sum_{T \in S}s(T,C_i)f_i$$</p>
+<p>其中$S$为物品的集合，$s(T,C_i)$为物品$T$在条件$C_i$下产生的贡献。</p>
+<p>这么理解有什么用呢？来看一个经典问题：</p>
+<blockquote>
+<blockquote>
+<p>求长度为$n$的排列$a_1,…,a_n$的个数，满足$a_i \not= i$</p>
+</blockquote>
+<p>构造$n$个条件，$C_i$表示有多少个物品，至少有$i$个位置满足$a_j=j$。对于任意一个恰好有$m$个位置满足$a_j=j$的排列，需要满足<br>$$\sum_{i=0}^{m}\binom{m}{i}f_i=[m=0]$$<br>容易看出$f_i=(-1)^i$</p>
+</blockquote>
+<p>在这个问题里头，$s(C_i)$就不再是$0/1$了。由于$C_i$是有多少个物品，至少有$i$个位置满足$a_j=j$。考虑计算一个排列对$C_i$的贡献的时候，对于所有的$i$元组（每一个$i$元组的每一个元素均满足$a_j=j$），都会产生$1$的贡献。所以它对$C_i$的贡献$s(C_i)=\binom{m}{i}$。</p>
+<p>可以得到，这个问题的答案即为$$\sum_{i=0}^{n}\binom{n}{i}(n-i)!(-1)^i$$</p>
+<p>上式看似是可以通过普通容斥所得到的。但当我们将问题更加一般化，便能够体现出这种容斥的作用了。</p>
+<blockquote>
+<p>定义每个排列的价值为$a_k$，其中$k$为这个排列的错排数。求所有排列的价值之和。</p>
+</blockquote>
+<p>与上文的题目的解法是一模一样的，我们只要解出容斥系数$f_i$满足<br>$$\sum_{i=0}^{m}\binom{m}{i}f_i=a_m$$<br>那么答案就是<br>$$\sum_{i=0}^{n}\binom{n}{i}(n-i)!f_i$$<br>注意到这里的容斥系数，可以直接$O(n^2)$递推解决。当然有的题还需要打标找规律或者推一推式子。</p>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><p>来看几个例题，加深一下对于这种容斥的理解。</p>
+<h3 id="“玲珑杯”-线上赛-Round-17-B"><a href="#“玲珑杯”-线上赛-Round-17-B" class="headerlink" title="“玲珑杯” 线上赛 Round 17 B"></a>“玲珑杯” 线上赛 Round 17 B</h3><h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><p>给定$m$个数$a_1,…,a_m,$统计$[1,n]$的整数中，满足$a_1,…,a_m$中有奇数个数整除它的数的个数。</p>
+<p>$T \le 1000,n \le 10^9,m \le 15$。</p>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><p>首先，别像我一样想简单了……这题直接普通容斥肯定是错的……</p>
+<p>显然解法肯定是枚举这$m$个数的子集，然后容斥。类似于上面错排那道题的构造方法，我们设$C_i$表示有多少个数被$k$个数整除。那么对于任意一个被$m$个数整除的数，显然有$$\sum_{i=0}^{m}\binom{m}{i}f_i=m \bmod 2$$</p>
+<p>这个容斥系数可以打标找规律，当然$O(m^2)$递推也没有问题。至于求有多少个数被$k$个数整除，可以直接枚举集合，计算$\mathrm{lcm}$。</p>
+<p>时间复杂度$O(T2^n)$。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm=<span class="number">20</span>;</div><div class="line">ll a[maxm+<span class="number">5</span>],f[maxm+<span class="number">5</span>];</div><div class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	ll x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">	<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	ll i,j,k,m,n,T;</div><div class="line">	T=read();</div><div class="line">	f[<span class="number">0</span>]=<span class="number">0</span>;f[<span class="number">1</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=<span class="number">15</span>;i++)f[i]=f[i<span class="number">-1</span>]*(<span class="number">-2</span>);</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		n=read();m=read();</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)a[i]=read();</div><div class="line">		ll ans=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);i++)&#123;</div><div class="line">			ll Lcm=<span class="number">1</span>;<span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">			<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=m;j++)&#123;</div><div class="line">				<span class="keyword">if</span>(!(i &amp; (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))))<span class="keyword">continue</span>;</div><div class="line">				Lcm=<span class="number">1l</span>l*Lcm*a[j]/__gcd(Lcm,<span class="number">1l</span>l*a[j]);</div><div class="line">				<span class="keyword">if</span>(Lcm&gt;n)<span class="keyword">break</span>;cnt++;</div><div class="line">			&#125;</div><div class="line">			ans+=(n/Lcm)*f[cnt];</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BZOJ4671-异或图"><a href="#BZOJ4671-异或图" class="headerlink" title="BZOJ4671 异或图"></a>BZOJ4671 异或图</h3><h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><p>定义两个结点数相同的图$G_1$与$G_2$的异或为一个新的图$G$，其中如果$(u,v)$在$G_1$与$G_2$中的出现次数之和为$1$，那么边$(u,v)$在$G$中，否则这条边不在$G$中。</p>
+<p>现在给定$s$个结点数均为$n$的图$G_1,…,G_s,$设$S=\{G_1,…,G_s\}$，求$S$有多少个子集的异或为一个连通图。</p>
+<p>$n \le 10,s \le 60$。</p>
+<h4 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4><p>这道题并不太好做，看上去也没什么思路……感觉还是很巧妙的。我们设$f_i$为至少有$i$个联通块的方案数。考虑用贝尔数的时间来枚举子集划分，强制让划分出来的子集之间没有连边，子集内部的连边任意。那么满足条件的方案数，就要满足子集之间的连边异或起来一定是$0$的方案数。这时我们得到了许多个异或方程组。于是我们可以用线性基计算出线性无关的元素个数来得到对应的方案数。那么接下来，我们该怎么容斥呢？</p>
+<p>我们设$C_i$表示至少有$i$个联通块的图的个数。对于任意一个有$m$个联通块的图，我们会对$C_i$产生$S(m,i)$的贡献。于是我们的容斥系数需要满足：<br>$$\sum_{i=1}^{m}S(m,i)f_i=[m=1]$$<br>可以打表找规律或者$O(n^2)$递推。当然还可以用斯特林反演来得到容斥系数，然而最后这一个窝不会……</p>
+<p>得到了容斥系数，最后的答案也就是对于所有的子集划分，其方案数乘上对应的容斥系数的和了。时间复杂度$O(Bell(n)n^2s)$，上界很松，但稍微有点卡常数。</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">10</span>+<span class="number">5</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxs=<span class="number">60</span>+<span class="number">5</span>;</div><div class="line"><span class="keyword">char</span> str[maxs][maxn*maxn];</div><div class="line"><span class="keyword">int</span> G[maxs][maxn][maxn],id[maxn],f[maxn];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> x,y;</div><div class="line">&#125;a[maxn*maxn];</div><div class="line">ll Base[maxs],ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">int</span> n,s;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> lim)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k;</div><div class="line">    <span class="keyword">if</span>(cur&gt;n)&#123;</div><div class="line">        <span class="built_in">memset</span>(Base,<span class="number">0</span>,<span class="keyword">sizeof</span>(Base));</div><div class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>,pos=<span class="number">-1</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">            <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">                <span class="keyword">if</span>(id[i]^id[j])a[++pos]=(node)&#123;i,j&#125;;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=s;i++)&#123;</div><div class="line">            ll val=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=pos;j++)<span class="keyword">if</span>(G[i][a[j].x][a[j].y])val|=(<span class="number">1l</span>l&lt;&lt;(<span class="number">1l</span>l*j));</div><div class="line">            <span class="keyword">for</span>(j=pos;j&gt;=<span class="number">0</span>;j--)&#123;</div><div class="line">                <span class="keyword">if</span>(val &amp; (<span class="number">1l</span>l&lt;&lt;(<span class="number">1l</span>l*j)))&#123;</div><div class="line">                    <span class="keyword">if</span>(!Base[j])&#123;</div><div class="line">                        Base[j]=val;cnt++;<span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> val^=Base[j];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        ans+=f[lim]*(<span class="number">1l</span>l&lt;&lt;(<span class="number">1l</span>l*(s-cnt)));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=lim+<span class="number">1</span>;i++)id[cur]=i,dfs(cur+<span class="number">1</span>,max(i,lim));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ4671.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ4671.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    s=read();n=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=s;i++)<span class="built_in">scanf</span>(<span class="string">"%s"</span>,str[i]+<span class="number">1</span>);</div><div class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(str[<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">    <span class="keyword">while</span>(n*(n<span class="number">-1</span>)/<span class="number">2</span>&lt;len)n++;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=s;i++)&#123;</div><div class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)</div><div class="line">            <span class="keyword">for</span>(k=j+<span class="number">1</span>;k&lt;=n;k++)</div><div class="line">                G[i][j][k]=str[i][++cnt]-<span class="string">'0'</span>;</div><div class="line">    &#125;</div><div class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)f[i]=f[i<span class="number">-1</span>]*(<span class="number">1</span>-i);</div><div class="line">    dfs(<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h1><p>二项式反演主要有两个式子，同样是容斥原理的一种体现。</p>
+<p>$$a_n=\sum_{i=0}^{n}\binom{n}{i}b_i \Rightarrow b_n=\sum_{i=0}^{n}(-1)^{n-i}\binom{n}{i}a_i$$<br>$$a_k=\sum_{i=k}^{n}\binom{i}{k}b_i \Rightarrow b_k=\sum_{i=k}^{n}(-1)^{i-k}\binom{i}{k}a_i$$</p>
+<p>没有太多需要讲的，来道经典例题。</p>
+<h2 id="BZOJ3622-已经没有什么好害怕的了"><a href="#BZOJ3622-已经没有什么好害怕的了" class="headerlink" title="BZOJ3622 已经没有什么好害怕的了"></a>BZOJ3622 已经没有什么好害怕的了</h2><h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>给两组$n$个数$a_1,…,a_n$，$b_1,…,b_n$，保证数字互不不相同。 问有多少种将它们配对的方式, 使得$b_i&lt;a_i$的对数比$a_i&lt;b_i$的对数多$k$。</p>
+<p>$n \le 2000$。</p>
+<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><p>多$k$对显然可以转化为正好$k$对。但是正好$k$对似乎也不好做，于是我们再转化成至少$k$对。至少$k$对就会好做一些了。</p>
+<p>将$a$数组排好序之后，可以想到一个这样的$dp$。设$dp[i][j]$表示$a$数组中前$i$个数能选出$j$对比$b$数组大的数。我们有这样的转移：<br>$$dp[i][j]=dp[i-1][j]+dp[i-1][j-1] \times (t_i-j+1)$$<br>其中$t_i$表示$a_i$比多少个$b$中的元素要大。此时不难理解为什么$a$数组之前要排好序了。</p>
+<p>设$f_i$为至少有$i$对的方案数，$g_i$为恰好有$i$对的方案数。那么容易得到：<br>$$f_i=dp[n][i] \times (n-i)!$$<br>又因为<br>$$f_k=\sum_{i=k}^{n}\binom{i}{k}g_i$$<br>所以直接二项式反演就可以了。</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">1e9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2e3</span>+<span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">9</span>;</div><div class="line"><span class="keyword">int</span> a[maxn],b[maxn],dp[maxn][maxn],cnt[maxn],C[maxn][maxn],fac[maxn],F[maxn];</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch) &amp;&amp; ch!=<span class="string">'-'</span>)ch=getchar();</div><div class="line">    <span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>,ch=getchar();</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">    <span class="keyword">return</span> x*flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j;</div><div class="line">    fac[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)fac[i]=<span class="number">1l</span>l*fac[i<span class="number">-1</span>]*i%mod;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)&#123;</div><div class="line">        C[i][<span class="number">0</span>]=C[i][i]=<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;i;j++)</div><div class="line">            C[i][j]=(C[i<span class="number">-1</span>][j]+C[i<span class="number">-1</span>][j<span class="number">-1</span>])%mod;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k,m,n;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">    freopen(<span class="string">"BZOJ3622.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"BZOJ3622.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    n=read();k=read();<span class="keyword">if</span>((n+k)%<span class="number">2</span>==<span class="number">1</span>)<span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"0"</span>),<span class="number">0</span>;</div><div class="line">    init(n);</div><div class="line">    k=(n+k)&gt;&gt;<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=read();</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)b[i]=read();</div><div class="line">    sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>),sort(b+<span class="number">1</span>,b+n+<span class="number">1</span>);</div><div class="line">    <span class="keyword">int</span> pos=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">while</span>(a[i]&gt;b[pos] &amp;&amp; pos&lt;=n)pos++;</div><div class="line">        cnt[i]=pos<span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=n;j++)&#123;</div><div class="line">            dp[i][j]=dp[i<span class="number">-1</span>][j];</div><div class="line">            <span class="keyword">if</span>(j)dp[i][j]=(dp[i][j]+<span class="number">1l</span>l*dp[i<span class="number">-1</span>][j<span class="number">-1</span>]*max(<span class="number">0</span>,cnt[i]-j+<span class="number">1</span>))%mod;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)F[i]=<span class="number">1l</span>l*dp[n][i]*fac[n-i]%mod;</div><div class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=k;i&lt;=n;i++)(ans+=<span class="number">1l</span>l*((i-k) &amp; <span class="number">1</span> ? <span class="number">-1</span> : <span class="number">1</span>)*C[i][k]*F[i]%mod)%=mod;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,(ans+mod)%mod);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>容斥原理个人认为应该算是组合计数中比较重要的内容。其中的一些技巧什么的这里并没有讲，只是稍微总结了一些经典的东西。有时间还是要学一学吧……</p>
+<p>最后当然要orz __debug啦。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/容斥原理/" rel="tag"># 容斥原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/06/BZOJ2958 序列染色/" rel="next" title="BZOJ2958 序列染色">
+                <i class="fa fa-chevron-left"></i> BZOJ2958 序列染色
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经典容斥"><span class="nav-number">2.</span> <span class="nav-text">经典容斥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">2.1.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#凑系数"><span class="nav-number">3.</span> <span class="nav-text">凑系数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例题-1"><span class="nav-number">3.1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#“玲珑杯”-线上赛-Round-17-B"><span class="nav-number">3.1.1.</span> <span class="nav-text">“玲珑杯” 线上赛 Round 17 B</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BZOJ4671-异或图"><span class="nav-number">3.1.2.</span> <span class="nav-text">BZOJ4671 异或图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-1"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-1"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码-1"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项式反演"><span class="nav-number">4.</span> <span class="nav-text">二项式反演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BZOJ3622-已经没有什么好害怕的了"><span class="nav-number">4.1.</span> <span class="nav-text">BZOJ3622 已经没有什么好害怕的了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">4.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-2"><span class="nav-number">4.1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">4.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mUFErhYIN8SnIyxXzFi4jyrA-gzGzoHsz", "PTLCnAu3ivsJ0j6MJizHhIaH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
