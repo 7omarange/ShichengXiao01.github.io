@@ -273,6 +273,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/04/25/HNOI2018游记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/HNOI2018游记/" itemprop="url">HNOI2018游记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T23:01:43+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/25/HNOI2018游记/" class="leancloud_visitors" data-flag-title="HNOI2018游记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。</p>
+<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>扫了一眼题，今年的题这么清真的吗？T1/T3两个计数相关，T2一个要推性质的数据结构？感觉比往年真的是清真很多了。</p>
+<p>出于对自己计数题的信任，我开了T1。然而许久并没有推出许多有用的性质，于是赶紧弃掉了T1去看T3。T3这题面真心难看懂qaq，看了好久才发现，这是棵树上加了些边啊……$m-n$的范围奇小，于是就想到了一个状压。当时想的是，把关键点记在<code>dfn</code>较小的点上，记$dp[i][j][0/1]$表示以$i$为子树，关键点的选取状态为$j$，这个点选或不选的方案数。诶这个好像还能跑许多分啊……于是赶紧开始码码码。写完之后，发现第二个样例就会跑<code>WA</code>……仔细想了想，我这么状压似乎并没有把跨子树的边的影响考虑在内……这么看似乎这题就这么不能做了？（后来有人说可以用<code>dfs</code>而不是直接并查集，把树边搜出来，使得多余的边只有返祖边，然而窝当时并不知道啊……）突然自己灵光一闪，容斥！诶这个容斥真心好写，写完+拍上大概是10:10的样子。随手测了组极限数据……这跑的……有点慢啊……$m-n \le 10$要跑个<code>25s</code>左右。又试了组$m-n \le 7$的数据，结果也要跑<code>2.8s</code>。这复杂度不是$O(n2^{m-n+1})$的么……咋这么慢啊……很气的是时限只有<code>1s</code>而且不开<code>-O2</code>。觉得自己卡常那么辣鸡，于是放弃了卡常，拿到$70pts$赶紧走人。</p>
+<p>时间来到了10:30，想了想回头开了T1。T1想了很久，只是单纯觉得方案数与最后的几个数很有关系……仍然没有什么有用的结论，最后敲了$30pts$走人了。</p>
+<p>在我敲T1暴力的时间里，我旁边那位小哥一直在卡T3的常数。一直卡到了$m-n \le 10$在随机数据下也能在<code>1s</code>之内跑出来。orz这也太强了吧……不过考后我注意了一下那位小哥的成绩，最后T3似乎只有$75pts$？……</p>
+<p>T2推了一会性质，发现等待可以在一开始一起等完，然后一次性走完所有路。于是只要枚举一个其实位置，求的就是一个长得比较丑陋的式子了。敲了一个$40pts$的暴力上去，然后就不知道该怎么优化了……</p>
+<p>下午出分，$30+40+70=140$，简直很稳啊……一分没挂。整体上看似乎发挥挺不错的，应该算是超常发挥了……YL高二强势霸榜直接占掉前5……无限orz。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>题解待填坑……不过这个坑我肯定会填的。</p>
+<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><h2 id="心路历程-1"><a href="#心路历程-1" class="headerlink" title="心路历程"></a>心路历程</h2><p>因为Day 1考得还行（？），于是我Day 2的策略是偏求稳的，因此也没有去写乱搞什么的……</p>
+<p>先看了T1。一眼看过去感觉乱搞的空间就非常大，有的乱搞我甚至还不太会卡。但是昨天Day1T3的数据是相当的强，再加上我一贯求稳的心态，我也不太敢选择乱搞。于是一直在想正解该怎么搞……但是很久都没有太好的思路，于是敲了$60pts$走人。今天状态似乎不太理想，这个$60pts$调完之后，已经快到10:00了……</p>
+<p>T2想了一会把模型建了出来，但是并没有什么用……状压的分数还是一样的qaq。直到考试考完之后，我仍然对这道题没有任何感觉。然而后来还是在同学的提醒之下才想起，这道题在建完模型之后，就是我们WC2018集训的一道原题……然而时间比较久远（其实也就三个月之前考的，不算久远吧……），再加上那道题我并没有改，当时只是问了一下做法……考后问了一圈，似乎高一是没人想起来了的……高二想起来的也不多……</p>
+<p>T3我根本没往正解去想啊……感觉是个很难写的DP……于是打从头就是奔着部分分去的……敲完$20pts$暴力之后，就在想那个$40pts$该怎么写。后来想到了一个似乎可行的$40pts$，大体上是把式子拆掉，分开维护其中的变化值。但是这玩意儿既难写，又感觉复杂度不太对……然后就没仔细去想这个题了……</p>
+<p>Day2想了这么久，最后还是一个1.5h内就可以写完的裸暴力分……感觉今天药丸。</p>
+<p>下午出分，整个让我……大跌眼镜啊……大家的贪心都……都这么厉害的嘛……数据都……这么水的嘛……我的分$60+40+20=120$并没有什么问题，但是有的人的分……这是要闹哪样？说实话心情很久都不能平复……被这种方式击败，我相信是谁都不会服气……Day1的微小的优势被瞬间反扑回去，多少还是让我有些无法接受。</p>
+<p>晚上稍微冷静下来，思索了一番，或许自己真的技不如人吧……Day2T1不去拼一把记忆化，又能怪谁呢？Day2T2原题都想不起来，又能怪谁呢？Day2T3这么简单的DP都想不到，又能怪谁呢？于是就开始清书准备明天的文化课了……</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>题解待填坑……</p>
+<h1 id="Day-6"><a href="#Day-6" class="headerlink" title="Day 6"></a>Day 6</h1><p>Day2T2/T3的Arbiter出锅，导致贪心乱搞大行其道拿高分，似乎要重测。</p>
+<p>于是手动重测了一发，自己排名YL校内rank13，踩线拿到了赠送的B……YL校队垫底+HN省队垫底……所以就这么莫名其妙地，翻盘了？</p>
+<p>于是刚上了三四天文化课的我，又一脸懵逼地被喊回去集训了……</p>
+<h1 id="Day-infty"><a href="#Day-infty" class="headerlink" title="Day $\infty$"></a>Day $\infty$</h1><p>其实回顾整个HNOI2018，个人觉得自己的表现真是很一般，许多简单的分都没拿到。自己最后侥幸拿到校内名额，我能解释得通的理由或许只有一个了，那就是<strong>拿稳应该拿到得分</strong>。整个HNOI2018，我可以说考得非常的谨慎，很多细节都注意到了，这也使得我两天之内没有挂一分。在HNOI2018考前我做总结的时候，我粗略统计了一下省选以来的考试。从WC2018后，我一共参加了19次模拟赛，其中<strong>14次</strong>都有不同程度的挂分现象。丢掉的分数往往在数十分到近百分不等。没有挂分的5次，最后都取得了相对比较理想的成绩。其实有的时候，为了追求更高的分数，往往冒着很大的风险。在正式考试中，除非有较大的把握，尽量不要去冒这个险。因为，正式考试在某种程度上，是不允许你犯这种<strong>策略性的错误</strong>的。</p>
+<p>除了总结一些做的好的地方，我也稍微注意了一下其他同学的情况。似乎由于本校考试相对较多，可能我们的优势在于<strong>考试经验</strong>方面。关于考试经验，主要从两个角度来谈。第一个是<strong>挂分</strong>的问题。纵观我们这次HNOI，我校似乎挂分并不严重，大规模损失分数的现象似乎并没有发生。这其实也是我们平常高强度考试带来的优势；第二个是<strong>乱搞</strong>的问题。不难看出我们写乱搞的人还是有一定的比重的，这个数量应该相对于其他学校是要多出一些的。虽然乱搞这种方式让人感觉有些不爽，最后也不一定能真正转化为有效的分数。但或许有的时候还真需要这么乱搞一下。譬如这次的Day2T1，最后数据奇水无比，各种乱搞都能通过此题。在省选这种舞台上，有的时候或许还是需要去拼一把的。</p>
+<p>自己的劣势也很明显，就是题量。由于平常考试多，留给自己做题的时间相对比较少。上午的考试，往往到了晚上题也改不完。再加上平常做题的速度，我是偏慢的。也就是说，一道题我可能会去花大量的时间放在思考上，最后可能还是写不出来，无奈只好看题解。因此在题量这个方面，我可以说是相当的少（各位也可以通过我交题的数量显而易见地看出来）。可能我现在要稍微把这个做题的速度提上来一些，在这个阶段，已经隐约能够感受到题量带来的劣势了。一定的题量，可以让你在正式考试上，有更大的可能想起自己做过的题，也能让你熟悉一些基本的套路。像Day2T3这道DP题，似乎和[NOI2006]网络收费有一定的共同点（当然难度差距还是有点大……）。如果做过的此题的话，也许这个DP就不难想到了。</p>
+<p>下一阶段，似乎还要填算法的天坑，但个人觉得不必那么着急了。毕竟，就我的水平，可能学了某些算法，也不一定能够有效地转化为分数，不如继续加强一下思维方面。但是码力仍然是我的弱项，因此可能接下来要做些思维与码力并重的各省省选题。</p>
+<p>接下来是送人头的APIO/CTSC，后面又是去送人头的NOI2018……继续加油吧！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/04/08/容斥原理小结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1475,141 +1629,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shicheng Xiao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ShichengXiao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/" itemprop="url">BZOJ5020 [THUWC2017]在美妙的数学王国中畅游</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T23:58:42+08:00">
-                2018-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/" class="leancloud_visitors" data-flag-title="BZOJ5020 [THUWC2017]在美妙的数学王国中畅游">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>数字和数学规律主宰着这个世界。<br>机器的运转，<br>生命的消长，<br>宇宙的进程，<br>这些神秘而又美妙的过程无不可以用数学的语言展现出来。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/17/BZOJ5020 [THUWC2017]在美妙的数学王国中畅游/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1660,7 +1679,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
