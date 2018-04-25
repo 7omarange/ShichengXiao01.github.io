@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。 Day 1心路历程扫了一眼题，今年的题这么清真的吗？T1/T3两个计数相关，T2一个要推性质的数据结构？感觉比往年真的是清真很多了。 出于对自己计数题的信任，我开了T1。然而许久并没有推出许多有用的性质，于是赶紧弃掉了T1去看T3。T3这题面真心难看懂qaq，看了好久才发现，这是棵">
+<meta name="description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。">
 <meta name="keywords" content="OI历程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HNOI2018游记">
 <meta property="og:url" content="http://shichengxiao01.github.io/2018/04/25/HNOI2018游记/index.html">
 <meta property="og:site_name" content="ShichengXiao&#39;s Blog">
-<meta property="og:description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。 Day 1心路历程扫了一眼题，今年的题这么清真的吗？T1/T3两个计数相关，T2一个要推性质的数据结构？感觉比往年真的是清真很多了。 出于对自己计数题的信任，我开了T1。然而许久并没有推出许多有用的性质，于是赶紧弃掉了T1去看T3。T3这题面真心难看懂qaq，看了好久才发现，这是棵">
+<meta property="og:description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T15:08:00.222Z">
+<meta property="og:updated_time" content="2018-04-25T15:47:37.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HNOI2018游记">
-<meta name="twitter:description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。 Day 1心路历程扫了一眼题，今年的题这么清真的吗？T1/T3两个计数相关，T2一个要推性质的数据结构？感觉比往年真的是清真很多了。 出于对自己计数题的信任，我开了T1。然而许久并没有推出许多有用的性质，于是赶紧弃掉了T1去看T3。T3这题面真心难看懂qaq，看了好久才发现，这是棵">
+<meta name="twitter:description" content="Day 0NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。">
 
 
 
@@ -351,7 +351,7 @@
       
 
       
-        <h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。</p>
+        <h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>NOIP考得并不怎么样，但是和队线的差距也并不太大，所以其实心里并不虚（？）。考前稍微看了几个模板就睡了。<br><a id="more"></a></p>
 <h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>扫了一眼题，今年的题这么清真的吗？T1/T3两个计数相关，T2一个要推性质的数据结构？感觉比往年真的是清真很多了。</p>
 <p>出于对自己计数题的信任，我开了T1。然而许久并没有推出许多有用的性质，于是赶紧弃掉了T1去看T3。T3这题面真心难看懂qaq，看了好久才发现，这是棵树上加了些边啊……$m-n$的范围奇小，于是就想到了一个状压。当时想的是，把关键点记在<code>dfn</code>较小的点上，记$dp[i][j][0/1]$表示以$i$为子树，关键点的选取状态为$j$，这个点选或不选的方案数。诶这个好像还能跑许多分啊……于是赶紧开始码码码。写完之后，发现第二个样例就会跑<code>WA</code>……仔细想了想，我这么状压似乎并没有把跨子树的边的影响考虑在内……这么看似乎这题就这么不能做了？（后来有人说可以用<code>dfs</code>而不是直接并查集，把树边搜出来，使得多余的边只有返祖边，然而窝当时并不知道啊……）突然自己灵光一闪，容斥！诶这个容斥真心好写，写完+拍上大概是10:10的样子。随手测了组极限数据……这跑的……有点慢啊……$m-n \le 10$要跑个<code>25s</code>左右。又试了组$m-n \le 7$的数据，结果也要跑<code>2.8s</code>。这复杂度不是$O(n2^{m-n+1})$的么……咋这么慢啊……很气的是时限只有<code>1s</code>而且不开<code>-O2</code>。觉得自己卡常那么辣鸡，于是放弃了卡常，拿到$70pts$赶紧走人。</p>
 <p>时间来到了10:30，想了想回头开了T1。T1想了很久，只是单纯觉得方案数与最后的几个数很有关系……仍然没有什么有用的结论，最后敲了$30pts$走人了。</p>
