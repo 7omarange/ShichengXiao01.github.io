@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="组合数学,期望概率,计数," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="好久没写过总结了，感觉有的东西不写一写很容易忘，还是写一点东西。">
+<meta name="keywords" content="组合数学,期望概率,计数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计数与概率期望小结">
+<meta property="og:url" content="http://shichengxiao01.github.io/2018/08/12/计数与概率期望小结/index.html">
+<meta property="og:site_name" content="ShichengXiao&#39;s Blog">
+<meta property="og:description" content="好久没写过总结了，感觉有的东西不写一写很容易忘，还是写一点东西。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-12T15:47:20.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计数与概率期望小结">
+<meta name="twitter:description" content="好久没写过总结了，感觉有的东西不写一写很容易忘，还是写一点东西。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shichengxiao01.github.io/2018/08/12/计数与概率期望小结/"/>
+
+
+
+
+
+  <title>计数与概率期望小结 | ShichengXiao's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ShichengXiao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时，直挂云帆济沧海！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/Friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shichengxiao01.github.io/2018/08/12/计数与概率期望小结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shicheng Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ShichengXiao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计数与概率期望小结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T23:42:13+08:00">
+                2018-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/12/计数与概率期望小结/" class="leancloud_visitors" data-flag-title="计数与概率期望小结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>好久没写过总结了，感觉有的东西不写一写很容易忘，还是写一点东西。<br><a id="more"></a></p>
+<h1 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h1><h2 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h2><h3 id="BZOJ4870-SHOI2017-组合数问题"><a href="#BZOJ4870-SHOI2017-组合数问题" class="headerlink" title="BZOJ4870 [SHOI2017] 组合数问题"></a>BZOJ4870 [SHOI2017] 组合数问题</h3><h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定四个整数 $n,p,k,r$ ，求 $\displaystyle\sum_{i = 0}^{\infty} \binom{nk}{ik+r} \bmod p$ 。</p>
+<p>$1 \le n \le 10^9,0 \le r &lt; k \le 50,2 \le p \le 2^{30} - 1$ 。</p>
+</blockquote>
+<p>技巧：考虑组合数的意义，转化问题。</p>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><p>考虑上面的组合数的意义，我们可以将题目转化为，我们要在 $nk$ 个物品中，选出 $\bmod p = r$ 个物品的方案数。这个东西可以直接DP，然后矩阵乘法加速即可。</p>
+<h3 id="UOJ275-清华集训2016-组合数问题"><a href="#UOJ275-清华集训2016-组合数问题" class="headerlink" title="UOJ275 [清华集训2016] 组合数问题"></a>UOJ275 [清华集训2016] 组合数问题</h3><h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>小葱想知道如果给定 $n,m$ 和 $k$，对于所有的 $0 \le i \le n,0 \le j \le \min(i,m)$ 有多少对 $(i,j)$ 满足 $\binom{i}{j}$ 是 $k$ 的倍数。</p>
+<p>答案对 $10^9+7$ 取模。</p>
+<p>$1 \le n,m \le 10^{18},1 \le t,k \le 100$，且 $k$ 是一个质数。</p>
+</blockquote>
+<p>技巧：利用卢卡斯定理对于条件转化</p>
+<h4 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4><p>首先由卢卡斯定理，原题的限制可以转化为，求数对 $(i,j)$ 满足 $(i,j)$ 在 $k$ 进制下，必定存在某一位，满足 $i$ 在这一为比 $j$ 小，且 $i \le n,j \le min(i,m)$ 。这个证明很简单，直接用卢卡斯定理，一直迭代下去就可以了。</p>
+<p>接下来用一个数位DP做一下就可以了。记 $dp[i][0/1][0/1][0/1][0/1]$ 表示当前填到了第 $i$ 位，第一个数是否达到上界，第二个数是否达到 $m$ 的上界，第二个数是否达到 $i$ 的上界，是否存在某一位满足第一个数的某一位小于第二个数。注意第二个数的两个上界是要分开记的，否则转移的时候会转移串。这个自己写的时候会发现这个问题。转移枚举两个数下一位分别是什么即可。</p>
+<h3 id="UOJ300-CTSC2017-吉夫特"><a href="#UOJ300-CTSC2017-吉夫特" class="headerlink" title="UOJ300 [CTSC2017] 吉夫特"></a>UOJ300 [CTSC2017] 吉夫特</h3><h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定一个长度为 $n$ 的数列 $a_i$ ，求有多少个长度不小于 $2$ 的子序列 $a_{b_1},a_{b_2},\cdots,a_{b_k}$，满足 $\displaystyle\prod_{i = 2}^{k} \binom{a_{b_{i - 1}}}{a_{b_i}} \bmod 2 &gt; 0$ 。</p>
+<p>$1 \le n \le 211985,a_i \le 233333$ ，$a_i$ 互不相同。</p>
+</blockquote>
+<p>技巧：卢卡斯定理转化条件，利用分块思想平摊掉修改与查询的复杂度。</p>
+<h4 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h4><p>首先，和上一题一样，利用卢卡斯定理转化条件，可以得到，我们只要求有多少长度不小与 $2$ 的子序列 $a_{b_1},a_{b_2},\cdots,a_{b_k}$ ，满足后一个数是前一个数的子集。</p>
+<p>不难想到记 $dp[i][S]$ 表示到第 $i$ 个数，当前最靠后的数为 $S$ 的方案。直接的话，由于 $a_i$ 互不相同，复杂度是 $3^{18}$ ，不足以通过此题。</p>
+<p>我们考虑我们转移的时候，如果我们记的 $S$ 是上面这种，那么每次修改是 $O(1)$ ，查询的时候复杂度最坏是 $2^{18}$ ；如果我们记的 $dp[i][S]$ 是所有 $S$ 的子集的方案，那么我们每次修改的时候，复杂度最坏是 $2^{18}$ ，但是查询是 $O(1)$ 的。我们考虑平摊一下复杂度，即我们即 $dp[i][S1][S2]$ 表示到第 $i$ 个数，最后一个数前 $9$ 位为 $S1$ ，后 $9$ 位为 $S2$ 或者 $S2$ 的子集的方案数。这样相当于把修改和查询最坏复杂度都降到了 $O(2^9)$ ，总时间复杂度即为 $O(6^9)$ 。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>课件里还讲了如何 $O(\sqrt{n}\log n)$ 求组合数，不过分块打标更加优秀，也就没啥意义了。</p>
+<h2 id="组合计数"><a href="#组合计数" class="headerlink" title="组合计数"></a>组合计数</h2><h3 id="AGC001E-BBQ-HARD"><a href="#AGC001E-BBQ-HARD" class="headerlink" title="AGC001E BBQ HARD"></a>AGC001E BBQ HARD</h3><h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有 $n$ 组烧烤材料，每组有 $a_i$ 片牛肉和 $b_i$ 片青椒。需要从中选择两组材料，并把材料串在一起排列，问有多少种排列方案。两种方案不同，当且仅当选择的材料不一样，或者排列的方式不一样。</p>
+<p>$n \le 200000,a_i,b_i \le 2000$ 。</p>
+</blockquote>
+<p>技巧：组合意义的转化</p>
+<h4 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h4><p>考虑把题目转化为，二维平面内有 $2n$ 个点。每组材料对应点 $(-a_i,-b_i)$ 和点 $(a_i,b_i)$ 。接下来方案数就是所有第三象限的点走到第一象限的方案数之和，减去自己走到自己的方案数。</p>
+<h3 id="AGC002F-Leftmost-Ball"><a href="#AGC002F-Leftmost-Ball" class="headerlink" title="AGC002F Leftmost Ball"></a>AGC002F Leftmost Ball</h3><h4 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有 $n$ 种颜色的球，编号为 $1$ 至 $n$ ，每种有 $k$ 个。将这 $nk$ 个球排成一排，将每种颜色从左至右第一个球染成颜色 $0$ 。求最后能得到多少种不同的序列。</p>
+<p>$1 \le n,k \le 2000$ 。</p>
+</blockquote>
+<p>技巧：计数限制条件的转化</p>
+<h4 id="题解-4"><a href="#题解-4" class="headerlink" title="题解"></a>题解</h4><p>由题目的限制，可以发现一个这样的性质，从左到右第 $i$ 个 $0$ 的左边最多出现了 $i - 1$ 种颜色。然后每次填的时候会有两种决策，一种是加入一个新的颜色，另一种是加一个 $0$ 。由于每种颜色个数还有限制，直接顺次填还是不方便，因此可以一次填上所有一种颜色，这个可以直接用组合数计算。然后就可以记 $dp_{i,j}$ 表示确定了 $i$ 个 $0$ 和 $j$ 种颜色的方案数，转移比较显然了。</p>
+<h3 id="简单计数"><a href="#简单计数" class="headerlink" title="简单计数"></a>简单计数</h3><h4 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>$n$ 个$[1,m]$ 内的变量，其中 $i$ 不能连续出现超过 $a_i$ 次，求方案数。</p>
+<p>$1 \le a_i \le n \le 5000,1 \le m \le 10^5$ 。</p>
+</blockquote>
+<p>技巧：简化相同转移降低复杂度</p>
+<h4 id="题解-5"><a href="#题解-5" class="headerlink" title="题解"></a>题解</h4><p>首先不难想到一个 $dp$ 。设 $dp[i][j]$ 表示前 $i$ 个数，最后一个数为 $j$ 的方案数。容易写出一个简单的 $dp$ 。<br>$$<br>dp[i][j] = \sum_{k=1}^{m}dp[i-1][ k] - \sum_{k=1}^{m}[k \not= j] dp[i-a_i-1][k]<br>$$<br>直接转移是 $O(nm)$ 的，需要优化。注意到对于 $a_i$ 相同的数，$dp$ 值是相同的，因此可以一起转移。复杂度优化为 $O(n^2 + m)$ 。</p>
+<h2 id="FFT辅助计数"><a href="#FFT辅助计数" class="headerlink" title="FFT辅助计数"></a>FFT辅助计数</h2><h3 id="简单树题"><a href="#简单树题" class="headerlink" title="简单树题"></a>简单树题</h3><h4 id="题意-6"><a href="#题意-6" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定一个 $n$ 个点的树，对于每一个 $1 \le k \le n$ ，求有多少个 $k$ 个点的集合可以用至多一条路径覆盖。</p>
+<p>$1 \le n \le 10^5$</p>
+</blockquote>
+<p>技巧：点分治+FFT的树上计数的套路</p>
+<h4 id="题解-6"><a href="#题解-6" class="headerlink" title="题解"></a>题解</h4><p>如果我们将一个合法的点集记在满足条件的长度最小的链上，那么我们的计数会更加方便。考虑树上一条长度为 $i$ 的路径，由于我们把贡献记在了长度最小的路径上，因此我们必须强制选择路径两端的点，那么我们记在这条路径上的方案数就是 $2^{i-1}$ 。因此我们只要统计对于所有的 $i$ ，长度为 $i$ 的路径条数。这个问题可以用经典的点分治+FFT实现。</p>
+<h2 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h2><p>生成函数最基本的用法，辅助计数</p>
+<h3 id="BZOJ3771-Triple"><a href="#BZOJ3771-Triple" class="headerlink" title="BZOJ3771 Triple"></a>BZOJ3771 Triple</h3><h4 id="题意-7"><a href="#题意-7" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有若干个互不相同的正整数 $a_i$ ，从中选出至多三个，求选出的数的和为每种情况的方案数。</p>
+<p>$a_i \le 40000$。</p>
+</blockquote>
+<p>技巧：生成函数的基本运用</p>
+<h4 id="题解-7"><a href="#题解-7" class="headerlink" title="题解"></a>题解</h4><p>算是生成函数中比较简单的题目了。我们可以直接构造普通型生成函数，然后容斥掉重复取同一个的贡献就可以了。</p>
+<p>此外，生成函数还可以用来优化一些递推式的计算。</p>
+<p>举个很简单的例子，我们构造一个斐波那契数列的生成函数为 $F(x) = \displaystyle\sum_{i = 0}^{\infty}fib_nx^n$ ，由于 $fib_i = fib_{i - 1} + fib_{i - 2},f_0 = f_1 = 1$ ，所以 $F(x) = F(x)x + F(x)x^2 + 1$ 。于是 $F(x) = \frac{1}{1 - x - x^2}$ 。于是可以用多项式求逆，解出 $F(x)$ 。</p>
+<p>注意，写生成函数的时候一定不要忘了边界项！</p>
+<p>虽然这个问题直接递推更快，但对于某些问题，就必须利用到生成函数了，比如下面这道题，也是这类问题的一个模板题。</p>
+<h3 id="CF438E-The-Child-and-Binary-Tree"><a href="#CF438E-The-Child-and-Binary-Tree" class="headerlink" title="CF438E The Child and Binary Tree"></a>CF438E The Child and Binary Tree</h3><h4 id="题意-8"><a href="#题意-8" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给出一个正整数集合 $c_i$ ，对于所有 $1 \le i \le m$ 求出有多少形态不同的二叉树点权均属于这个集合且点权和为 $i$ 。</p>
+<p>$1 \le m,c_i \le 10^5$ 。</p>
+</blockquote>
+<p>技巧：生成函数解决递推式的问题。</p>
+<h4 id="题解-8"><a href="#题解-8" class="headerlink" title="题解"></a>题解</h4><p>我们设 $f(i)$ 表示二叉树点权和为 $i$ 的方案数，$a(x)$ 表示是否存在 $c_i = x$ 。所以我们会有 $f(0) = 1,f(i) = \displaystyle\sum_{x,y}f(x)f(y)a(i-x-y)$ 。</p>
+<p>如果我们用 $F(x)$ 表示 $f(i)$ 的生成函数，$A(x)$ 表示 $a(i)$ 的生成函数，那么我们会有：<br>$$<br>\begin{aligned}<br>F(x) &amp;= F(x)^2A(x) + 1 \\<br>\Leftrightarrow F(x) &amp;= \frac{1 \pm \sqrt{1 - 4A(x)}}{2A(x)}<br>\end{aligned}<br>$$<br>然后这个求逆的地方，由于 $A(x)$ 没有常数项，直接求逆会凉掉，因此得转化一下。<br>$$<br>F(x) = \frac{2}{1 \pm \sqrt{1 - 4A(x)}}<br>$$<br>然后求逆的时候用那个常数项非 $0$ 的解去求即可。</p>
+<p>这里多啰嗦一句多项式开方，其实也很简单，同样是利用倍增+FFT去求。假设我们已经求出了在模 $x^n$ 的意义下，$A(x)$ 的平方根 $B’(x)$ ，我们要求 $A(x)$ 在模 $x^{2n}$ 的意义下，$A(x)$ 的根式 $B(x)$ 。于是我们会有<br>$$<br>B^2(x)-2B(x)B’(x)+B’^2(x)\equiv 0\pmod {x^{2n}}<br>$$<br>解得<br>$$<br>B(x)=\frac{A(x)+B’^2(x)}{2B’(x)}<br>$$<br>于是求逆一下就可以了。</p>
+<h2 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h2><p>第一类斯特林数 $S_1(n,m)$ 表示把 $n$ 个元素排成 $k$ 个环的方案数，于是我们可以直接得到：<br>$$<br>S_1(n,k) = S_1(n - 1,k - 1) + (n - 1)S_1(n -1,k)<br>$$<br>第一类斯特林数的生成函数可以用这个东西表示：<br>$$<br>\sum_{i = 0} ^ {n}S_1(n,i) x^i = \prod_{i = 0}^{n - 1}(x + i)<br>$$<br>这个生成函数可以直接利用之前的递推式直接得到。由于 $S_1(n,i)$ 对应的生成函数的项的次数为 $i$ ，我们可以对着递推式理解一下。当我们给这个生成函数乘上一个新的项 $(x + i)$ 的时候，如果我们在这里选择乘上 $x$ ，相当于给我们的多项式次数 $+1$ ，对应递推式中 $S_1(n - 1,k - 1) \rightarrow S_1(n,k)$ ，如果我们在这里选择乘上 $i$ ，相当于多项式的次数不变，但是乘上了一个 $i$ 的系数，对应递推式中 $(n - 1)S_1(n - 1,k) \rightarrow S_1(n,k)$ 。</p>
+<p>这样的话，第一类斯特林数就可以用分治+FFT在 $O(n \log ^ 2 n)$ 的时间内求出来了。但是这还不够优秀。利用倍增+FFT，我们可以把复杂度优化到 $O(n \log n)$。</p>
+<p>具体来说，令 $\displaystyle F_n(x) = \prod_{i = 0}^{n - 1}(x + i)$，那么 $F_{2n}(x) = F_n(x) F_n(x + n)$ 。而<br>$$<br>\begin{aligned}<br>F_n(x+n) &amp;= \sum_{i = 0}^{n - 1}S_1(n,i)(x+n)^i<br>\\&amp;= \sum_{i = 0}^{n - 1}S_1(n,i)\sum_{j=0}^i \binom{i}{j}x^jn^{i-j}<br>\\&amp;= \sum_{j = 0}^{n - 1}x^j \sum_{i=j}^{n - 1} \binom{i}{j}S_1(n,i)n^{i-j}<br>\end{aligned}<br>$$<br>把式子拆开，就可以发现这是一个卷积形式。于是我们可以用倍增+FFT在 $O(n\log n)$ 的时间内求解。</p>
+<p>此外还有一个定义叫有符号第一类斯特林数，它的值就是在 $S(n,k)$ 的基础上乘上一个 $(-1)^{n-k}$ 。它的生成函数为<br>$$<br>\sum_{i = 0} ^ {n}S_1(n,i) x^i = \prod_{i = 0}^{n - 1}(x - i)<br>$$</p>
+<p>第一类斯特林数和上升下降幂还有这样的转化：<br>$$<br>\begin{aligned}<br>x^{\underline{n}} &amp;= \sum_{i = 0}^{n}S_1(n,i)x^i \\<br>x^{\overline{n}} &amp;= \sum_{i = 0}^{n}S_1(n,i)(-1)^{n - i}x^i<br>\end{aligned}<br>$$<br>其中 $x^{\underline{i}}$ 与 $x^{\overline{i}}$ 分别表示 $x$ 的 $i$ 次下降幂与上升幂。</p>
+<h2 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2><p>第一类斯特林数 $S_2(n,m)$ 表示把 $n$ 个元素分成 $k$ 个非空集合的方案数，于是我们可以直接得到：<br>$$<br>S_2(n,k) = S_2(n - 1,k - 1) + kS_2(n -1,k)<br>$$<br>利用容斥原理，我们可以得到第二类斯特林数的另外一个求法：<br>$$<br>S_2(n,m)=\frac{1}{m!}\sum_{k=0}^{m}(-1)^kC(m,k)(m-k)^n<br>$$<br>这里的容斥利用的是，枚举有几个集合是空的。注意到每个集合都是一样的，所以最后答案要除一个 $m!$。利用NTT可以直接在 $O(n\log n)$ 的时间内求出答案。</p>
+<p>第二类斯特林数和上升下降幂还有这样的转化：<br>$$<br>\begin{aligned}<br>x^n &amp;= \sum_{i = 0}^{n}S_2(n,i)x^{\underline{i}}<br>\ &amp;= \sum_{i = 0}^{n}S_2(n,i)(-1)^{n - i}x^{\overline{i}}<br>\end{aligned}<br>$$<br>其中 $x^{\underline{i}}$ 与 $x^{\overline{i}}$ 分别表示 $x$ 的 $i$ 次下降幂与上升幂。</p>
+<h3 id="CF932E-Team-Work"><a href="#CF932E-Team-Work" class="headerlink" title="CF932E Team Work"></a>CF932E Team Work</h3><h4 id="题意-9"><a href="#题意-9" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>求 $\displaystyle\sum_{i=0}^{n}C(n,i) \times i^k$ 的值。</p>
+<p>$1 \leq n \leq 10^9,1 \leq k \leq 5 \times 10^3$ 。</p>
+</blockquote>
+<p>技巧：斯特林数的经典转化</p>
+<h4 id="题解-9"><a href="#题解-9" class="headerlink" title="题解"></a>题解</h4><p>利用普通幂与下降幂在第二类斯特林数的转化，我们可以得到：<br>$$<br>\begin{aligned}<br>\sum_{i=0}^{n}C(n,i) \times i^k<br>&amp;= \sum_{i=0}^{n}\binom{n}{i}\sum_{j=0}^{k}S_2(k,j)\binom{i}{j}j! \\<br>&amp;= \sum_{i=0}^{n}\sum_{j=0}^{k}S_2(k,j) \binom{i}{j} \binom{n}{i}j! \\<br>&amp;= n!\sum_{i=0}^{n}\sum_{j=0}^{k}S(k,j) \frac{1}{(n-i)!} \frac{1}{(i-j)!} \\<br>&amp;= n!\sum_{i=0}^{n}\sum_{j=0}^{k}S_2(k,j) \binom{n-j}{n-i} \frac{1}{(n-j)!} \\<br>&amp;= n!\sum_{j=0}^{k}S_2(k,j)\sum_{i=0}^{n}\binom{n-j}{n-i} \frac{1}{(n-j)!} \\<br>&amp;= n!\sum_{j=0}^{k}S_2(k,j) 2^{n-j} \frac{1}{(n-j)!} \\<br>&amp;= \sum_{j=0}^{k}S_2(k,j) 2^{n-j} n^{\underline{j}}<br>\end{aligned}<br>$$<br>于是就做完了，问题的关键一步在于幂次与下降幂的转化。</p>
+<h2 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h2><h3 id="ARC093F-Dark-Horse"><a href="#ARC093F-Dark-Horse" class="headerlink" title="ARC093F Dark Horse"></a>ARC093F Dark Horse</h3><h4 id="题意-10"><a href="#题意-10" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有 $2^n$ 名选手，编号为 $1$ 至 $2^n$ 。现在这 $2^n$ 名选手将进行 $n$ 轮淘汰赛，决出胜者。若 $x &lt; y$ ，则 $x$ 能够战胜 $y$ 。但有 $m$ 个例外，$1$ 号选手会输给这 $m$ 个选手。问有多少中排列方式使得 $1$ 号选手取得胜利。</p>
+<p>$n,m \le 16$ 。</p>
+</blockquote>
+<p>技巧：容斥之后，利用DP来加速求解</p>
+<h4 id="题解-10"><a href="#题解-10" class="headerlink" title="题解"></a>题解</h4><p>为了方便，定义这 $m$ 个人组成的集合为集合 $A$ 。容易发现，与 $1$ 号选手交战的选手，对应了 $n$ 个区间内的编号最小值。如果只算某一个区间中集合 $A$ 有人晋级的方案数，可能会有算重的情况。所以可以想到一个容斥，即计算满足集合 $S$ 所包含的所有区间中，集合 $A$ 有人晋级的方案数。最后容斥一下。</p>
+<p>这个东西还是不大好算，于是考虑使用DP计数。设 $dp_{i,j}$ 表示选出了集合 $A$ 中前 $i$ 大的选手，且集合 $S$ 中所包含的区间均有集合 $A$ 中的人晋级的方案数。转移还是比较显然的。</p>
+<h3 id="CF995F-Cowmpany-Cowmpensation"><a href="#CF995F-Cowmpany-Cowmpensation" class="headerlink" title="CF995F Cowmpany Cowmpensation"></a>CF995F Cowmpany Cowmpensation</h3><h4 id="题意-11"><a href="#题意-11" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给出一棵 $n$ 个点的有根树，每个点可以有一个 $[1,d]$ 内的整数边权，问有多少种点权满足儿子权值不大于父亲。</p>
+<p>$1 \le n \le 3000,1 \le D \le 10^9$ 。</p>
+</blockquote>
+<p>技巧：利用容斥降低DP的复杂度</p>
+<h4 id="题解-11"><a href="#题解-11" class="headerlink" title="题解"></a>题解</h4><p>容易想到枚举这棵树内一共出现了多少种数字，然后用组合数去计算最后的答案。但是直接DP的话，合并的时候你需要枚举重复的数字，复杂度相当高，需要简化一下问题。</p>
+<p>考虑容斥，将恰好 $j$ 种数字转化为至多 $j$ 种数字。设 $dp_{i,j}$ 表示以 $i$ 为子树，至多出现了 $j$ 种数字的方案数。转移的时候记一个前缀和就可以做到 $O(n^2)$ 的复杂度。</p>
+<h1 id="概率与期望"><a href="#概率与期望" class="headerlink" title="概率与期望"></a>概率与期望</h1><p>题目我做了一些删减，过水太难的就删掉了……</p>
+<h2 id="普通期望题"><a href="#普通期望题" class="headerlink" title="普通期望题"></a>普通期望题</h2><p>概率与期望题，首先记住：概率顺推，期望倒推。因为期望顺推的话，你还需要多求一个概率。在不好求概率的时候倒推期望是最合适的。</p>
+<h3 id="CF605E-Intergalaxy-Trips"><a href="#CF605E-Intergalaxy-Trips" class="headerlink" title="CF605E Intergalaxy Trips"></a>CF605E Intergalaxy Trips</h3><h4 id="题意-12"><a href="#题意-12" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有 $n$ 个点，每天 $i$ 号点到 $j$ 号点的有向道路有 $p_{i,j}$ 的概率开放。每天可以走一条开放的道路或者留在原地，求从 $1$ 号点走到 $n$ 号点最优的期望时间。注意，你的策略可以随着道路的开放与否做出改变。</p>
+<p>$1 \le n \le 1000$。</p>
+</blockquote>
+<p>技巧：期望倒推的利用，与贪心的结合</p>
+<h4 id="题解-12"><a href="#题解-12" class="headerlink" title="题解"></a>题解</h4><p>我们设 $f(x)$ 表示从 $x$ 节点到 $n$ 节点最优时间的期望，那么我们的最优策略肯定是，在所有你能到的节点中，走向期望时间最短的点。如果这个点的期望时间大于本身，那么就留在这个点，等待下一次。</p>
+<p>那么我们可以考虑按照期望的大小从小到大确定每个点的答案。每次从所有未确定的点中，选择一个当前期望值最小的点。由于我们不会走向期望时间比自己大的点，因此，这样做是正确的。我们设 $a_i$ 表示 $f(x)$ 第 $i$ 小的点的编号，那么我们有：<br>$$<br>f(a_i) = 1 + \sum_{j = 1}^{i}f(a_i) P_{a_i,a_j}\prod_{k = 1}^{j - 1}(1 - p_{a_i,a_k})<br>$$<br>这里在确定一个点之后，对于每个未确定的点维护一下新的答案，就可以在 $O(n^2)$ 的时间内解决了。</p>
+<h3 id="BZOJ5058-期望逆序对"><a href="#BZOJ5058-期望逆序对" class="headerlink" title="BZOJ5058 期望逆序对"></a>BZOJ5058 期望逆序对</h3><h4 id="题意-13"><a href="#题意-13" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定一个 $1$ 到 $n$ 的排列，求 $k$ 次随机交换之后，期望逆序对的数量。</p>
+<p>$n \le 500000,k \le 10^9$ 。</p>
+</blockquote>
+<p>技巧：考虑某一对或某个物品对于答案的贡献；考虑末状态的期望</p>
+<h4 id="题解-13"><a href="#题解-13" class="headerlink" title="题解"></a>题解</h4><p>考虑每对数字对答案的贡献。每对数字 $a_i,a_j$ 在末状态的时候，所处位置有三种可能的情况，位于 $i$ ，位于 $j$ ，位于其他的位置。注意到在这里，每个点位于其他位置的概率是均等的。因此 $(i,j)$ 这个数对的位置情况可以归为 $7$ 种。把这 $7$ 种情况的转移写成一个矩阵，就可以求出每种位置情况的概率。</p>
+<p>直接对于每一个数对统计答案的话，时间复杂度仍然是 $O(n^2)$ 的，于是我们要用一个BIT来统计贡献。具体实现还是看代码比较好……</p>
+<h3 id="CF838D-Airplane-Arrangements"><a href="#CF838D-Airplane-Arrangements" class="headerlink" title="CF838D Airplane Arrangements"></a>CF838D Airplane Arrangements</h3><h4 id="题意-14"><a href="#题意-14" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>有 $n$ 个人排成一排，有 $m$ 个人依次进场选位置。每个人开始会选择一个方向（从左至右或从右至左）并选择一个位置。他会走到他选择的那个位置，如果那个位置被人占用了，他会沿着他选择的方向一路走到第一个空位并坐下。求有多少种情况满足每个人都有座位。</p>
+<p>$1 \le m \le n \le 10^6$ 。</p>
+</blockquote>
+<p>技巧：巧妙的建模，找到概率相同的量</p>
+<h4 id="题解-14"><a href="#题解-14" class="headerlink" title="题解"></a>题解</h4><p>把所有位置看成一个 $n + 1$ 个点的环。其中第 $n + 1$ 个点是一个特殊点，如果有人占据了这个点，那么意味着有人没有座位。如果我们假设这 $m$ 个人可能以 $n + 1$ 号点为起点，这显然不会影响合法的答案。但是这样修改了一下之后，每个人坐在每个位置上的概率是均等的。所以答案就是 $\frac{n + 1 - m}{n + 1}(2n+2)^m$。</p>
+<h2 id="树上高斯消元解决树上期望问题"><a href="#树上高斯消元解决树上期望问题" class="headerlink" title="树上高斯消元解决树上期望问题"></a>树上高斯消元解决树上期望问题</h2><p>这种题主要还是要熟悉一下套路，一般来讲，可以把 $dp$ 的式子写成 $f(x) = A_xf(fa[x]) + B_x$。然后从下到上一路推到根，就可以求出整棵树的 $dp$ 值。</p>
+<h3 id="LOJ2542-随机游走"><a href="#LOJ2542-随机游走" class="headerlink" title="LOJ2542 随机游走"></a>LOJ2542 随机游走</h3><h4 id="题意-15"><a href="#题意-15" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定一棵 $n$ 个结点的树，你从点 $x$ 出发，每次等概率随机选择一条与所在点相邻的边走过去。</p>
+<p>有 $Q$ 次询问，每次询问给定一个集合 $S$，求如果从 $x$ 出发一直随机游走，直到点集 $S$ 中所有点都至少经过一次的话，期望游走几步。</p>
+<p>特别地，点 $x$ 视为一开始就被经过了一次。</p>
+<p>$1 \le n \le 18,1 \le Q \le 5000$ 。</p>
+</blockquote>
+<p>技巧：树上高斯消元；MinMax容斥</p>
+<h4 id="题解-15"><a href="#题解-15" class="headerlink" title="题解"></a>题解</h4><p>题意等价于，给定一个点集，求经过这个点集里的点的时间的Max的期望。Max的期望可以说相当不好求，这里考虑利用MinMax容斥，将时间Max的期望转化为时间Min的期望。MinMax容斥的式子大概长这样：<br>$$<br>\displaystyle \max\{S\}=\sum_{T\subseteq S}(-1)^{|T|-1}\min\{T\}<br>$$<br>证明大概可以这样考虑。设 $\max\{S\} = x$，将除了 $\{x\}$ 与 $\varnothing$ 之外，将所有集合两两配对。配对方式就是将一个不含 $x$ 的集合和这个集合加上 $x$ 这个元素形成的集合配对。这样两个集合的最小值肯定是相等的，会相互抵消。最后剩下的集合中，空集没有最小值，故答案即为 $x$ 。</p>
+<p>MinMax容斥之后，我们就只要求第一次经过某个点集的期望时间了。设 $f(x,S)$ 表示从 $x$ 出发，第一次经过集合 $S$ 中的点的期望时间。这个东西可以分两类讨论：</p>
+<p>若 $x \in S$ ，则 $f(x) = 0$；</p>
+<p>若 $x \not\in S$ ，则$\displaystyle f(x)=[f(fa[x])+1+\sum (f(ch[x])+1)] \times \frac{1}{deg[x]}$。</p>
+<p>利用树上高斯消元，将 $f(x)$ 表示为 $A(x)f(fa[x]) + B(x)$ 的形式。于是我们有<br>$$<br>\displaystyle (1-\frac{\sum A_v}{deg[u]}) f(u) = \frac{1}{deg[u]}f(\mathrm{fa}[u])+(1+\frac{\sum B_v}{deg[u]})<br>$$<br>把左边除过去，然后就可以得到答案了。</p>
+<h3 id="Trip"><a href="#Trip" class="headerlink" title="Trip"></a>Trip</h3><h4 id="题意-16"><a href="#题意-16" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>给定一棵 $n$ 个点，以 $1$ 号点为根的树，每个点为黑色或白色。从 $1$ 号点出发，每次随机走向一个相邻的节点。如果该点为黑色或第一次经过该点，则计数器加 $1$ 。如果走到叶子节点整个过程将结束。求计数器的值的期望。</p>
+<p>$n \le 10^6$ 。</p>
+</blockquote>
+<p>技巧：树上高斯消元，期望综合难题；大胆设出未知数。</p>
+<h4 id="题解-16"><a href="#题解-16" class="headerlink" title="题解"></a>题解</h4><p>首先考虑只有黑点的时候，该怎么做。黑点是经过一次就算一次贡献，如果我们设 $f(x)$ 表示从 $x$ 出发，经过的黑点的期望个数，那么我们就可以得到一个DP方程<br>$$<br>f_i = [i  is  black] + [deg[i] &gt; 1]\frac{\sum f(j)}{deg[i]}<br>$$<br>其中 $j$ 为所有与 $i$ 相邻的点。那么这里直接用树上高斯消元即可解决。</p>
+<p>接下来考虑只有白点的情况。由于白点只在第一次经过的时候做出贡献，那么我们只需求出经过白点的概率 $g_i$ 。由于当我们从 $1$ 号点出发的时候，想要经过 $i$ ，必须经过 $fa_i$ 。我们设 $h_i$ 为从 $fa_i$ 走到 $i$ 节点的概率，那么我们有 $g_i = g_{fa_i} \times h_i$ 。 </p>
+<p>考虑我们该如何求 $h$ 。设 $a_i$ 表示从 $i$ 走到 $fa_i$ 的概率，那么我们有这样一个式子：<br>$$<br>h_i = \frac{1}{deg_{fa_i}}(1 + h_ih_{fa_i} + \sum a_jh_i)<br>$$<br>其中 $j$ 是 $i$ 的儿子节点。</p>
+<p>解释一下这个式子。第一项表示我第一步就到了 $i$ 节点；第二项表示我第一步走到了父亲节点，那么我为了走到 $i$ 节点，就要往下走两步，概率分别为 $h_{fa_i}$ 与 $h_i$ 。第三项表示我第一步走到了其他的儿子节点，那么我需要先往上走一步，再往下走一步。</p>
+<p>为了求 $h$ 我们还得求 $a$ 。不过所幸 $a$ 求起来是很简单的。容易发现这样一个式子：<br>$$<br>a_i  = \frac{1}{deg_i}(1+\sum a_ja_i)<br>$$<br>同样 $j$ 为 $i$ 的儿子节点。这个式子理解起来很简单。第一项就是一步走对，第二项就是往下走了，然后要往上走两步。</p>
+<p>以上的 $h$ 和 $a$ 均用树上高斯消元都可以求出来，于是问题终于解决啦！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
+          
+            <a href="/tags/期望概率/" rel="tag"># 期望概率</a>
+          
+            <a href="/tags/计数/" rel="tag"># 计数</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/ARC063 F Snuke's Coloring 2/" rel="next" title="ARC063 F Snuke's Coloring 2">
+                <i class="fa fa-chevron-left"></i> ARC063 F Snuke's Coloring 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Shicheng Xiao" />
+          <p class="site-author-name" itemprop="name">Shicheng Xiao</p>
+           
+              <p class="site-description motion-element" itemprop="description">长风破浪会有时，直挂云帆济沧海！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计数"><span class="nav-number">1.</span> <span class="nav-text">计数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组合数"><span class="nav-number">1.1.</span> <span class="nav-text">组合数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BZOJ4870-SHOI2017-组合数问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">BZOJ4870 [SHOI2017] 组合数问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UOJ275-清华集训2016-组合数问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">UOJ275 [清华集训2016] 组合数问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-1"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UOJ300-CTSC2017-吉夫特"><span class="nav-number">1.1.3.</span> <span class="nav-text">UOJ300 [CTSC2017] 吉夫特</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-2"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-2"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.1.4.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合计数"><span class="nav-number">1.2.</span> <span class="nav-text">组合计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AGC001E-BBQ-HARD"><span class="nav-number">1.2.1.</span> <span class="nav-text">AGC001E BBQ HARD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-3"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-3"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AGC002F-Leftmost-Ball"><span class="nav-number">1.2.2.</span> <span class="nav-text">AGC002F Leftmost Ball</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-4"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-4"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单计数"><span class="nav-number">1.2.3.</span> <span class="nav-text">简单计数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-5"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-5"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFT辅助计数"><span class="nav-number">1.3.</span> <span class="nav-text">FFT辅助计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单树题"><span class="nav-number">1.3.1.</span> <span class="nav-text">简单树题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-6"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-6"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成函数"><span class="nav-number">1.4.</span> <span class="nav-text">生成函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BZOJ3771-Triple"><span class="nav-number">1.4.1.</span> <span class="nav-text">BZOJ3771 Triple</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-7"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-7"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF438E-The-Child-and-Binary-Tree"><span class="nav-number">1.4.2.</span> <span class="nav-text">CF438E The Child and Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-8"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-8"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一类斯特林数"><span class="nav-number">1.5.</span> <span class="nav-text">第一类斯特林数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二类斯特林数"><span class="nav-number">1.6.</span> <span class="nav-text">第二类斯特林数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CF932E-Team-Work"><span class="nav-number">1.6.1.</span> <span class="nav-text">CF932E Team Work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-9"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-9"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容斥原理"><span class="nav-number">1.7.</span> <span class="nav-text">容斥原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC093F-Dark-Horse"><span class="nav-number">1.7.1.</span> <span class="nav-text">ARC093F Dark Horse</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-10"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-10"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF995F-Cowmpany-Cowmpensation"><span class="nav-number">1.7.2.</span> <span class="nav-text">CF995F Cowmpany Cowmpensation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-11"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-11"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概率与期望"><span class="nav-number">2.</span> <span class="nav-text">概率与期望</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通期望题"><span class="nav-number">2.1.</span> <span class="nav-text">普通期望题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CF605E-Intergalaxy-Trips"><span class="nav-number">2.1.1.</span> <span class="nav-text">CF605E Intergalaxy Trips</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-12"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-12"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BZOJ5058-期望逆序对"><span class="nav-number">2.1.2.</span> <span class="nav-text">BZOJ5058 期望逆序对</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-13"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-13"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF838D-Airplane-Arrangements"><span class="nav-number">2.1.3.</span> <span class="nav-text">CF838D Airplane Arrangements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-14"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-14"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树上高斯消元解决树上期望问题"><span class="nav-number">2.2.</span> <span class="nav-text">树上高斯消元解决树上期望问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LOJ2542-随机游走"><span class="nav-number">2.2.1.</span> <span class="nav-text">LOJ2542 随机游走</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-15"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-15"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trip"><span class="nav-number">2.2.2.</span> <span class="nav-text">Trip</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题意-16"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解-16"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shicheng Xiao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mUFErhYIN8SnIyxXzFi4jyrA-gzGzoHsz", "PTLCnAu3ivsJ0j6MJizHhIaH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
